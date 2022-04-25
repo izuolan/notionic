@@ -11,6 +11,11 @@ const BLOG = {
     blog: '返回博客',
     contact: '联系我'
   },
+  notesLink: {
+    index: '/',
+    blog: 'https://zuolan.me',
+    contact: 'https://zuolan.me/contact'
+  },
   lang: 'zh-CN', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']

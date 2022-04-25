@@ -241,13 +241,13 @@ const bodyStr = `
     <nav class="navigation__nav" role="navigation">
       <ul class="navigation__list">
         <li class="navigation__item">
-          <a href="/notes" class="navigation__link">${BLOG.notesNav.index}</a>
+          <a href="${BLOG.notesLink.index}" class="navigation__link">${BLOG.notesNav.index}</a>
         </li>
         <li class="navigation__item">
-          <a href="/" class="navigation__link">${BLOG.notesNav.blog}</a>
+          <a href="${BLOG.notesLink.blog}" class="navigation__link">${BLOG.notesNav.blog}</a>
         </li>
         <li class="navigation__item">
-          <a href="/contact" target="_blank" class="navigation__link">${BLOG.notesNav.contact}</a>
+          <a href="${BLOG.notesLink.contact}" target="_blank" class="navigation__link">${BLOG.notesNav.contact}</a>
         </li>
       </ul>
       <p class="footer">© CC BY-NC-SA 4.0</p>
