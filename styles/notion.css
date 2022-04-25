@@ -1,0 +1,121 @@
+/* NOTION CSS OVERRIDE */
+
+.notion {
+  @apply text-gray-600 dark:text-gray-300;
+  overflow-wrap: break-word;
+}
+.notion,
+.notion-text,
+.notion-quote,
+.notion-h-title {
+  @apply leading-8;
+  @apply p-0;
+  @apply my-3;
+}
+
+.notion-page-link {
+  color: inherit;
+}
+
+.notion-list li {
+  padding: 0;
+}
+
+.notion-toggle {
+  @apply w-full;
+}
+
+.notion-simple-table {
+  @apply self-center;
+}
+
+svg.notion-page-icon {
+  @apply hidden;
+}
+
+svg + .notion-page-title-text {
+  @apply border-b-0;
+}
+
+.notion-full-width {
+  @apply px-0;
+}
+
+.notion-page {
+  @apply w-auto px-0;
+}
+
+.notion-quote {
+  padding: 0.2em 0.9em;
+  font-size: 1em;
+  line-height: 1.5rem;
+}
+
+.notion-link {
+  @apply text-blue-600 dark:text-blue-300;
+}
+
+.notion-table-of-contents {
+  @apply 2xl:max-w-xs 2xl:fixed 2xl:z-10 2xl:top-40 2xl:inset-x-3/4;
+  @apply bg-day dark:bg-night;
+}
+.notion-table-of-contents-item {
+  @apply rounded-lg px-2;
+}
+
+.notion-bookmark {
+  @apply border;
+  @apply border-gray-200 dark:border-gray-700;
+  color: inherit;
+}
+.notion-bookmark .notion-bookmark-title,
+.notion-bookmark .notion-bookmark-link div {
+  @apply text-gray-900 dark:text-gray-200;
+}
+.notion-bookmark .notion-bookmark-description {
+  @apply text-gray-600 dark:text-gray-300;
+}
+.notion-bookmark:hover {
+  @apply border-gray-400;
+}
+
+.notion-code > code {
+  @apply text-gray-900;
+}
+.notion .notion-code {
+  font-size: var(--prism-font-size);
+  line-height: var(--prism-line-height);
+}
+.notion-code .token.operator {
+  background: transparent;
+}
+pre[class*='language-'] {
+  line-height: var(--prism-line-height);
+}
+
+.notion-viewport {
+  z-index: -10;
+}
+.notion-asset-caption {
+  @apply text-center;
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.notion-collection {
+  @apply max-w-full;
+}
+.notion-collection > .notion-collection-header {
+  @apply px-0 !important;
+}
+.notion-collection > .notion-table {
+  @apply max-w-full !important;
+}
+.notion-collection > .notion-table > .notion-table-view {
+  @apply px-0 !important;
+}
+.notion-collection-view-type {
+  @apply hidden;
+}
+.notion-collection-row {
+  @apply hidden;
+}

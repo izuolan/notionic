@@ -1,0 +1,60 @@
+{
+  "name": "nobelium-plus",
+  "version": "1.3.0",
+  "homepage": "https://nobelium-plus.vercel.app",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/izuolan/nobelium-plus.git"
+  },
+  "author": {
+    "name": "Zuo Lan",
+    "email": "i@zuolan.me",
+    "url": "https://zuolan.me"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write .",
+    "lint": "next lint",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "feed": "^4.2.2",
+    "gitalk": "^1.7.2",
+    "next": "^12.1.0",
+    "next-themes": "^0.1.1",
+    "notion-client": "^4.10.0",
+    "notion-utils": "^4.10.0",
+    "preact": "^10.5.15",
+    "prism-theme-vars": "^0.2.2",
+    "react": "^17.0.2",
+    "react-cusdis": "^2.0.1",
+    "react-dom": "^17.0.2",
+    "react-notion-x": "^4.18.2",
+    "use-ackee": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.39",
+    "autoprefixer": "^10.4.0",
+    "eslint": "<8.0.0",
+    "eslint-config-next": "^12.0.3",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.26.1",
+    "husky": "^7.0.4",
+    "next-sitemap": "^1.6.203",
+    "postcss": "^8.4.6",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.23"
+  },
+  "bugs": {
+    "url": "https://github.com/izuolan/nobelium-plus/issues",
+    "email": "i@zuolan.me"
+  }
+}
