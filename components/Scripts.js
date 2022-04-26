@@ -3,7 +3,7 @@ import BLOG from '@/blog.config'
 
 const Scripts = () => (
   <>
-    {BLOG.isProd && BLOG.analytics.provider === 'umami' && (
+    {BLOG.analytics && BLOG.analytics.provider === 'umami' && (
       <Script
         src={BLOG.analytics.umamiConfig.scriptUrl}
         strategy='afterInteractive'
