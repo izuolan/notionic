@@ -61,7 +61,7 @@ const BLOG = {
     }
   },
   comment: {
-    // support provider: gitalk, utterances, cusdis
+    // support provider: gitalk, utterances, cusdis, supacomments
     provider: '', // leave it empty if you don't need any comment plugin
     supaCommentsConfig: {
       supabaseUrl: '', // The url of your Supabase instance
