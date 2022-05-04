@@ -22,9 +22,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.5",
     "feed": "^4.2.2",
-    "gitalk": "^1.7.2",
     "next": "^12.1.0",
     "next-themes": "^0.1.1",
     "notion-client": "^4.10.0",
@@ -38,6 +36,7 @@
     "use-ackee": "^3.0.0"
   },
   "devDependencies": {
+    "@heroicons/react": "^1.0.5",
     "@types/react": "^17.0.39",
     "autoprefixer": "^10.4.0",
     "eslint": "<8.0.0",
