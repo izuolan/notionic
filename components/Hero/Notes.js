@@ -1,6 +1,6 @@
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import NotionAvatar from '../NotionAvatar.js'
+import Avatar from '../Avatar.js'
 import Social from '../Social.js'
 
 const Hero = ({ fullWidth }) => {
@@ -22,7 +22,7 @@ const Hero = ({ fullWidth }) => {
           </div>
         </div>
         <div className='w-2/5'>
-          <NotionAvatar className='text-gray-800 dark:text-gray-200' />
+          <Avatar className='text-gray-600 dark:text-gray-300' />
         </div>
       </div>
     </>
