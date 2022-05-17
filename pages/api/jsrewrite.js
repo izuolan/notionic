@@ -11,11 +11,13 @@ module.exports = async (req, res) => {
   const response = await fetch(url)
   const originResText = await response.text()
   const modifyResText = originResText
-    .replace('&&"s"===c[0]&&', '&&"notes"===c[0]&&')
-    .replace('e.comments.length?"s":""', 'e.comments.length?"notes":""')
-    .replace('{return"s"===e}', '{return"notes"===e}')
-    .replace('o.push("s"),o.push(i)', 'o.push("notes"),o.push(i)')
-    .replace('s.comments.length)?"s"', 's.comments.length)?"notes"')
+    .replace('"https://www.craft.do"', '"/"') // replace logo url
+    .replace(/children:\(0,vr.jsx\)\("svg".*\}\)\]\}\)\}\)/, '') // remove Craft.do logo
+    .replace(
+      /\("svg",\{className:e.className.*id:"blue"\}\)\]\}\)\}\)\}\)/,
+      '("img",{className:e.className,alt:"logo",src:"/favicon.svg"})'
+    ) // replace loading logo to favicon.svg
+
   // don't show the "/b/*" and "/x/*" in the url
   // .replace('window.history.pushState({lukiNavIndex:c.length-1},w.breadcrumb,e.deepLinkUrl)', '""')
   res.setHeader('Content-Type', 'text/javascript; charset=utf-8')
