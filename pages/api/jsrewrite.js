@@ -12,7 +12,10 @@ module.exports = async (req, res) => {
   const originResText = await response.text()
   const modifyResText = originResText
     .replace('"https://www.craft.do"', '"/"') // replace logo url
-    .replace(/children:\(0,vr.jsx\)\("svg".*\}\)\]\}\)\}\)/, '') // remove Craft.do logo
+    .replace(
+      /children:\(0,vr.jsx\)\("svg",{/,
+      'children:(0,vr.jsx)("svg",{style:{display:"none"},'
+    ) // Hide Craft.do logo
     .replace(
       /\("svg",\{className:e.className.*id:"blue"\}\)\]\}\)\}\)\}\)/,
       '("img",{className:e.className,alt:"logo",src:"/favicon.svg"})'
