@@ -50,16 +50,8 @@ module.exports = {
         destination: '/api/htmlrewrite?pathname=:pathname&slug=/x/:slug*'
       },
       {
-        source: '/api/share/:slug*',
-        destination: '/api/apirewrite?url=https://www.craft.do/api/share/:slug*'
-      },
-      {
-        source: '/api/comments/:slug*',
-        destination: '/api/apirewrite?url=https://www.craft.do/api/comments/:slug*'
-      },
-      {
-        source: '/api/log/:slug*',
-        destination: '/api/apirewrite?url=https://www.craft.do/api/log/:slug*'
+        source: '/api/:slug*',
+        destination: 'https://www.craft.do/api/:slug*'
       },
       {
         source: '/share/static/js/:slug*',

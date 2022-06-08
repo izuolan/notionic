@@ -27,6 +27,7 @@ const BLOG = {
   sortByDate: true,
   showAbout: true,
   showArchive: true,
+  showTitlebarText: false, // Craft Docs page show title bar text on desktop
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: 'https://og-zl.vercel.app', // The link to generate OG image, don't end with a slash
   socialLink: {
