@@ -37,7 +37,12 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false }) => {
   const router = useRouter()
 
   const mapPageUrl = (id) => {
-    return '/' + router.asPath.split('/')[1] + '/' + id.replace(/-/g, '')
+    console.log('mapPageUrl', BLOG.lang.split('-')[0])
+    if (locale === BLOG.lang.split('-')[0]) {
+      return '/' + frontMatter.slug + '/' + id.replace(/-/g, '')
+    } else {
+      return '/' + locale + '/' + frontMatter.slug + '/' + id.replace(/-/g, '')
+    }
   }
 
   const subPageTitle = getPageTitle(blockMap)
