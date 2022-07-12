@@ -9,6 +9,7 @@ import {
   MailIcon
 } from '@heroicons/react/outline'
 import Social from './Social.js'
+import { motion } from 'framer-motion'
 
 const Footer = ({ fullWidth }) => {
   const router = useRouter()
@@ -58,7 +59,7 @@ const Footer = ({ fullWidth }) => {
   ]
 
   return (
-    <div
+    <motion.div
       className={`mt-6 flex-shrink-0 m-auto w-full text-gray-600 dark:text-gray-300 transition-all ${
         !fullWidth ? 'max-w-3xl md:px-8' : 'px-4 md:px-24'
       }`}
@@ -69,7 +70,7 @@ const Footer = ({ fullWidth }) => {
             {links.map(
               (link) =>
                 link.show && (
-                  <Link passHref key={link.id} href={link.to}>
+                  <Link passHref key={link.id} href={link.to} scroll={false}>
                     <li
                       key={link.id}
                       className={`${
@@ -103,7 +104,7 @@ const Footer = ({ fullWidth }) => {
           </p>
         </div>
       </footer>
-    </div>
+    </motion.div>
   )
 }
 

@@ -60,7 +60,7 @@ svg + .notion-page-title-text {
   @apply bg-day dark:bg-night;
 }
 .notion-table-of-contents-item {
-  @apply rounded-lg px-2;
+  @apply rounded-lg px-2 dark:text-gray-200;
 }
 
 .notion-bookmark {

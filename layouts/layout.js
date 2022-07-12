@@ -1,34 +1,50 @@
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { lang } from '@/lib/lang'
-import {
-  NotionRenderer,
-  Equation,
-  Code,
-  Collection,
-  CollectionRow
-} from 'react-notion-x'
+import { NotionRenderer } from 'react-notion-x'
+import { getPageTitle } from 'notion-utils'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import Comments from '@/components/Comments'
-import { ArrowUpIcon, MailIcon, ThumbUpIcon } from '@heroicons/react/outline'
+import { ArrowUpIcon, MailIcon, ThumbUpIcon, ChevronLeftIcon } from '@heroicons/react/outline'
+import Image from 'next/image'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { Code } from 'react-notion-x/build/third-party/code'
+import { motion } from 'framer-motion'
 
-const mapPageUrl = (id) => {
-  return 'https://www.notion.so/' + id.replace(/-/g, '')
-}
+const Collection = dynamic(() =>
+  import('react-notion-x/build/third-party/collection').then((m) => m.Collection), { ssr: true }
+)
+
+const Equation = dynamic(() =>
+  import('react-notion-x/build/third-party/equation').then((m) => m.Equation), { ssr: true }
+)
+
+// const Modal = dynamic(
+//   () => import('react-notion-x/build/third-party/modal').then((m) => m.Modal), { ssr: false }
+// )
 
 const Layout = ({ children, blockMap, frontMatter, fullWidth = false }) => {
   const [showButton, setShowButton] = useState(false)
   const [showPay, setShowPay] = useState(false)
+  const [showSubPageTitle, setShowSubPageTitle] = useState(false)
 
   const { locale } = useRouter()
   const t = lang[locale]
   const router = useRouter()
 
+  const mapPageUrl = (id) => {
+    return '/' + router.asPath.split('/')[1] + '/' + id.replace(/-/g, '')
+  }
+
+  const subPageTitle = getPageTitle(blockMap)
   useEffect(() => {
+    if (frontMatter.title !== subPageTitle) {
+      setShowSubPageTitle(true)
+    }
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 900) {
         setShowButton(true)
@@ -36,21 +52,29 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false }) => {
         setShowButton(false)
       }
     })
-  }, [])
+  }, [frontMatter, subPageTitle])
 
   return (
     <Container
       layout='blog'
-      title={frontMatter.title}
+      title={`${frontMatter.title}${showSubPageTitle ? ' | ' + subPageTitle : ''}`}
       description={frontMatter.summary}
       // date={new Date(frontMatter.publishedAt).toISOString()}
       type='article'
       fullWidth={fullWidth}
     >
-      <div className='flex flex-row'>
+      <motion.div className='flex flex-row'>
         <article className='flex-none md:overflow-x-visible overflow-x-scroll w-full'>
+          {showSubPageTitle && (
+            <Link passHref href={`${BLOG.path}/${frontMatter.slug}`} scroll={false}>
+              <a className='text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition duration-100'>
+                <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />
+                <span className='m-1'>{frontMatter.title}</span>
+              </a>
+            </Link>
+          )}
           <h1 className='font-bold text-3xl text-black dark:text-white'>
-            {frontMatter.title}
+            {subPageTitle}
           </h1>
           {frontMatter.type[0] !== 'Page' && (
             <nav className='flex mt-5 mb-10 items-start text-gray-500 dark:text-gray-400'>
@@ -74,14 +98,14 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false }) => {
             <div className='-mt-4'>
               <NotionRenderer
                 recordMap={blockMap}
-                components={{
-                  equation: Equation,
-                  code: Code,
-                  collection: Collection,
-                  collectionRow: CollectionRow
-                }}
                 mapPageUrl={mapPageUrl}
-              />
+                components={{
+                  Code,
+                  Collection,
+                  Equation,
+                  nextLink: Link,
+                  nextImage: Image
+                }} />
             </div>
           )}
         </article>
@@ -109,7 +133,7 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false }) => {
             </div>
           </aside>
         )}
-      </div>
+      </motion.div>
       <div className='w-full pb-12 justify-between font-medium text-gray-500 dark:text-gray-400'>
         <div className='flex flex-wrap sm:flex-nowrap sm:justify-between items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700 relative gap-3 px-4 py-3'>
           <div className='w-full sm:w-auto max-w-screen-sm inline-block text-sm font-light md:text-base mb-2 sm:mb-0'>

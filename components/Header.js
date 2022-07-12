@@ -14,6 +14,7 @@ import {
 import Social from './Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
+import { motion } from 'framer-motion'
 
 const NavBar = () => {
   const router = useRouter()
@@ -66,12 +67,13 @@ const NavBar = () => {
     }
   ]
   return (
-    <div className='flex'>
+    <motion.div className='flex'>
+      {/* Desktop Menu */}
       <ul className='hidden md:flex md:gap-1'>
         {links.map(
           (link) =>
             link.show && (
-              <Link passHref key={link.id} href={link.to}>
+              <Link passHref key={link.id} href={link.to} scroll={false}>
                 <li
                   className={`${
                     activeMenu === link.to ? 'bg-gray-200 dark:bg-gray-700' : ''
@@ -90,6 +92,7 @@ const NavBar = () => {
       <ThemeSwitcher />
       <LangSwitcher />
 
+      {/* Mobile Phone Menu */}
       <div className='md:hidden mr-2 block '>
         <button
           type='button'
@@ -104,7 +107,7 @@ const NavBar = () => {
               {links.map(
                 (link) =>
                   link.show && (
-                    <Link passHref key={link.id} href={link.to}>
+                    <Link passHref key={link.id} href={link.to} scroll={false}>
                       <a className='hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'>
                         {link.icon}
                         <span className='m-1'>{link.name}</span>
@@ -119,7 +122,7 @@ const NavBar = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -167,9 +170,9 @@ const Header = ({ navBarTitle, fullWidth }) => {
         ref={navRef}
       >
         <div className='flex items-center'>
-          <Link passHref href='/'>
+          <Link passHref href='/' scroll={false}>
             <a aria-label={BLOG.title}>
-              <div className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current'>
+              <motion.div className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='24'
@@ -181,7 +184,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
                     <path d='M754 616 c-40 -19 -88 -39 -108 -46 -43 -14 -45 -30 -7 -72 25 -28 33 -31 80 -30 39 1 54 -3 58 -15 7 -18 -30 -140 -58 -192 -36 -67 6 -93 135 -84 l86 6 0 -26 c0 -14 -4 -37 -10 -51 -5 -14 -8 -26 -6 -26 7 0 110 68 129 85 11 10 17 30 17 60 0 62 -22 70 -150 57 -52 -5 -98 -6 -103 -2 -4 3 3 31 16 61 13 30 32 78 42 108 10 30 28 70 41 89 26 38 30 63 14 93 -17 31 -91 25 -176 -15z' />
                   </g>
                 </svg>
-              </div>
+              </motion.div>
             </a>
           </Link>
           {navBarTitle ? (

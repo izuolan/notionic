@@ -16,6 +16,7 @@ import BLOG from '@/blog.config'
 import dynamic from 'next/dynamic'
 import Scripts from '@/components/Scripts'
 import { ThemeProvider } from 'next-themes'
+import TransitionEffect from '@/components/TransitionEffect'
 
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
@@ -31,9 +32,11 @@ function MyApp({ Component, pageProps }) {
         />
       )}
       {BLOG.isProd && BLOG?.analytics?.provider === 'ga' && <Gtag />}
-      <ThemeProvider attribute='class'>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <TransitionEffect>
+        <ThemeProvider attribute='class'>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </TransitionEffect>
     </>
   )
 }

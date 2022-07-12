@@ -36,7 +36,7 @@ const Hero = () => {
           <ul className='m-4 leading-relaxed'>
             <li className='list-disc'>
               {t.HERO.HOME.TEXT_1}
-              <Link passHref href='/newsletter'>
+              <Link passHref href='/newsletter' scroll={false}>
                 <a className='text-gray-600 dark:text-gray-400'>
                   <NewspaperIcon className='inline-block ml-1 mb-1 h-5 w-5' />{' '}
                   {t.NAV.NEWSLETTER}
@@ -45,7 +45,7 @@ const Hero = () => {
             </li>
             <li className='list-disc'>
               {t.HERO.HOME.TEXT_2}
-              <Link passHref href='/notes'>
+              <Link passHref href='/notes' scroll={false}>
                 <a className='text-gray-600 dark:text-gray-400'>
                   <CollectionIcon className='inline-block ml-1 mb-1 h-5 w-5' />{' '}
                   {t.NAV.NOTES}
@@ -56,7 +56,7 @@ const Hero = () => {
           </ul>
           <Social />
           <div className='flex flex-col sm:flex-row sm:justify-center gap-4 mt-6'>
-            <Link passHref href='/contact'>
+            <Link passHref href='/contact' scroll={false}>
               <button className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
                 <MailIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
                 <span className='ml-4 flex items-start flex-col leading-none'>

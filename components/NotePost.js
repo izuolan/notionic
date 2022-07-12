@@ -18,7 +18,7 @@ const NotePost = ({ note }) => {
   }
 
   return (
-    <Link passHref href={`${BLOG.link}/notes/${note.path}`}>
+    <Link passHref href={`${BLOG.link}/notes/${note.path}`} scroll={false}>
       <a
         key={craftSlug}
         target="_blank"

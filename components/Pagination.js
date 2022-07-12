@@ -16,7 +16,7 @@ const Pagination = ({ page, showNext }) => {
       className={`flex font-medium text-black dark:text-gray-100 ${additionalClassName}`}
     >
       {currentPage !== 1 && (
-        <Link
+        <Link scroll={false}
           href={
             currentPage - 1 === 1
               ? `${BLOG.path || '/'}`
@@ -32,7 +32,7 @@ const Pagination = ({ page, showNext }) => {
         </Link>
       )}
       {showNext && (
-        <Link href={`/page/${currentPage + 1}`}>
+        <Link href={`/page/${currentPage + 1}`} scroll={false}>
           <a>
             <button rel='next' className='block cursor-pointer'>
               {t.PAGINATION.NEXT}{' '}

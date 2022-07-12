@@ -7,7 +7,7 @@ const LangSwitcher = () => {
 
   return (
     <>
-      <Link locale={locale === 'en' ? 'zh' : 'en'} passHref href={asPath}>
+      <Link passHref href={asPath} locale={locale === 'en' ? 'zh' : 'en'} scroll={false}>
         <button className='hover:bg-gray-200 dark:hover:bg-gray-700 p-2 cursor-pointer rounded-lg dark:text-gray-50'>
           <TranslateIcon className='h-5 w-5' />
         </button>

@@ -4,7 +4,7 @@ import BLOG from '@/blog.config'
 const Social = () => {
   return (
     <div className='flex gap-4'>
-      <Link href={`${BLOG.socialLink.telegram}`}>
+      <Link href={`${BLOG.socialLink.telegram}`} scroll={false}>
         <a
           target='_blank'
           className='text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100'
@@ -22,7 +22,7 @@ const Social = () => {
           </svg>
         </a>
       </Link>
-      <Link href={`${BLOG.socialLink.twitter}`}>
+      <Link href={`${BLOG.socialLink.twitter}`} scroll={false}>
         <a
           target='_blank'
           className='text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100'
@@ -40,7 +40,7 @@ const Social = () => {
           </svg>
         </a>
       </Link>
-      <Link href={`${BLOG.socialLink.github}`}>
+      <Link href={`${BLOG.socialLink.github}`} scroll={false}>
         <a
           target='_blank'
           className='text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100'
