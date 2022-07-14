@@ -1,10 +1,20 @@
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
-// import { createHash } from 'crypto'
+import { useRouter } from 'next/router'
+import Loading from '@/components/Loading'
+import NotFound from '@/components/NotFound'
 
 const BlogPost = ({ post, blockMap }) => {
-  if (!post) return null
+  const router = useRouter()
+  if (router.isFallback) {
+    return (
+      <Loading />
+    )
+  }
+  if (!post) {
+    return <NotFound statusCode={404} />
+  }
   return (
     <Layout blockMap={blockMap} frontMatter={post} fullWidth={post.fullWidth} />
   )
@@ -21,16 +31,23 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { slug } }) {
   const posts = await getAllPosts({ allTypes: true, onlyNewsletter: false })
   const post = posts.find((t) => t.slug === slug)
-  const blockMap = await getPostBlocks(post.id)
-  // const emailHash = createHash('md5')
-  //   .update(BLOG.email)
-  //   .digest('hex')
-  //   .trim()
-  //   .toLowerCase()
 
-  return {
-    props: { post, blockMap },
-    revalidate: 1
+  try {
+    const blockMap = await getPostBlocks(post.id)
+    return {
+      props: {
+        post,
+        blockMap
+      }
+    }
+  } catch (err) {
+    console.error(err)
+    return {
+      props: {
+        post: null,
+        blockMap: null
+      }
+    }
   }
 }
 

@@ -1,31 +1,43 @@
 import BLOG from '@/blog.config'
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import { useRouter } from 'next/router'
+import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 
 const BlogPost = ({ post, blockMap }) => {
+  const router = useRouter()
+  if (router.isFallback) {
+    return (
+      <Loading />
+    )
+  }
   if (!post) {
-    return (
-      <NotFound statusCode='404' />
-    )
-  } else {
-    return (
-      <Layout blockMap={blockMap} frontMatter={post} fullWidth={post.fullWidth} />
-    )
+    return <NotFound statusCode={404} />
+  }
+  return (
+    <Layout blockMap={blockMap} frontMatter={post} fullWidth={post.fullWidth} />
+  )
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true
   }
 }
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: true
-//   }
-// }
-
-export async function getServerSideProps({ params: { slug, subpage } }) {
+export async function getStaticProps({ params: { slug, subpage } }) {
   const posts = await getAllPosts({ allTypes: true, onlyNewsletter: false })
   const post = posts.find((t) => t.slug === slug)
-  const blockMap = await getPostBlocks(subpage)
+
+  let blockMap
+  try {
+    blockMap = await getPostBlocks(subpage)
+  } catch (err) {
+    console.error(err)
+    return { props: { post: null, blockMap: null } }
+  }
 
   const NOTION_SPACES_ID = BLOG.notionSpacesId
   const pageAllowed = (page) => {
