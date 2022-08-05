@@ -92,6 +92,16 @@ svg + .notion-page-title-text {
 pre[class*='language-'] {
   line-height: var(--prism-line-height);
 }
+.notion-code-copy-button {
+  @apply text-gray-600 dark:text-gray-400 bg-day dark:bg-night;
+  padding: 0.4em;
+  font-size: 1em;
+  border: none;
+  box-shadow: none;
+}
+.notion-code-copy-tooltip {
+  display: none;
+}
 
 .notion-viewport {
   z-index: -10;

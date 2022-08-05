@@ -55,7 +55,8 @@ export async function getStaticProps({ params: { slug, subpage } }) {
     return { props: { post: null, blockMap: null } }
   } else {
     return {
-      props: { post, blockMap }
+      props: { post, blockMap },
+      revalidate: 1
     }
   }
 }

@@ -38,7 +38,8 @@ export async function getStaticProps({ params: { slug } }) {
       props: {
         post,
         blockMap
-      }
+      },
+      revalidate: 1
     }
   } catch (err) {
     console.error(err)

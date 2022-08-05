@@ -27,6 +27,7 @@
     "next-themes": "^0.1.1",
     "notion-client": "^6.12.9",
     "notion-utils": "^6.12.9",
+    "nprogress": "^0.2.0",
     "framer-motion": "6.4.3",
     "preact": "^10.5.15",
     "prism-theme-vars": "^0.2.2",
