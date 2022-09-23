@@ -30,6 +30,7 @@ const BLOG = {
   showTitlebarText: false, // Craft Docs page show title bar text on desktop
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: 'https://og-zl.vercel.app', // The link to generate OG image, don't end with a slash
+  defaultCover: '/secret_preview.png',
   socialLink: {
     twitter: 'https://twitter.com/izuolan',
     github: 'https://github.com/izuolan',
@@ -42,10 +43,11 @@ const BLOG = {
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS! Edit .env file!
   notionSpacesId: process.env.NOTION_SPACES_ID, // DO NOT CHANGE THIS! Edit .env file!
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
+  notionDomain: 'izuolan.notion.site',
   telegramToken: process.env.TELEGRAM_TOKEN, // The token of your Telegram bot
   telegramChatId: '263895784', // The chat id of your Telegram bot
   telegramChannelUrl: 'https://channel.zuolan.me/', // The link of your Telegram channel
-  telegramChannelName: 'zuolan_channel', // The name of your Telegram channel
+  telegramChannelName: 'zuolan_me', // The name of your Telegram channel
   craftConfigShareUrl: 'https://www.craft.do/s/8gQSdBtbuPjpp1', // The link to share your craft config
   analytics: {
     provider: '', // Currently we support Google Analytics, Ackee and Umami, please fill with 'ga' or 'ackee' or 'umami', leave it empty to disable it.

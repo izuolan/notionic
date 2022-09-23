@@ -21,7 +21,7 @@ const NotePost = ({ note }) => {
     <Link passHref href={`${BLOG.link}/notes/${note.path}`} scroll={false}>
       <a
         key={craftSlug}
-        target="_blank"
+        target='_blank'
         className='mb-10 group h-60 flex items-end bg-gray-100 rounded-lg overflow-hidden relative p-4'
       >
         <ImageFallback

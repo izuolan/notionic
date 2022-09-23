@@ -9,7 +9,7 @@ const BlogPost = ({ post, blockMap }) => {
   const router = useRouter()
   if (router.isFallback) {
     return (
-      <Loading />
+      <Loading notionSlug={router.asPath.split('/')[2]} />
     )
   }
   if (!post) {

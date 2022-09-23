@@ -20,7 +20,7 @@ module.exports = {
     localeDetection: false
   },
   images: {
-    domains: ['api.craft.do']
+    domains: ['api.craft.do', 'www.notion.so', 'images.unsplash.com']
   },
   async headers() {
     return [

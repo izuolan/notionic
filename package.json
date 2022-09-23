@@ -25,7 +25,7 @@
     "feed": "^4.2.2",
     "next": "^12.1.0",
     "next-themes": "^0.1.1",
-    "notion-client": "^6.12.9",
+    "notion-client": "^6.13.0",
     "notion-utils": "^6.12.9",
     "nprogress": "^0.2.0",
     "framer-motion": "6.4.3",
@@ -34,7 +34,7 @@
     "react": "^17.0.2",
     "react-cusdis": "^2.0.1",
     "react-dom": "^17.0.2",
-    "react-notion-x": "^6.12.10",
+    "react-notion-x": "^6.13.3",
     "use-ackee": "^3.0.0"
   },
   "devDependencies": {
