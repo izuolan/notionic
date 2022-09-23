@@ -1,23 +1,84 @@
-import { getAllNotes } from '@/lib/craft'
-import BLOG from '@/blog.config'
+import { getBlocksMaps } from '@/lib/getBlocksMaps'
+
+async function getBlockItem(path) {
+  const { pagesJson, siteConfigObj } = await getBlocksMaps()
+
+  for (let i = 0; i < pagesJson.length; i++) {
+    const blockItem = pagesJson[i]
+    if (path === blockItem.slug) {
+      return { blockItem, siteConfigObj }
+    }
+  }
+  return { blockItem: null, siteConfigObj }
+}
 
 module.exports = async (req, res) => {
-  const { pathname, slug } = req.query
-  console.log('pathname: ', pathname)
-  console.log('slug: ', slug)
+  // const { pathname, slug } = req.query
+  const { pathname } = req.query
+  let realPath
+  if (pathname.includes('/b/')) {
+    realPath = pathname.split('/b/')[0]
+  } else if (pathname.includes('/x/')) {
+    realPath = pathname.split('/x/')[0]
+  } else {
+    realPath = pathname
+  }
+  // console.log('realPath: ', realPath)
+  // console.log('slug: ', slug)
 
-  const noteItem = await getNoteItem(pathname)
-  console.log('htmlrewrite noteItem: ', noteItem)
-  if (noteItem === undefined) {
+  const { blockItem, siteConfigObj } = await getBlockItem(realPath)
+  if (blockItem === null) {
     res.statusCode = 404
     res.end(
       'Notes Not Found, Make sure you have the correct pathname and check your Craft.do setting page.'
     )
     return
   }
-  const craftUrl = noteItem.link
-
+  const craftUrl = blockItem.url
   // console.log('htmlrewrite craftUrl: ', craftUrl)
+
+  const bodyStr = `
+  <div class="navigation">
+    <input type="checkbox" class="navigation__checkbox" id="nav-toggle" />
+    <label for="nav-toggle" class="navigation__button">
+      <a aria-label="toggle navigation menu" class="navigation__logo">
+        <img alt="logo" class="logo" src="${siteConfigObj['Site Logo']}" />
+      </a>
+    </label>
+    <div class="navigation__background"></div>
+
+    <p class="navigation__title">${siteConfigObj['Site Name']}</p>
+
+    <nav class="navigation__nav" role="navigation">
+      <ul class="navigation__list">
+        <li class="navigation__item">
+          <a href="/" class="navigation__link">${siteConfigObj['Home Menu Text']}</a>
+        </li>
+        <li class="navigation__item">
+          <a href="/notes" class="navigation__link">${siteConfigObj['Archive Menu Text']}</a>
+        </li>
+        <li class="navigation__item">
+          <a href="/about" target="_blank" class="navigation__link">${siteConfigObj['About Menu Text']}</a>
+        </li>
+      </ul>
+      <p class="footer">${siteConfigObj['Footer Text']}</p>
+    </nav>
+
+    <div class="navigation__icon">
+      <a target="_blank" href=${siteConfigObj['First Social Link']}>
+        <img alt="Telegram" src="${siteConfigObj['First Social Icon']}" />
+      </a>
+      <a target="_blank" href=${siteConfigObj['Second Social Link']}>
+        <img alt="Twitter" src="${siteConfigObj['Second Social Icon']}" />
+      </a>
+      <a target="_blank" href=${siteConfigObj['Third Social Link']}>
+        <img alt="Giithub" src="${siteConfigObj['Third Social Icon']}" />
+      </a>
+    </div>
+
+  </div>
+  `
+
   const response = await fetch(craftUrl)
   const originResText = await response.text()
   const modifyResText = originResText
@@ -47,18 +108,6 @@ module.exports = async (req, res) => {
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
   res.send(modifyResText)
-}
-
-async function getNoteItem(path) {
-  const notesObj = await getAllNotes()
-  for (let i = 0; i < notesObj.length; i++) {
-    const noteItem = notesObj[i]
-    console.log('getNoteItem path: ', path)
-    console.log('getNoteItem noteItem: ', noteItem)
-    if (path === noteItem.path) {
-      return noteItem
-    }
-  }
 }
 
 const headStr = `
@@ -159,12 +208,13 @@ const headStr = `
       top: 0;
       right: 0;
       display: inline-block;
+      opacity: 0.3;
       width: 1rem;
       margin: 0.5rem;
       z-index: 98;
     }
     .navigation__icon a:hover {
-      opacity: 0.7;
+      opacity: 0.5;
     }
 
     .navigation__checkbox:checked ~ .navigation__background {
@@ -191,6 +241,9 @@ const headStr = `
       opacity: 1;
     }
 
+    .logo {
+      width: 1.3em;
+    }
     .footer {
       position: absolute;
       top: 18rem;
@@ -199,56 +252,4 @@ const headStr = `
       font-size: 0.8rem;
     }
   </style>
-`
-
-/* 你可以调整为使用图片, 而不是使用 svg
-<a aria-label="toggle navigation menu" class="navigation__logo">
-  <img alt="logo" class="logo" src="/favicon.svg" />
-</a>
-*/
-
-const bodyStr = `
-  <div class="navigation">
-    <input type="checkbox" class="navigation__checkbox" id="nav-toggle" />
-    <label for="nav-toggle" class="navigation__button">
-      <a aria-label="toggle navigation menu" class="navigation__logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 100 100">
-          <g fill="currentColor" transform="translate(0.000000,100) scale(0.080000,-0.080000)">
-            <path d="M762 1203 c-6 -15 -13 -46 -17 -68 -4 -22 -13 -49 -20 -61 -15 -23 -122 -69 -257 -109 -49 -14 -88 -28 -88 -29 0 -2 33 -20 73 -40 49 -24 87 -36 115 -36 28 0 42 -4 42 -13 0 -34 -295 -517 -390 -639 -40 -52 -4 -28 86 56 49 46 105 109 124 141 19 31 64 98 100 148 77 108 125 186 173 283 20 39 46 78 59 86 13 8 69 34 126 58 107 45 118 57 110 111 -3 21 -10 25 -78 34 l-75 10 -5 45 c-5 42 -7 45 -36 48 -26 3 -33 -1 -42 -25z"/><path d="M754 616 c-40 -19 -88 -39 -108 -46 -43 -14 -45 -30 -7 -72 25 -28 33 -31 80 -30 39 1 54 -3 58 -15 7 -18 -30 -140 -58 -192 -36 -67 6 -93 135 -84 l86 6 0 -26 c0 -14 -4 -37 -10 -51 -5 -14 -8 -26 -6 -26 7 0 110 68 129 85 11 10 17 30 17 60 0 62 -22 70 -150 57 -52 -5 -98 -6 -103 -2 -4 3 3 31 16 61 13 30 32 78 42 108 10 30 28 70 41 89 26 38 30 63 14 93 -17 31 -91 25 -176 -15z"/>
-          </g>
-        </svg>
-      </a>
-    </label>
-    <div class="navigation__background"></div>
-
-    <p class="navigation__title">${BLOG.notes}</p>
-
-    <nav class="navigation__nav" role="navigation">
-      <ul class="navigation__list">
-        <li class="navigation__item">
-          <a href="${BLOG.notesLink.index}" class="navigation__link">${BLOG.notesNav.index}</a>
-        </li>
-        <li class="navigation__item">
-          <a href="${BLOG.notesLink.blog}" class="navigation__link">${BLOG.notesNav.blog}</a>
-        </li>
-        <li class="navigation__item">
-          <a href="${BLOG.notesLink.contact}" target="_blank" class="navigation__link">${BLOG.notesNav.contact}</a>
-        </li>
-      </ul>
-      <p class="footer">© CC BY-NC-SA 4.0</p>
-    </nav>
-
-    <div class="navigation__icon">
-      <a target="_blank" href=${BLOG.socialLink.telegram}>
-        <img alt="Telegram" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VGVsZWdyYW08L3RpdGxlPjxwYXRoIGZpbGw9ImdyYXkiIGQ9Ik0xMS45NDQgMEExMiAxMiAwIDAgMCAwIDEyYTEyIDEyIDAgMCAwIDEyIDEyIDEyIDEyIDAgMCAwIDEyLTEyQTEyIDEyIDAgMCAwIDEyIDBhMTIgMTIgMCAwIDAtLjA1NiAwem00Ljk2MiA3LjIyNGMuMS0uMDAyLjMyMS4wMjMuNDY1LjE0YS41MDYuNTA2IDAgMCAxIC4xNzEuMzI1Yy4wMTYuMDkzLjAzNi4zMDYuMDIuNDcyLS4xOCAxLjg5OC0uOTYyIDYuNTAyLTEuMzYgOC42MjctLjE2OC45LS40OTkgMS4yMDEtLjgyIDEuMjMtLjY5Ni4wNjUtMS4yMjUtLjQ2LTEuOS0uOTAyLTEuMDU2LS42OTMtMS42NTMtMS4xMjQtMi42NzgtMS44LTEuMTg1LS43OC0uNDE3LTEuMjEuMjU4LTEuOTEuMTc3LS4xODQgMy4yNDctMi45NzcgMy4zMDctMy4yMy4wMDctLjAzMi4wMTQtLjE1LS4wNTYtLjIxMnMtLjE3NC0uMDQxLS4yNDktLjAyNGMtLjEwNi4wMjQtMS43OTMgMS4xNC01LjA2MSAzLjM0NS0uNDguMzMtLjkxMy40OS0xLjMwMi40OC0uNDI4LS4wMDgtMS4yNTItLjI0MS0xLjg2NS0uNDQtLjc1Mi0uMjQ1LTEuMzQ5LS4zNzQtMS4yOTctLjc4OS4wMjctLjIxNi4zMjUtLjQzNy44OTMtLjY2MyAzLjQ5OC0xLjUyNCA1LjgzLTIuNTI5IDYuOTk4LTMuMDE0IDMuMzMyLTEuMzg2IDQuMDI1LTEuNjI3IDQuNDc2LTEuNjM1eiIvPjwvc3ZnPg==" />
-      </a>
-      <a target="_blank" href=${BLOG.socialLink.twitter}>
-        <img alt="Twitter" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+VHdpdHRlcjwvdGl0bGU+PHBhdGggZmlsbD0iZ3JheSIgZD0iTTIzLjk1MyA0LjU3YTEwIDEwIDAgMDEtMi44MjUuNzc1IDQuOTU4IDQuOTU4IDAgMDAyLjE2My0yLjcyM2MtLjk1MS41NTUtMi4wMDUuOTU5LTMuMTI3IDEuMTg0YTQuOTIgNC45MiAwIDAwLTguMzg0IDQuNDgyQzcuNjkgOC4wOTUgNC4wNjcgNi4xMyAxLjY0IDMuMTYyYTQuODIyIDQuODIyIDAgMDAtLjY2NiAyLjQ3NWMwIDEuNzEuODcgMy4yMTMgMi4xODggNC4wOTZhNC45MDQgNC45MDQgMCAwMS0yLjIyOC0uNjE2di4wNmE0LjkyMyA0LjkyMyAwIDAwMy45NDYgNC44MjcgNC45OTYgNC45OTYgMCAwMS0yLjIxMi4wODUgNC45MzYgNC45MzYgMCAwMDQuNjA0IDMuNDE3IDkuODY3IDkuODY3IDAgMDEtNi4xMDIgMi4xMDVjLS4zOSAwLS43NzktLjAyMy0xLjE3LS4wNjdhMTMuOTk1IDEzLjk5NSAwIDAwNy41NTcgMi4yMDljOS4wNTMgMCAxMy45OTgtNy40OTYgMTMuOTk4LTEzLjk4NSAwLS4yMSAwLS40Mi0uMDE1LS42M0E5LjkzNSA5LjkzNSAwIDAwMjQgNC41OXoiLz48L3N2Zz4=" />
-      </a>
-      <a target="_blank" href=${BLOG.socialLink.github}>
-        <img alt="Giithub" src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R2l0SHViPC90aXRsZT48cGF0aCBmaWxsPSJncmF5IiBkPSJNMTIgLjI5N2MtNi42MyAwLTEyIDUuMzczLTEyIDEyIDAgNS4zMDMgMy40MzggOS44IDguMjA1IDExLjM4NS42LjExMy44Mi0uMjU4LjgyLS41NzcgMC0uMjg1LS4wMS0xLjA0LS4wMTUtMi4wNC0zLjMzOC43MjQtNC4wNDItMS42MS00LjA0Mi0xLjYxQzQuNDIyIDE4LjA3IDMuNjMzIDE3LjcgMy42MzMgMTcuN2MtMS4wODctLjc0NC4wODQtLjcyOS4wODQtLjcyOSAxLjIwNS4wODQgMS44MzggMS4yMzYgMS44MzggMS4yMzYgMS4wNyAxLjgzNSAyLjgwOSAxLjMwNSAzLjQ5NS45OTguMTA4LS43NzYuNDE3LTEuMzA1Ljc2LTEuNjA1LTIuNjY1LS4zLTUuNDY2LTEuMzMyLTUuNDY2LTUuOTMgMC0xLjMxLjQ2NS0yLjM4IDEuMjM1LTMuMjItLjEzNS0uMzAzLS41NC0xLjUyMy4xMDUtMy4xNzYgMCAwIDEuMDA1LS4zMjIgMy4zIDEuMjMuOTYtLjI2NyAxLjk4LS4zOTkgMy0uNDA1IDEuMDIuMDA2IDIuMDQuMTM4IDMgLjQwNSAyLjI4LTEuNTUyIDMuMjg1LTEuMjMgMy4yODUtMS4yMy42NDUgMS42NTMuMjQgMi44NzMuMTIgMy4xNzYuNzY1Ljg0IDEuMjMgMS45MSAxLjIzIDMuMjIgMCA0LjYxLTIuODA1IDUuNjI1LTUuNDc1IDUuOTIuNDIuMzYuODEgMS4wOTYuODEgMi4yMiAwIDEuNjA2LS4wMTUgMi44OTYtLjAxNSAzLjI4NiAwIC4zMTUuMjEuNjkuODI1LjU3QzIwLjU2NSAyMi4wOTIgMjQgMTcuNTkyIDI0IDEyLjI5N2MwLTYuNjI3LTUuMzczLTEyLTEyLTEyIi8+PC9zdmc+" />
-      </a>
-    </div>
-
-  </div>
 `

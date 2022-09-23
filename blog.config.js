@@ -5,17 +5,6 @@ const BLOG = {
   link: 'https://zuolan.me',
   newsletter: '左蓝的周刊',
   description: '一个静悄悄的博客.',
-  notes: '左蓝的笔记',
-  notesNav: {
-    index: '全部笔记',
-    blog: '返回博客',
-    contact: '联系我'
-  },
-  notesLink: {
-    index: '/',
-    blog: 'https://zuolan.me',
-    contact: 'https://zuolan.me/contact'
-  },
   lang: 'zh-CN', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
@@ -48,7 +37,7 @@ const BLOG = {
   telegramChatId: '263895784', // The chat id of your Telegram bot
   telegramChannelUrl: 'https://channel.zuolan.me/', // The link of your Telegram channel
   telegramChannelName: 'zuolan_me', // The name of your Telegram channel
-  craftConfigShareUrl: 'https://www.craft.do/s/8gQSdBtbuPjpp1', // The link to share your craft config
+  craftConfigShareUrl: 'https://www.craft.do/s/KQTJd0iW2LjZPU', // The link to share your craft config
   analytics: {
     provider: '', // Currently we support Google Analytics, Ackee and Umami, please fill with 'ga' or 'ackee' or 'umami', leave it empty to disable it.
     umamiConfig: {

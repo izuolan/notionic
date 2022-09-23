@@ -1,25 +1,38 @@
 import Container from '@/components/Container'
 import NotePost from '@/components/NotePost'
-import { getAllNotes } from '@/lib/craft'
-import BLOG from '@/blog.config'
 import NotesHero from '@/components/Hero/Notes'
+import { getBlocksMaps } from '@/lib/getBlocksMaps'
 
 export async function getStaticProps() {
-  const notes = await getAllNotes()
+  const { pagesJson, siteConfigObj } = await getBlocksMaps()
+
+  const blocksJson = pagesJson
+  // Hide table header and home page on Archive page.
+  for (let i = 0; i < blocksJson.length; i++) {
+    const deleteTitleBlock = blocksJson[i].title === 'Title' ? blocksJson.splice(i, i + 1) : blocksJson
+    const deleteIndexBlock = blocksJson[i].slug === 'index' ? blocksJson.splice(i, i + 1) : blocksJson
+    console.log('[INFO] Deleted length: ', deleteTitleBlock.length, deleteIndexBlock.length)
+  }
+
   return {
     props: {
-      notes
+      blocksJson,
+      siteConfigObj
     },
-    revalidate: 10
+    revalidate: 1
   }
 }
 
-const Notes = ({ notes }) => {
+const Notes = ({ blocksJson, siteConfigObj }) => {
   return (
-    <Container title={BLOG.notes} description={BLOG.description}>
+    <Container
+      title={siteConfigObj['Site Name']}
+      description={siteConfigObj['Site Description']}
+      siteConfigObj={siteConfigObj}
+    >
       <NotesHero />
-      {notes.map((note) => (
-        <NotePost key={note.link} note={note} />
+      {blocksJson.map((block) => (
+        <NotePost key={block.slug} note={block} />
       ))}
     </Container>
   )
