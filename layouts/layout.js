@@ -113,9 +113,9 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false, subPage = 
   const mapPageUrl = (id) => {
     // console.log('mapPageUrl', BLOG.lang.split('-')[0])
     if (locale === BLOG.lang.split('-')[0]) {
-      return '/' + frontMatter.slug + '/' + id.replace(/-/g, '')
+      return '/s/' + id.replace(/-/g, '')
     } else {
-      return '/' + locale + '/' + frontMatter.slug + '/' + id.replace(/-/g, '')
+      return '/' + locale + '/s/' + id.replace(/-/g, '')
     }
   }
 
