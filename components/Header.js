@@ -42,7 +42,7 @@ const NavBar = () => {
       name: t.NAV.NEWSLETTER,
       to: '/newsletter',
       icon: <NewspaperIcon className='inline-block mb-1 h-5 w-5' />,
-      show: true
+      show: BLOG.showNewsletter
     },
     {
       id: 2,
@@ -56,7 +56,7 @@ const NavBar = () => {
       name: t.NAV.PROJECTS,
       to: '/projects',
       icon: <SparklesIcon className='inline-block mb-1 h-5 w-5' />,
-      show: BLOG.showAbout
+      show: true
     },
     {
       id: 4,

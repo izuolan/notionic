@@ -59,7 +59,7 @@ function Contact() {
               type='text'
               required
               placeholder={t.CONTACT.FORM_USERNAME}
-              className='appearance-none block w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white'
+              className='block w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white dark:focus:bg-gray-600'
             />
           </div>
           <div>
@@ -69,7 +69,7 @@ function Contact() {
               type='text'
               required
               placeholder={t.CONTACT.FORM_EMAIL}
-              className='appearance-none block w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white'
+              className='block w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white dark:focus:bg-gray-600'
             />
           </div>
 
@@ -80,7 +80,7 @@ function Contact() {
               type='text'
               required
               placeholder={t.CONTACT.FORM_CONTENT}
-              className='h-64 appearance-none block w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white'
+              className='h-64 block w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white dark:focus:bg-gray-600'
             ></textarea>
           </div>
 

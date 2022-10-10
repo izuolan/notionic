@@ -14,8 +14,8 @@ const BLOG = {
   since: 2015, // If leave this empty, current year will be used.
   postsPerPage: 10,
   sortByDate: true,
-  showAbout: true,
-  showArchive: true,
+  showNewsletter: true,
+  previewImagesEnabled: true,
   showTitlebarText: false, // Craft Docs page show title bar text on desktop
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: 'https://og-zl.vercel.app', // The link to generate OG image, don't end with a slash

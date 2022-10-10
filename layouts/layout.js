@@ -119,6 +119,11 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false, subPage = 
     }
   }
 
+  // console.log('notion page', {
+  //   frontMatter,
+  //   blockMap
+  // })
+
   const subPageTitle = getPageTitle(blockMap)
   useEffect(() => {
     if (frontMatter.title !== subPageTitle) {
@@ -179,6 +184,7 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false, subPage = 
               <NotionRenderer
                 recordMap={blockMap}
                 mapPageUrl={mapPageUrl}
+                previewImages={BLOG.previewImagesEnabled}
                 components={{
                   Code,
                   Collection,

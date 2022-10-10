@@ -54,7 +54,7 @@ const Footer = ({ fullWidth }) => {
       name: t.NAV.CONTACT,
       to: '/contact',
       icon: <MailIcon className='inline-block mb-1 h-5 w-5' />,
-      show: BLOG.showAbout
+      show: true
     }
   ]
 
