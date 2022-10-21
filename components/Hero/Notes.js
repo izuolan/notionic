@@ -1,7 +1,7 @@
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import Avatar from '../Avatar.js'
-import Social from '../Social.js'
+import Social from '../Common/Social.js'
+import Avatar from './Avatar.js'
 
 const Hero = ({ fullWidth }) => {
   const { locale } = useRouter()

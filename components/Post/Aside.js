@@ -2,7 +2,7 @@ import BLOG from '@/blog.config'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import WechatPay from '@/components/WechatPay'
+import WechatPay from '@/components/Post/WechatPay'
 import { ThumbUpIcon, ChevronLeftIcon, ArrowUpIcon } from '@heroicons/react/outline'
 
 const Aside = ({ subPageTitle, frontMatter }) => {

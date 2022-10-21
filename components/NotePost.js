@@ -1,5 +1,6 @@
+import BLOG from '@/blog.config.js'
 import Link from 'next/link'
-import ImageFallback from './ImageFallback.js'
+import ImageFallback from './Common/ImageFallback.js'
 
 const NotePost = ({ note }) => {
   const craftSlug = note.url.slice(23)
@@ -9,7 +10,7 @@ const NotePost = ({ note }) => {
         <ImageFallback
           className='w-full h-full object-cover object-center absolute inset-0 group-hover:scale-105 transition duration-200'
           src={`https://api.craft.do/render/preview/${craftSlug}`}
-          fallbackSrc = '/secret_preview.png'
+          fallbackSrc={BLOG.defaultCover}
           alt={`${note.title}`}
           layout='fill'
         />

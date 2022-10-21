@@ -8,11 +8,11 @@ import { useRouter } from 'next/router'
 import { NotionRenderer } from 'react-notion-x'
 import { getPageTitle } from 'notion-utils'
 
-import Aside from '@/components/Aside'
-import Comments from '@/components/Comments'
+import Aside from '@/components/Post/Aside'
+import Comments from '@/components/Post/Comments'
 import Container from '@/components/Container'
-import PostFooter from '@/components/PostFooter'
-import TagItem from '@/components/TagItem'
+import PostFooter from '@/components/Post/PostFooter'
+import TagItem from '@/components/Common/TagItem'
 
 import { ChevronLeftIcon } from '@heroicons/react/outline'
 import { motion } from 'framer-motion'
@@ -132,7 +132,6 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false, subPage = 
 
   return (
     <Container
-      layout='blog'
       title={`${frontMatter.title}${showSubPageTitle ? ' | ' + subPageTitle : ''}`}
       description={frontMatter.summary}
       // date={new Date(frontMatter.publishedAt).toISOString()}

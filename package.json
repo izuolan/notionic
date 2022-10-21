@@ -1,11 +1,11 @@
 {
-  "name": "nobelium-plus",
-  "version": "2.0.0",
+  "name": "notionic",
+  "version": "1.0.0",
   "homepage": "https://zuolan.me",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/izuolan/nobelium-plus.git"
+    "url": "https://github.com/izuolan/notionic.git"
   },
   "author": {
     "name": "Zuo Lan",
@@ -36,7 +36,6 @@
     "preact": "^10.5.15",
     "prism-theme-vars": "^0.2.2",
     "react": "^17.0.2",
-    "react-cusdis": "^2.0.1",
     "react-dom": "^17.0.2",
     "react-notion-x": "^6.13.3",
     "use-ackee": "^3.0.0"
@@ -59,7 +58,7 @@
     "tailwindcss": "^3.0.23"
   },
   "bugs": {
-    "url": "https://github.com/izuolan/nobelium-plus/issues",
+    "url": "https://github.com/izuolan/notionic/issues",
     "email": "i@zuolan.me"
   }
 }

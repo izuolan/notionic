@@ -11,7 +11,7 @@ import {
   SearchIcon,
   MenuIcon
 } from '@heroicons/react/outline'
-import Social from './Social.js'
+import Social from '../Common/Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
 import { motion } from 'framer-motion'
@@ -108,7 +108,10 @@ const NavBar = () => {
                 (link) =>
                   link.show && (
                     <Link passHref key={link.id} href={link.to} scroll={false}>
-                      <a className='hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'>
+                      <a
+                        onClick={() => setShowMenu((showMenu) => !showMenu)}
+                        className='hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'
+                      >
                         {link.icon}
                         <span className='m-1'>{link.name}</span>
                       </a>

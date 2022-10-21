@@ -8,7 +8,7 @@ import {
   BookOpenIcon,
   MailIcon
 } from '@heroicons/react/outline'
-import Social from './Social.js'
+import Social from '../Common/Social.js'
 import { motion } from 'framer-motion'
 
 const Footer = ({ fullWidth }) => {

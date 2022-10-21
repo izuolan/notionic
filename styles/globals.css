@@ -27,15 +27,6 @@ html::-webkit-scrollbar-thumb {
   background: rgba(45, 170, 219, 0.3);
 }
 
-.wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
 .sticky-nav {
   position: sticky;
   z-index: 10;

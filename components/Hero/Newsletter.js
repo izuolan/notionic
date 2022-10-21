@@ -1,6 +1,6 @@
 import BLOG from '@/blog.config'
 import Link from 'next/link'
-import Social from '../Social.js'
+import Social from '../Common/Social.js'
 import { useState } from 'react'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'

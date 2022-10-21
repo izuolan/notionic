@@ -10,7 +10,7 @@ const BLOG = {
   font: 'sans-serif', // ['sans-serif', 'serif']
   lightBackground: '#F6F8FA', // use hex value, don't forget '#' e.g #fffefc
   darkBackground: '#212936', // use hex value, don't forget '#'
-  path: '', // leave this empty unless you want to deploy Nobelium in a folder
+  path: '', // leave this empty unless you want to deploy Notionic in a folder
   since: 2015, // If leave this empty, current year will be used.
   postsPerPage: 10,
   sortByDate: true,
@@ -18,15 +18,15 @@ const BLOG = {
   previewImagesEnabled: true,
   showTitlebarText: false, // Craft Docs page show title bar text on desktop
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
-  ogImageGenerateURL: 'https://og-zl.vercel.app', // The link to generate OG image, don't end with a slash
-  defaultCover: '/secret_preview.png',
+  ogImageGenerateHost: 'og-zl.vercel.app', // The link to generate OG image, don't end with a slash
+  defaultCover: '/cover.jpg',
   socialLink: {
     twitter: 'https://twitter.com/izuolan',
     github: 'https://github.com/izuolan',
     telegram: 'https://t.me/zuolan'
   },
   seo: {
-    keywords: ['左蓝', 'Zuolan', 'Blog'],
+    keywords: ['Notionic', 'Zuolan', 'Blog'],
     googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
   },
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS! Edit .env file!
@@ -45,8 +45,8 @@ const BLOG = {
       websiteId: '' // The website id of your Umami instance
     },
     ackeeConfig: {
-      tracker: '', // e.g 'https://ackee.craigary.net/tracker.js'
-      dataAckeeServer: '', // e.g https://ackee.craigary.net , don't end with a slash
+      tracker: '', // e.g 'https://ackee.example.com/tracker.js'
+      dataAckeeServer: '', // e.g https://ackee.example.com , don't end with a slash
       domainId: '' // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
     },
     gaConfig: {
@@ -54,19 +54,14 @@ const BLOG = {
     }
   },
   comment: {
-    // support provider: utterances, cusdis, supacomments
+    // support provider: utterances, supacomments
     provider: '', // leave it empty if you don't need any comment plugin
     supaCommentsConfig: {
       supabaseUrl: '', // The url of your Supabase instance
-      supabaseAnonKey: '', // The anonymous key of your Supabase instance
+      supabaseAnonKey: '' // The anonymous key of your Supabase instance
     },
     utterancesConfig: {
       repo: ''
-    },
-    cusdisConfig: {
-      appId: '', // data-app-id
-      host: '', // data-host, change this if you're using self-hosted version
-      scriptSrc: '' // change this if you're using self-hosted version
     }
   },
   isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
