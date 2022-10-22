@@ -19,7 +19,7 @@ const NewsletterHero = ({ blockMap }) => {
 
   const clickCopy = async () => {
     setShowCopied(true)
-    navigator.clipboard.writeText(BLOG.link + '/newsletter/feed')
+    navigator.clipboard.writeText(BLOG.link + '/feed')
     setTimeout(() => {
       setShowCopied(false)
     }, 1000)
