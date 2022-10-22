@@ -16,7 +16,7 @@ module.exports = {
   },
   i18n: {
     locales: ['en', 'zh'],
-    defaultLocale: 'zh',
+    defaultLocale: 'en',
     localeDetection: false
   },
   images: {

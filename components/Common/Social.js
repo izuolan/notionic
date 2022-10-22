@@ -6,7 +6,7 @@ const Social = () => {
     <div className='flex gap-4'>
       <Link href={`${BLOG.socialLink.telegram}`} scroll={false}>
         <a
-          target='_blank'
+          target='_blank' aria-label='Telegram'
           className='text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100'
         >
           <svg
@@ -24,7 +24,7 @@ const Social = () => {
       </Link>
       <Link href={`${BLOG.socialLink.twitter}`} scroll={false}>
         <a
-          target='_blank'
+          target='_blank' aria-label='Twitter'
           className='text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100'
         >
           <svg
@@ -42,7 +42,7 @@ const Social = () => {
       </Link>
       <Link href={`${BLOG.socialLink.github}`} scroll={false}>
         <a
-          target='_blank'
+          target='_blank' aria-label='Github'
           className='text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100'
         >
           <svg

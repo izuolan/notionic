@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 
-const BlogPost = ({ post, blockMap }) => {
+const Post = ({ post, blockMap }) => {
   const router = useRouter()
   if (router.isFallback) {
     return (
@@ -21,7 +21,7 @@ const BlogPost = ({ post, blockMap }) => {
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts({ allTypes: true, onlyNewsletter: false })
+  const posts = await getAllPosts({ onlyNewsletter: false })
   return {
     paths: posts.map((row) => `${BLOG.path}/${row.slug}`),
     fallback: true
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const posts = await getAllPosts({ allTypes: true, onlyNewsletter: false })
+  const posts = await getAllPosts({ onlyNewsletter: false })
   const post = posts.find((t) => t.slug === slug)
 
   try {
@@ -52,4 +52,4 @@ export async function getStaticProps({ params: { slug } }) {
   }
 }
 
-export default BlogPost
+export default Post

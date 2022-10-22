@@ -9,7 +9,7 @@ import { defaultMapPageUrl } from 'react-notion-x'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 
-const BlogPost = ({ post, blockMap }) => {
+const Post = ({ post, blockMap }) => {
   const router = useRouter()
   if (router.isFallback) {
     return (
@@ -27,10 +27,6 @@ const BlogPost = ({ post, blockMap }) => {
 export async function getStaticPaths() {
   const mapPageUrl = defaultMapPageUrl(BLOG.notionPageId)
 
-  const posts = await getAllPosts({ allTypes: true, onlyNewsletter: false })
-  const postIds = Object.values(posts)
-    .map((postId) => '/s' + mapPageUrl(postId.id))
-
   const pages = await getAllPagesInSpace(
     BLOG.notionPageId,
     BLOG.notionSpacesId,
@@ -45,7 +41,16 @@ export async function getStaticPaths() {
     .filter((path) => path && path !== '/s/')
 
   // Remove post id
-  const paths = subpageIds.concat(postIds).filter(v => !subpageIds.includes(v) || !postIds.includes(v))
+  const posts = await getAllPosts({ onlyNewsletter: false })
+  const postIds = Object.values(posts)
+    .map((postId) => '/s' + mapPageUrl(postId.id))
+  const noPostsIds = subpageIds.concat(postIds).filter(v => !subpageIds.includes(v) || !postIds.includes(v))
+
+  const heros = await getAllPosts({ onlyHidden: true })
+  const heroIds = Object.values(heros)
+    .map((heroId) => '/s' + mapPageUrl(heroId.id))
+  const paths = noPostsIds.concat(heroIds).filter(v => !noPostsIds.includes(v) || !heroIds.includes(v))
+
   return {
     paths,
     fallback: true
@@ -57,7 +62,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { subpage } }) {
-  const posts = await getAllPosts({ allTypes: true, onlyNewsletter: false })
+  const posts = await getAllPosts({ onlyNewsletter: false })
 
   let blockMap, post
   try {
@@ -94,4 +99,4 @@ export async function getStaticProps({ params: { subpage } }) {
   }
 }
 
-export default BlogPost
+export default Post

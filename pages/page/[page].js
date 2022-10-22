@@ -16,7 +16,7 @@ const Page = ({ postsToShow, page, showNext }) => {
 
 export async function getStaticProps(context) {
   const { page } = context.params // Get Current Page No.
-  const posts = await getAllPosts({ allTypes: false })
+  const posts = await getAllPosts({ onlyNewsletter: false })
   const postsToShow = posts.slice(
     BLOG.postsPerPage * (page - 1),
     BLOG.postsPerPage * page
@@ -34,7 +34,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts({ allTypes: false })
+  const posts = await getAllPosts({ onlyNewsletter: false })
   const totalPosts = posts.length
   const totalPages = Math.ceil(totalPosts / BLOG.postsPerPage)
   return {

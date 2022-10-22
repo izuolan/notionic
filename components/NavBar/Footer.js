@@ -70,20 +70,20 @@ const Footer = ({ fullWidth }) => {
             {links.map(
               (link) =>
                 link.show && (
-                  <li key={link.id}
-                    className={`${
-                      activeMenu === link.to
-                        ? 'bg-gray-200 dark:bg-gray-700'
-                        : ''
-                    } hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block py-1 px-2 nav`}
-                  >
-                    <Link passHref key={link.id} href={link.to} scroll={false}>
-                      <a className='font-light'>
+                  <Link passHref key={link.id} href={link.to} scroll={false}>
+                    <li key={link.id}
+                      className={`${
+                        activeMenu === link.to
+                          ? 'bg-gray-200 dark:bg-gray-700'
+                          : ''
+                      } hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block py-1 px-2 nav`}
+                    >
+                      <div className='font-light'>
                         {link.icon}
                         <span className='inline-block m-1'>{link.name}</span>
-                      </a>
-                    </Link>
-                  </li>
+                      </div>
+                    </li>
+                  </Link>
                 )
             )}
           </ul>
