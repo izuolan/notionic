@@ -41,7 +41,7 @@ const NewsletterHero = ({ blockMap }) => {
 
           <div className='flex flex-col sm:flex-row sm:justify-center gap-4'>
             <Link passHref href={BLOG.telegramChannelUrl} scroll={false}>
-              <button className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200'>
+              <button className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='currentColor'
@@ -75,7 +75,7 @@ const NewsletterHero = ({ blockMap }) => {
             ) : (
               <button
                 onClick={() => clickCopy()}
-                className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200'
+                className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
