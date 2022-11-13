@@ -73,8 +73,8 @@ const NavBar = () => {
         {links.map(
           (link) =>
             link.show && (
-              <Link passHref href={link.to} scroll={false}>
-                <li key={link.id}
+              <Link passHref href={link.to} key={link.id} scroll={false}>
+                <li
                   className={`${
                     activeMenu === link.to ? 'bg-gray-200 dark:bg-gray-700' : ''
                   } hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block py-1 px-2 nav`}
@@ -96,7 +96,7 @@ const NavBar = () => {
       {/* Mobile Phone Menu */}
       <div className='md:hidden mr-2 block '>
         <button
-          type='button'
+          type='button' aria-label='Menu'
           onClick={() => setShowMenu((showMenu) => !showMenu)}
           className='hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block p-2 -mr-3 md:pb-3'
         >

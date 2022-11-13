@@ -13,6 +13,9 @@ module.exports = {
   content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js'],
   // darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
   darkMode: 'class', // or 'media' or 'class'
+  future: {
+    hoverOnlyWhenSupported: true
+  },
   theme: {
     extend: {
       colors: {

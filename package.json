@@ -23,14 +23,13 @@
   },
   "dependencies": {
     "feed": "^4.2.2",
+    "framer-motion": "6.4.3",
+    "got": "^12.0.2",
     "next": "^12.1.0",
     "next-themes": "^0.1.1",
     "notion-client": "^6.13.0",
     "notion-utils": "^6.12.9",
     "nprogress": "^0.2.0",
-    "framer-motion": "6.4.3",
-    "got": "^12.0.2",
-    "sharp": "^0.30.5",
     "p-map": "^5.5.0",
     "p-memoize": "^6.0.1",
     "preact": "^10.5.15",
@@ -38,6 +37,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-notion-x": "^6.13.3",
+    "sharp": "^0.30.5",
     "use-ackee": "^3.0.0"
   },
   "devDependencies": {
@@ -47,8 +47,8 @@
     "eslint": "^8.26.0",
     "eslint-config-next": "^12.3.1",
     "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.10",
@@ -56,7 +56,7 @@
     "next-sitemap": "^3.1.29",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
-    "tailwindcss": "^3.2.1"
+    "tailwindcss": "^3.2.3"
   },
   "bugs": {
     "url": "https://github.com/izuolan/notionic/issues",
