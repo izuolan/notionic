@@ -1,6 +1,6 @@
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
-import Image from 'next/image'
+// import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
@@ -179,7 +179,7 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false, subPage = 
                   Code,
                   Collection,
                   nextLink: Link,
-                  nextImage: Image
+                  // nextImage: Image
                 }}
               />
             </div>

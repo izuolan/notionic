@@ -14,9 +14,16 @@ const BLOG = {
   since: 2022, // If leave this empty, current year will be used.
   postsPerPage: 10,
   sortByDate: true,
-  showNewsletter: true,
+  pagesShow: {
+    newsletter: true,
+    notes: true,
+    projects: true,
+    contact: true,
+    books: true,
+    friends: true
+  },
+  showWeChatPay: true,
   previewImagesEnabled: true,
-  showTitlebarText: false, // Craft Docs page show title bar text on desktop
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateHost: 'og-zl.vercel.app', // The link to generate OG image, don't end with a slash
   defaultCover: '/cover.jpg',
@@ -39,18 +46,22 @@ const BLOG = {
   telegramChannelName: 'zuolan_me', // The name of your Telegram channel
   craftConfigShareUrl: 'https://www.craft.do/s/kQtcWqkv98cHhB', // The link to share your craft config
   analytics: {
-    provider: '', // Currently we support Google Analytics, Ackee and Umami, please fill with 'ga' or 'ackee' or 'umami', leave it empty to disable it.
-    umamiConfig: {
-      scriptUrl: '', // The url of your Umami script
-      websiteId: '' // The website id of your Umami instance
-    },
+    provider: '', // Currently we support Google Analytics, Ackee, Umami and Cloudflare Insights, please fill with 'ga' or 'ackee' or 'umami' or 'cf', leave it empty to disable it.
     ackeeConfig: {
       tracker: '', // e.g 'https://ackee.example.com/tracker.js'
       dataAckeeServer: '', // e.g https://ackee.example.com , don't end with a slash
       domainId: '' // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
     },
+    cfConfig: {
+      scriptUrl: 'https://static.cloudflareinsights.com/beacon.min.js', // Default
+      token: '' // Like '{"token": "xxxxxxxxxxxxxxxxxx"}'
+    },
     gaConfig: {
       measurementId: '' // e.g: G-XXXXXXXXXX
+    },
+    umamiConfig: {
+      scriptUrl: '', // The url of your Umami script
+      websiteId: '' // The website id of your Umami instance
     }
   },
   comment: {
