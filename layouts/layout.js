@@ -178,7 +178,7 @@ const Layout = ({ children, blockMap, frontMatter, fullWidth = false, subPage = 
                 components={{
                   Code,
                   Collection,
-                  nextLink: Link,
+                  nextLink: Link
                   // nextImage: Image
                 }}
               />
