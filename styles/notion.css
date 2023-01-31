@@ -21,6 +21,10 @@
   padding: 0;
 }
 
+.notion-list ol {
+  padding: 0;
+}
+
 .notion-toggle {
   @apply w-full;
 }
