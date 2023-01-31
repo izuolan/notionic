@@ -71,12 +71,20 @@ export async function getStaticProps({ params: { subpage } }) {
 
     const breadcrumbs = getPageBreadcrumbs(blockMap, id)
     post = posts.find((t) => t.id === breadcrumbs[0].block.id)
-    // console.log(breadcrumbs, post)
+    // When the page is not in the notion database, manually initialize the post
+    if (!post) {
+      post = {
+        type: ['Page'],
+        title: breadcrumbs[0].title
+      }
+    }
+    // console.log("debug: ", breadcrumbs, post)
   } catch (err) {
     console.error(err)
     return { props: { post: null, blockMap: null } }
   }
 
+  // Allow only pages in your own space
   const NOTION_SPACES_ID = BLOG.notionSpacesId
   const pageAllowed = (page) => {
     // When page block space_id = NOTION_SPACES_ID
