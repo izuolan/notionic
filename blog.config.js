@@ -1,8 +1,8 @@
 const BLOG = {
   title: 'Notionic',
-  author: '左蓝',
-  email: 'i@zuolan.me',
-  link: 'https://zuolan.me',
+  author: '万里',
+  email: 'pureraisin@outlook.com',
+  link: 'https://blog-wanli.vercel.app',
   newsletter: 'Notionic Weekly',
   description: 'A static blog build on top of Notion and Next.js',
   lang: 'en-US', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
@@ -15,7 +15,7 @@ const BLOG = {
   postsPerPage: 10,
   sortByDate: true,
   pagesShow: {
-    newsletter: true,
+    newsletter: false,
     notes: true,
     projects: true,
     contact: true,
@@ -28,9 +28,9 @@ const BLOG = {
   ogImageGenerateHost: 'og-zl.vercel.app', // The link to generate OG image, don't end with a slash
   defaultCover: '/cover.jpg',
   socialLink: {
-    twitter: 'https://twitter.com/izuolan',
-    github: 'https://github.com/izuolan',
-    telegram: 'https://t.me/zuolan'
+    twitter: 'https://twitter.com/itsWanlio',
+    github: 'https://github.com/ZenonMok',
+    telegram: 'https://t.me/heyWanli'
   },
   seo: {
     keywords: ['Notionic', 'Zuolan', 'Blog'],
