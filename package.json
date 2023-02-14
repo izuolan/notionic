@@ -24,11 +24,11 @@
   "dependencies": {
     "feed": "^4.2.2",
     "framer-motion": "6.4.3",
-    "got": "^12.0.2",
+    "got": "^12.5.3",
     "next": "^12.1.0",
     "next-themes": "^0.1.1",
-    "notion-client": "^6.13.0",
-    "notion-utils": "^6.12.9",
+    "notion-client": "^6.15.8",
+    "notion-utils": "^6.15.8",
     "nprogress": "^0.2.0",
     "p-map": "^5.5.0",
     "p-memoize": "^6.0.1",
@@ -36,7 +36,7 @@
     "prism-theme-vars": "^0.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-notion-x": "^6.13.3",
+    "react-notion-x": "^6.15.8",
     "sharp": "^0.30.5",
     "use-ackee": "^3.0.0"
   },
