@@ -17,6 +17,10 @@
   color: inherit;
 }
 
+.notion-list {
+  @apply w-full;
+}
+
 .notion-list li {
   padding: 0;
 }
