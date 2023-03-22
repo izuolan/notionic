@@ -134,7 +134,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(null)
-  const sentinalRef = useRef([])
+  const sentinelRef = useRef([])
   const handler = ([entry]) => {
     if (navRef && navRef.current && useSticky) {
       if (!entry.isIntersecting && entry !== undefined) {
@@ -156,16 +156,16 @@ const Header = ({ navBarTitle, fullWidth }) => {
     })
 
     const obvserver = new window.IntersectionObserver(handler)
-    obvserver.observe(sentinalRef.current)
+    obvserver.observe(sentinelRef.current)
     // Don't touch this, I have no idea how it works XD
     // return () => {
-    //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)
+    //   if (sentinelRef.current) obvserver.unobserve(sentinelRef.current)
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sentinalRef])
+  }, [sentinelRef])
   return (
     <>
-      <div className='observer-element h-4 md:h-12' ref={sentinalRef}></div>
+      <div className='observer-element h-4 md:h-12' ref={sentinelRef}></div>
       <div
         className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60 ${
           !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24'

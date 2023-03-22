@@ -23,22 +23,18 @@ const Pagination = ({ page, showNext }) => {
               : `/page/${currentPage - 1}`
           }
         >
-          <a>
-            <button rel='prev' className='block cursor-pointer'>
-              <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />{' '}
-              {t.PAGINATION.PREV}
-            </button>
-          </a>
+          <button rel='prev' className='block cursor-pointer'>
+            <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />{' '}
+            {t.PAGINATION.PREV}
+          </button>
         </Link>
       )}
       {showNext && (
         <Link href={`/page/${currentPage + 1}`} scroll={false}>
-          <a>
-            <button rel='next' className='block cursor-pointer'>
-              {t.PAGINATION.NEXT}{' '}
-              <ChevronRightIcon className='inline-block mb-1 h-5 w-5' />
-            </button>
-          </a>
+          <button rel='next' className='block cursor-pointer'>
+            {t.PAGINATION.NEXT}{' '}
+            <ChevronRightIcon className='inline-block mb-1 h-5 w-5' />
+          </button>
         </Link>
       )}
     </div>
