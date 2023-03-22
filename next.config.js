@@ -1,8 +1,8 @@
 module.exports = {
   // webpack5: true,
-  eslint: {
-    dirs: ['components', 'layouts', 'lib', 'pages']
-  },
+  // eslint: {
+  //   dirs: ['components', 'layouts', 'lib', 'pages']
+  // },
   // webpack: (config, { dev, isServer }) => {
   //   // Replace React with Preact only in client production build
   //   if (!dev && !isServer) {

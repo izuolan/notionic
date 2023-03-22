@@ -43,14 +43,14 @@
   "devDependencies": {
     "@heroicons/react": "^1.0.5",
     "@types/react": "^17.0.39",
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "^10.4.14",
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",
     "husky": "^8.0.1",
-    "next-sitemap": "^3.1.29",
-    "postcss": "^8.4.18",
+    "next-sitemap": "^4.0.6",
+    "postcss": "^8.4.21",
     "prettier": "^2.7.1",
-    "tailwindcss": "^3.2.3"
+    "tailwindcss": "^3.2.7"
   },
   "bugs": {
     "url": "https://github.com/izuolan/notionic/issues",
