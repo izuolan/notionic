@@ -19,7 +19,7 @@ const ThemeSwitcher = () => {
             theme === 'light' ? 'dark' : theme === 'system' ? 'dark' : 'light'
           )
         }
-        className='ml-1 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 cursor-pointer rounded-lg dark:text-gray-50'
+        className='p-3 ml-1 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-50'
       >
         {hasMounted && theme === 'dark' ? (
           <MoonIcon className='h-5 w-5' />

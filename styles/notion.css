@@ -59,6 +59,10 @@ svg + .notion-page-title-text {
   line-height: 1.5rem;
 }
 
+.notion-hr {
+  @apply border-b-2 border-b-gray-200 dark:border-b-gray-600
+}
+
 .notion-link {
   @apply relative border-b-2 bg-origin-border bg-no-repeat text-blue-600 border-b-gray-200 dark:text-blue-300 dark:border-b-gray-600;
   background-position: 50% 100%;
