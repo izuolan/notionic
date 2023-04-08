@@ -2,26 +2,23 @@ import BLOG from '@/blog.config'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
+import TableOfContents from '@/components/Post/TableOfContents'
 import WechatPay from '@/components/Post/WechatPay'
 import { ThumbUpIcon, ChevronLeftIcon, ArrowUpIcon } from '@heroicons/react/outline'
 
-const Aside = ({ subPageTitle, frontMatter }) => {
+const Aside = ({ pageTitle, blockMap, frontMatter }) => {
   const [showPay, setShowPay] = useState(false)
-  const [showButton, setShowButton] = useState(false)
-  const [showSubPageTitle, setShowSubPageTitle] = useState(false)
+  const [showScrollElement, setShowScrollElement] = useState(false)
 
   useEffect(() => {
-    if (frontMatter.title !== subPageTitle) {
-      setShowSubPageTitle(true)
-    }
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 900) {
-        setShowButton(true)
+      if (window.pageYOffset > 400) {
+        setShowScrollElement(true)
       } else {
-        setShowButton(false)
+        setShowScrollElement(false)
       }
     })
-  }, [frontMatter, subPageTitle])
+  }, [frontMatter, pageTitle])
   return (
     <>
       <aside className='hidden sticky md:flex md:flex-col md:items-center md:self-start md:ml-8 md:inset-y-1/2'>
@@ -35,7 +32,7 @@ const Aside = ({ subPageTitle, frontMatter }) => {
                 <ThumbUpIcon className='w-5 h-5' />
               </button>
             )}
-            {showSubPageTitle && (
+            {pageTitle && (
               <Link
                 passHref
                 href={`${BLOG.path}/${frontMatter.slug}`}
@@ -45,7 +42,7 @@ const Aside = ({ subPageTitle, frontMatter }) => {
                 <ChevronLeftIcon className='w-5 h-5' />
               </Link>
             )}
-            {showButton && (
+            {showScrollElement && (
               <button
                 onClick={() =>
                   window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -57,9 +54,19 @@ const Aside = ({ subPageTitle, frontMatter }) => {
             )}
           </div>
         </div>
+        {showScrollElement && (
+          <div className="absolute left-full toc-fade-in">
+            <TableOfContents
+              className="sticky"
+              blockMap={blockMap}
+              pageTitle={pageTitle}
+              frontMatter={frontMatter}
+            />
+          </div>
+        )}
       </aside>
       {showPay && <WechatPay />}
-      {showButton && (
+      {showScrollElement && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className='md:hidden fixed inline-flex bottom-5 right-5 p-2 rounded-lg z-10 shadow bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'

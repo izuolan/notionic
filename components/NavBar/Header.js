@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
@@ -14,6 +14,7 @@ import {
 import Social from '../Common/Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
+import Logo from '@/components/Common/Logo'
 import { motion } from 'framer-motion'
 
 const NavBar = () => {
@@ -90,7 +91,7 @@ const NavBar = () => {
         )}
       </ul>
 
-      <div className='pb-1 block'>
+      <div className='nav-func-btn block'>
         <ThemeSwitcher />
         <LangSwitcher />
       </div>
@@ -135,36 +136,32 @@ const NavBar = () => {
 const Header = ({ navBarTitle, fullWidth }) => {
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
-  const navRef = useRef(null)
-  const sentinelRef = useRef([])
-  const handler = ([entry]) => {
-    if (navRef && navRef.current && useSticky) {
-      if (!entry.isIntersecting && entry !== undefined) {
-        navRef.current?.classList.add('sticky-nav-full')
-      } else {
-        navRef.current?.classList.remove('sticky-nav-full')
-      }
+  const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
+  const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
+  const handler = useCallback(([entry]) => {
+    if (useSticky && navRef.current) {
+      navRef.current?.classList.toggle('sticky-nav-full', !entry.isIntersecting)
     } else {
       navRef.current?.classList.add('remove-sticky')
     }
-  }
+  }, [useSticky])
+
   useEffect(() => {
+    const sentinelEl = sentinelRef.current
+    const observer = new window.IntersectionObserver(handler)
+    observer.observe(sentinelEl)
+
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 100) {
+      if (window.pageYOffset > 400) {
         setShowTitle(true)
       } else {
         setShowTitle(false)
       }
     })
-
-    const obvserver = new window.IntersectionObserver(handler)
-    obvserver.observe(sentinelRef.current)
-    // Don't touch this, I have no idea how it works XD
-    // return () => {
-    //   if (sentinelRef.current) obvserver.unobserve(sentinelRef.current)
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sentinelRef])
+    return () => {
+      sentinelEl && observer.unobserve(sentinelEl)
+    }
+  }, [handler, sentinelRef])
   return (
     <>
       <div className='observer-element h-4 md:h-12' ref={sentinelRef}></div>
@@ -177,18 +174,8 @@ const Header = ({ navBarTitle, fullWidth }) => {
       >
         <div className='flex items-center'>
           <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
-            <motion.div className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='24'
-                height='24'
-                viewBox='0 0 100 100'
-              >
-                <g transform='translate(0.000000,100) scale(0.080000,-0.080000)'>
-                  <path d='M762 1203 c-6 -15 -13 -46 -17 -68 -4 -22 -13 -49 -20 -61 -15 -23 -122 -69 -257 -109 -49 -14 -88 -28 -88 -29 0 -2 33 -20 73 -40 49 -24 87 -36 115 -36 28 0 42 -4 42 -13 0 -34 -295 -517 -390 -639 -40 -52 -4 -28 86 56 49 46 105 109 124 141 19 31 64 98 100 148 77 108 125 186 173 283 20 39 46 78 59 86 13 8 69 34 126 58 107 45 118 57 110 111 -3 21 -10 25 -78 34 l-75 10 -5 45 c-5 42 -7 45 -36 48 -26 3 -33 -1 -42 -25z' />
-                  <path d='M754 616 c-40 -19 -88 -39 -108 -46 -43 -14 -45 -30 -7 -72 25 -28 33 -31 80 -30 39 1 54 -3 58 -15 7 -18 -30 -140 -58 -192 -36 -67 6 -93 135 -84 l86 6 0 -26 c0 -14 -4 -37 -10 -51 -5 -14 -8 -26 -6 -26 7 0 110 68 129 85 11 10 17 30 17 60 0 62 -22 70 -150 57 -52 -5 -98 -6 -103 -2 -4 3 3 31 16 61 13 30 32 78 42 108 10 30 28 70 41 89 26 38 30 63 14 93 -17 31 -91 25 -176 -15z' />
-                </g>
-              </svg>
+            <motion.div>
+              <Logo className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current' />
             </motion.div>
           </Link>
           {navBarTitle ? (

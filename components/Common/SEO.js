@@ -56,7 +56,7 @@ const SEO = ({ meta }) => {
         <>
           <meta
             property='article:published_time'
-            content={meta.date || meta.createdTime}
+            content={meta.date}
           />
           <meta property='article:author' content={BLOG.author} />
         </>

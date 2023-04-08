@@ -78,8 +78,16 @@ svg + .notion-page-title-text {
   transition-duration: 200ms;
 }
 
+
+@keyframes toc-fade-in-animation {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.toc-fade-in {
+  animation: toc-fade-in-animation 0.5s ease-in;
+}
 .notion-table-of-contents {
-  @apply 2xl:max-w-xs 2xl:fixed 2xl:z-10 2xl:top-40 2xl:inset-x-3/4;
+  /* @apply 2xl:max-w-xs 2xl:fixed 2xl:z-10 2xl:top-40 2xl:inset-x-3/4; */
   @apply bg-day dark:bg-night;
 }
 .notion-table-of-contents-item {

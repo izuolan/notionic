@@ -1,6 +1,6 @@
 {
   "name": "notionic",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "homepage": "https://zuolan.me",
   "license": "MIT",
   "repository": {
@@ -22,6 +22,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
     "feed": "^4.2.2",
     "framer-motion": "6.4.3",
     "got": "^12.5.3",
@@ -50,7 +51,8 @@
     "next-sitemap": "^4.0.6",
     "postcss": "^8.4.21",
     "prettier": "^2.7.1",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "typescript": "^5.0.3"
   },
   "bugs": {
     "url": "https://github.com/izuolan/notionic/issues",

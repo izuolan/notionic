@@ -5,12 +5,7 @@ import { useState } from 'react'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { NewspaperIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
-import dynamic from 'next/dynamic'
-import { NotionRenderer } from 'react-notion-x'
-
-const Collection = dynamic(() =>
-  import('react-notion-x/build/third-party/collection').then((m) => m.Collection), { ssr: true }
-)
+import NotionRenderer from '@/components/Post/NotionRenderer'
 
 const NewsletterHero = ({ blockMap }) => {
   const [showCopied, setShowCopied] = useState(false)
@@ -31,8 +26,9 @@ const NewsletterHero = ({ blockMap }) => {
         <div className='flex flex-col md:w-4/5 md:items-start mb-6 md:mb-0 md:text-left'>
           <NotionRenderer
             className='md:ml-0'
-            recordMap={blockMap}
-            components={{ Collection }}
+            blockMap={blockMap}
+            frontMatter={{}}
+            subPageTitle={null}
           />
           <Social />
           <h2 className='text-xl pt-8 pb-4 font-light text-gray-500 dark:text-day'>
