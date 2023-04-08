@@ -45,15 +45,6 @@ const components = {
   })
 }
 
-const mapPageUrl = (id) => {
-  // console.log('mapPageUrl', BLOG.lang.split('-')[0])
-  if (locale === BLOG.lang.split('-')[0]) {
-    return '/s/' + id.replace(/-/g, '')
-  } else {
-    return '/' + locale + '/s/' + id.replace(/-/g, '')
-  }
-}
-
 /**
  * Notion page renderer
  *
@@ -62,6 +53,15 @@ const mapPageUrl = (id) => {
  * @param props - Anything that react-notion-x/NotionRenderer supports
  */
 export default function NotionRenderer (props) {
+  const { locale } = useRouter()
+  const mapPageUrl = (id) => {
+    // console.log('mapPageUrl', BLOG.lang.split('-')[0])
+    if (locale === BLOG.lang.split('-')[0]) {
+      return '/s/' + id.replace(/-/g, '')
+    } else {
+      return '/' + locale + '/s/' + id.replace(/-/g, '')
+    }
+  }
   return (
     <Renderer
       components={components}
