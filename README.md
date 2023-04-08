@@ -39,6 +39,17 @@ More details about Notionic deployment:
 - [English](https://zuolan.me/en/notionic_en)
 - [中文](https://zuolan.me/notionic)
 
+## Development
+
+```bash
+# Init
+pnpm install
+# Develop
+./dev.sh
+# Build & Serve
+pnpm build
+pnpm start
+```
 
 ## Reference & License
 

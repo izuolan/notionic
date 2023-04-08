@@ -36,25 +36,25 @@ const NewsletterHero = ({ blockMap }) => {
           </h2>
 
           <div className='flex flex-col sm:flex-row sm:justify-center gap-4'>
-              <button className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
-                <Link passHref href={BLOG.telegramChannelUrl} scroll={false} className='flex'>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='currentColor'
-                    className='text-gray-600 dark:text-day w-7 h-7 mt-1'
-                    viewBox='0 0 24 24'
-                  >
-                    <path fill='none' d='M0 0h24v24H0z' />
-                    <path d='M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-3.11-8.83l-2.498-.779c-.54-.165-.543-.537.121-.804l9.733-3.76c.565-.23.885.061.702.79l-1.657 7.82c-.116.557-.451.69-.916.433l-2.551-1.888-1.189 1.148c-.122.118-.221.219-.409.244-.187.026-.341-.03-.454-.34l-.87-2.871-.012.008z' />
-                  </svg>
-                  <span className='ml-4 flex items-start flex-col leading-none'>
-                    <span className='text-xs text-gray-600 dark:text-day mb-1'>
-                      {t.HERO.NEWSLETTER.TG_CHANNEL}
-                    </span>
-                    <span className='font-medium'>@{BLOG.telegramChannelName}</span>
+            <Link passHref href={BLOG.telegramChannelUrl} scroll={false} className='flex'>
+              <button className='w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  className='text-gray-600 dark:text-day w-7 h-7 mt-1'
+                  viewBox='0 0 24 24'
+                >
+                  <path fill='none' d='M0 0h24v24H0z' />
+                  <path d='M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-3.11-8.83l-2.498-.779c-.54-.165-.543-.537.121-.804l9.733-3.76c.565-.23.885.061.702.79l-1.657 7.82c-.116.557-.451.69-.916.433l-2.551-1.888-1.189 1.148c-.122.118-.221.219-.409.244-.187.026-.341-.03-.454-.34l-.87-2.871-.012.008z' />
+                </svg>
+                <span className='ml-4 flex items-start flex-col leading-none'>
+                  <span className='text-xs text-gray-600 dark:text-day mb-1'>
+                    {t.HERO.NEWSLETTER.TG_CHANNEL}
                   </span>
-                </Link>
+                  <span className='font-medium'>@{BLOG.telegramChannelName}</span>
+                </span>
               </button>
+            </Link>
             {showCopied ? (
               <button
                 disabled
