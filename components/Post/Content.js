@@ -18,7 +18,7 @@ export default function Content (props) {
           passHref
           href={`${BLOG.path}/${frontMatter.slug}`}
           scroll={false}
-          className='block -ml-6 mb-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300'
+          className='block md:-ml-6 mb-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300'
         >
           <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />
           <span className='m-1'>{frontMatter.title}</span>
