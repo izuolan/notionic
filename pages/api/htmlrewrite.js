@@ -1,4 +1,5 @@
 import { getBlocksMaps } from '@/lib/getBlocksMaps'
+import BLOG from '@/blog.config'
 
 async function getBlockItem(path) {
   const { pagesJson, siteConfigObj } = await getBlocksMaps()
@@ -55,7 +56,7 @@ module.exports = async (req, res) => {
           <a href="/" class="navigation__link">${siteConfigObj['Home Menu Text']}</a>
         </li>
         <li class="navigation__item">
-          <a href="/notes" class="navigation__link">${siteConfigObj['Archive Menu Text']}</a>
+          <a href="/archive" class="navigation__link">${siteConfigObj['Archive Menu Text']}</a>
         </li>
         <li class="navigation__item">
           <a href="/about" target="_blank" class="navigation__link">${siteConfigObj['About Menu Text']}</a>
@@ -89,7 +90,7 @@ module.exports = async (req, res) => {
     )
     .replace(
       '<link rel="apple-touch-icon" href="/share/static/logo-192.png">',
-      '<link rel="apple-touch-icon" href="/favicon.png">'
+      '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
     )
     .replace(
       '<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">',
@@ -111,11 +112,18 @@ module.exports = async (req, res) => {
 }
 
 const headStr = `
+  <script
+    crossOrigin="anonymous"
+    defer="defer"
+    type="application/javascript"
+    src="${BLOG.analytics.umamiConfig.scriptUrl}"
+    data-website-id="${BLOG.analytics.umamiConfig.websiteId}"
+  ></script>
   <style>
     .navigation {
       position: fixed;
-      top: 0;
-      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: 99;
     }
     .navigation__checkbox {
@@ -124,8 +132,8 @@ const headStr = `
 
     .navigation__button {
       position: absolute;
-      top: 0.5rem;
-      right: 1.25rem;
+      bottom: 0.3rem;
+      left: 1.2rem;
       padding-top: 0.4rem;
       height: 2rem;
       width: 2rem;
@@ -139,20 +147,19 @@ const headStr = `
     }
     .navigation__title {
       position: fixed;
-      top: 0.5rem;
-      right: 3rem;
+      bottom: 15rem;
+      left: 2rem;
       visibility: hidden;
-      margin: 0.2rem 1rem;
       color: gray;
-      font-size: 1rem;
+      font-size: 1.5rem;
       z-index: 98;
       transition: all 200ms ease-out;
     }
 
     .navigation__background {
       position: fixed;
-      top: 0.65rem;
-      right: 1.25rem;
+      bottom: 0.65rem;
+      left: 1.25rem;
       height: 2rem;
       width: 2rem;
       border-radius: 50%;
@@ -161,8 +168,8 @@ const headStr = `
     }
     .navigation__nav {
       position: fixed;
-      top: 0;
-      right: 0;
+      bottom: 0;
+      left: 0;
       opacity: 0;
       width: 100%;
       visibility: hidden;
@@ -172,13 +179,13 @@ const headStr = `
 
     .navigation__list {
       position: absolute;
-      top: 4rem;
-      right: 1rem;
+      bottom: 4rem;
+      left: 1rem;
       list-style: none;
     }
     .navigation__item {
       margin: 0.5rem;
-      text-align: right;
+      text-align: left;
     }
 
     .navigation__link:link,
@@ -197,16 +204,15 @@ const headStr = `
 
     .navigation__icon {
       position: fixed;
-      top: 15rem;
-      right: 0;
+      bottom: 0.3rem;
+      left: 4rem;
       visibility: hidden;
-      margin: 0.8rem 2rem;
       z-index: 98;
       transition: all 200ms ease-out;
     }
     .navigation__icon a {
-      top: 0;
-      right: 0;
+      bottom: 0;
+      left: 0;
       display: inline-block;
       opacity: 0.3;
       width: 1rem;
@@ -223,8 +229,8 @@ const headStr = `
       box-shadow: 0 0 20px rgb(0 0 0 / 20%);
       height: 500px;
       width: 500px;
-      right: -160px;
-      top: -160px;
+      left: -160px;
+      bottom: -160px;
       border-radius: 50%;
     }
     .navigation__checkbox:checked ~ .navigation__title {
@@ -246,8 +252,8 @@ const headStr = `
     }
     .footer {
       position: absolute;
-      top: 18rem;
-      right: 2rem;
+      bottom: 1rem;
+      left: 13rem;
       color: #b7c0c3;
       font-size: 0.8rem;
     }
