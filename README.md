@@ -25,7 +25,7 @@ Notionic is a static blog that updates in real time, synchronizing changes to No
 
 ## Quick Start
 
-- Duplicate [Notionic template](https://izuolan.notion.site/87d5fa7c98e04cb79ef55f60989dc765), and share it to the public
+- Duplicate [Notionic template](https://zuolan.notion.site/dea4de63b4aa4efb87174591936f0bde), and share it to the public
 - [Fork](https://github.com/izuolan/notionic/fork) this project
 - **Customize `blog.config.js` file**
 - _(Optional)_ Replace `favicon.svg/png/ico` in `public` folder with your own
