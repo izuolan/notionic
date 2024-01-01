@@ -78,10 +78,10 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          NOTION_PAGE_ID: ${{ env.NOTION_PAGE_ID }}
-          NOTION_DOMAIN: ${{ env.NOTION_DOMAIN }}
-          TELEGRAM_CHAT_ID: ${{ env.TELEGRAM_CHAT_ID }}
-          CRAFT_CONFIG_SHARE_URL: ${{ env.CRAFT_CONFIG_SHARE_URL }}
+          NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
+          NOTION_DOMAIN: ${{ vars.NOTION_DOMAIN }}
+          TELEGRAM_CHAT_ID: ${{ vars.TELEGRAM_CHAT_ID }}
+          CRAFT_CONFIG_SHARE_URL: ${{ secrets.CRAFT_CONFIG_SHARE_URL }}
 
       - name: Build and push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
