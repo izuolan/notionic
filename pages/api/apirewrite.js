@@ -17,14 +17,6 @@ module.exports = async (req, res) => {
   try {
     const response = await fetch(url)
     res.send(await response.json())
-
-    // const originResText = await response.text()
-    // const modifyResText = originResText
-    // .replace(/5A942651-8A73-49C7-9B36-0FD047A6D6EC/g, 'test-page')
-    // .replace(/craftdocs:\/\/open\?blockId=/g, 'https://zuolan.me/notes/page/')
-    // .replace(/&spaceId=48c91199-cb47-f359-8399-2a12d07b0b02/g, '')
-    // console.log(modifyResText.toString())
-    // res.send(await modifyResText.toString())
   } catch (e) {
     res.send(e)
   }

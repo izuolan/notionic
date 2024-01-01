@@ -1,16 +1,16 @@
 {
   "name": "notionic",
   "version": "3.0.0",
-  "homepage": "https://zuolan.me",
+  "homepage": "https://rnode.me",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/izuolan/notionic.git"
+    "url": "https://github.com/robinv8/blog.git"
   },
   "author": {
-    "name": "Zuo Lan",
-    "email": "i@zuolan.me",
-    "url": "https://zuolan.me"
+    "name": "robin",
+    "email": "robin@rnode.me",
+    "url": "https://rnode.me"
   },
   "scripts": {
     "dev": "next dev",
@@ -55,7 +55,7 @@
     "typescript": "^5.0.3"
   },
   "bugs": {
-    "url": "https://github.com/izuolan/notionic/issues",
-    "email": "i@zuolan.me"
+    "url": "https://github.com/robinv8/blog.git/issues",
+    "email": "robin@rnode.me"
   }
 }
