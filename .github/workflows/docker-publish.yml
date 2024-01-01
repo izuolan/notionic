@@ -76,7 +76,12 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm run build    
+        run: pnpm run build
+        env:
+          NOTION_PAGE_ID: ${{ env.NOTION_PAGE_ID }}
+          NOTION_DOMAIN: ${{ env.NOTION_DOMAIN }}
+          TELEGRAM_CHAT_ID: ${{ env.TELEGRAM_CHAT_ID }}
+          CRAFT_CONFIG_SHARE_URL: ${{ env.CRAFT_CONFIG_SHARE_URL }}
 
       - name: Build and push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
