@@ -82,6 +82,7 @@ jobs:
           NOTION_DOMAIN: ${{ secrets.NOTION_DOMAIN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           CRAFT_CONFIG_SHARE_URL: ${{ secrets.CRAFT_CONFIG_SHARE_URL }}
+          NOTION_SPACES_ID: ${{ secrets.NOTION_SPACES_ID }}
 
       - name: Build and push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
