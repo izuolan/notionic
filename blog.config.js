@@ -1,10 +1,10 @@
 const BLOG = {
-  title: 'robin blog',
+  title: 'robin 的博客',
   author: 'robin',
   email: 'robin@rnode.me',
   link: 'https://blog.robin.me',
   newsletter: 'Weekly',
-  description: 'robin blog',
+  description: '记录生活，记录成长',
   lang: 'zh-CN', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   timezone: 'Asia/Shanghai', // See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for all options.
   appearance: 'auto', // ['light', 'dark', 'auto'],
@@ -24,7 +24,7 @@ const BLOG = {
     friends: true
   },
   showWeChatPay: false,
-  previewImagesEnabled: true,
+  previewImagesEnabled: false,
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateHost: 'og-zl.vercel.app', // The link to generate OG image, don't end with a slash
   defaultCover: '/cover.jpg',

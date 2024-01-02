@@ -13,12 +13,7 @@ const BlogPost = ({ post }) => {
           key={post.id}
           className='group flex flex-col overflow-hidden relative mb-5 md:mb-8 cursor-pointer rounded-xl p-5'
         >
-          <Image
-            fill
-            alt={`${post.title}`}
-            src={post?.page_cover}
-            className='w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200'
-          />
+    
           <div className='hidden md:block md-cover absolute inset-0'></div>
           <div className='md:hidden sm-cover absolute inset-0'></div>
           <div className='relative mt-auto'>
