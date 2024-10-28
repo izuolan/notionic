@@ -1,21 +1,21 @@
 const BLOG = {
-  title: 'Notionic',
-  author: '左蓝',
-  email: 'i@zuolan.me',
-  link: 'https://zuolan.me',
-  newsletter: 'Notionic Weekly',
-  description: 'A static blog build on top of Notion and Next.js',
-  lang: 'en-US', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
-  timezone: 'Asia/Shanghai', // See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for all options.
-  appearance: 'auto', // ['light', 'dark', 'auto'],
-  font: 'sans-serif', // ['sans-serif', 'serif']
-  lightBackground: '#F6F8FA', // use hex value, don't forget '#' e.g #fffefc
-  darkBackground: '#212936', // use hex value, don't forget '#'
-  path: '', // leave this empty unless you want to deploy Notionic in a folder
-  since: 2022, // If leave this empty, current year will be used.
-  postsPerPage: 10,
-  sortByDate: true,
-  pagesShow: {
+  title: '810C', // 博客的标题
+  author: 'FuHeng', // 博主的名字
+  email: '2827162018@qq.com', // 博主的电子邮件
+  link: 'https://810C.cn', // 博客链接
+  newsletter: 'Notionic Weekly', // 新闻订阅的名称
+  description: 'FuHeng的个人博客', // 博客的描述
+  lang: 'zh-CN', // 博客语言，支持多种语言
+  timezone: 'Asia/Shanghai', // 时区设置
+  appearance: 'auto', // 外观模式，支持亮色、暗色和自动模式
+  font: 'sans-serif', // 字体类型，可选择无衬线或有衬线字体
+  lightBackground: '#F6F8FA', // 亮色背景的十六进制颜色值
+  darkBackground: '#212936', // 暗色背景的十六进制颜色值
+  path: '', // 部署时的路径，默认为空即根路径
+  since: 2022, // 博客开始年份，如果留空则使用当前年份
+  postsPerPage: 10, // 每页显示的文章数量
+  sortByDate: true, // 是否按日期排序
+  pagesShow: { // 控制哪些页面显示
     newsletter: true,
     notes: true,
     projects: true,
@@ -23,60 +23,59 @@ const BLOG = {
     books: true,
     friends: true
   },
-  showWeChatPay: true,
-  previewImagesEnabled: true,
-  autoCollapsedNavBar: false, // The automatically collapsed navigation bar
-  ogImageGenerateHost: 'og-zl.vercel.app', // The link to generate OG image, don't end with a slash
-  defaultCover: '/cover.jpg',
-  socialLink: {
-    twitter: 'https://twitter.com/izuolan',
-    github: 'https://github.com/izuolan',
-    telegram: 'https://t.me/zuolan'
+  showWeChatPay: true, // 是否显示微信支付选项
+  previewImagesEnabled: true, // 是否启用预览图像
+  autoCollapsedNavBar: false, // 导航栏是否自动折叠
+  ogImageGenerateHost: 'og-zl.vercel.app', // 生成OG图像的链接
+  defaultCover: '/cover.jpg', // 默认封面图片路径
+  socialLink: { // 社交媒体链接
+    twitter: '', // Twitter链接
+    github: '', // GitHub链接
+    telegram: '' // Telegram链接
   },
-  seo: {
-    keywords: ['Notionic', 'Zuolan', 'Blog'],
-    googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
+  seo: { // SEO设置
+    keywords: ['Notionic', 'Zuolan', 'Blog'], // 关键词
+    googleSiteVerification: '' // Google站点验证代码
   },
-  notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS! Edit .env file!
-  notionSpacesId: process.env.NOTION_SPACES_ID, // DO NOT CHANGE THIS! Edit .env file!
-  notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
-  notionDomain: 'fuheng-blog.notion.site',
-  telegramToken: process.env.TELEGRAM_TOKEN, // The token of your Telegram bot
-  telegramChatId: '263895784', // The chat id of your Telegram bot
-  telegramChannelUrl: 'https://channel.zuolan.me/', // The link of your Telegram channel
-  telegramChannelName: 'zuolan_me', // The name of your Telegram channel
-  craftConfigShareUrl: 'https://www.craft.do/s/kQtcWqkv98cHhB', // The link to share your craft config
-  analytics: {
-    provider: '', // Currently we support Google Analytics, Ackee, Umami and Cloudflare Insights, please fill with 'ga' or 'ackee' or 'umami' or 'cf', leave it empty to disable it.
-    ackeeConfig: {
-      tracker: '', // e.g 'https://ackee.example.com/tracker.js'
-      dataAckeeServer: '', // e.g https://ackee.example.com , don't end with a slash
-      domainId: '' // e.g '0e2257a8-54d4-4847-91a1-0311ea48cc7b'
+  notionPageId: process.env.NOTION_PAGE_ID, // Notion页面ID，需在.env文件中设置
+  notionSpacesId: process.env.NOTION_SPACES_ID, // Notion空间ID，需在.env文件中设置
+  notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Notion访问令牌，用于私有数据库
+  notionDomain: 'fuheng-blog.notion.site', // Notion域名
+  telegramToken: process.env.TELEGRAM_TOKEN, // Telegram机器人的令牌
+  telegramChatId: '263895784', // Telegram机器人聊天ID
+  telegramChannelUrl: 'https://channel.zuolan.me/', // Telegram频道链接
+  telegramChannelName: 'zuolan_me', // Telegram频道名称
+  craftConfigShareUrl: 'https://www.craft.do/s/kQtcWqkv98cHhB', // Craft配置分享链接
+  analytics: { // 分析设置
+    provider: '', // 可选分析提供者: Google Analytics, Ackee, Umami, Cloudflare Insights
+    ackeeConfig: { // Ackee配置
+      tracker: '', // Ackee跟踪器URL
+      dataAckeeServer: '', // Ackee数据服务器URL
+      domainId: '' // Ackee域ID
     },
-    cfConfig: {
-      scriptUrl: 'https://static.cloudflareinsights.com/beacon.min.js', // Default
-      token: '' // Like '{"token": "xxxxxxxxxxxxxxxxxx"}'
+    cfConfig: { // Cloudflare配置
+      scriptUrl: 'https://static.cloudflareinsights.com/beacon.min.js', // Cloudflare默认跟踪脚本
+      token: '' // Cloudflare令牌
     },
-    gaConfig: {
-      measurementId: '' // e.g: G-XXXXXXXXXX
+    gaConfig: { // Google Analytics配置
+      measurementId: '' // Google测量ID
     },
-    umamiConfig: {
-      scriptUrl: '', // The url of your Umami script
-      websiteId: '' // The website id of your Umami instance
+    umamiConfig: { // Umami配置
+      scriptUrl: '', // Umami脚本URL
+      websiteId: '' // Umami网站ID
     }
   },
-  comment: {
-    // support provider: utterances, supacomments
-    provider: '', // leave it empty if you don't need any comment plugin
-    supaCommentsConfig: {
-      supabaseUrl: '', // The url of your Supabase instance
-      supabaseAnonKey: '' // The anonymous key of your Supabase instance
+  comment: { // 评论设置
+    provider: '', // 支持的评论提供者，可以为空
+    supaCommentsConfig: { // SupaComments配置
+      supabaseUrl: '', // Supabase实例URL
+      supabaseAnonKey: '' // Supabase匿名密钥
     },
-    utterancesConfig: {
-      repo: ''
+    utterancesConfig: { // Utterances配置
+      repo: '' // GitHub仓库
     }
   },
-  isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
+  isProd: process.env.VERCEL_ENV === 'production' // 判断是否为生产环境
 }
 // export default BLOG
-module.exports = BLOG
+module.exports = BLOG // 导出博客配置
