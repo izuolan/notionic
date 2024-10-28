@@ -3,10 +3,10 @@ import * as React from 'react'
 
 const Logo = (props) => (
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="100.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
- preserveAspectRatio="xMidYMid meet">
+width="50.000000pt" height="50.000000pt" viewBox="0 0 50.000000 50.000000"
+preserveAspectRatio="xMidYMid meet">
 
-<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+<g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)"
 fill="#000000" stroke="none">
 <path d="M2280 3881 c-105 -24 -144 -38 -231 -82 -145 -75 -253 -183 -323
 -322 -75 -150 -71 -82 -71 -1227 l0 -1025 205 0 205 0 5 560 5 560 483 3 482
