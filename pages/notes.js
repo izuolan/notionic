@@ -1,22 +1,14 @@
 import Container from '@/components/Container'
-import NotePost from '@/components/NotePost'
-import NotesHero from '@/components/Hero/Notes'
-import { getBlocksMaps } from '@/lib/getBlocksMaps'
-import { getPostBlocks, getAllPosts } from '@/lib/notion'
+import BlogPost from '@/components/BlogPost'
+import NewsletterHero from '@/components/Hero/Newsletter'
+import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import BLOG from '@/blog.config'
 
 export async function getStaticProps() {
-  const { pagesJson, siteConfigObj } = await getBlocksMaps()
-
-  const blocksJson = pagesJson
-  // Hide table header and home page on Archive page.
-  for (let i = 0; i < blocksJson.length; i++) {
-    const deleteTitleBlock = blocksJson[i].title === 'Title' ? blocksJson.splice(i, i + 1) : blocksJson
-    const deleteIndexBlock = blocksJson[i].slug === 'index' ? blocksJson.splice(i, i + 1) : blocksJson
-    console.log('[INFO] Hide Craft Table Header: ', deleteTitleBlock.length, deleteIndexBlock.length)
-  }
+  const posts = await getAllPosts({ onlyNewsletter: true })
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const hero = heros.find((t) => t.slug === 'notes')
+  const hero = heros.find((t) => t.slug === 'newsletter')
 
   let blockMap
   try {
@@ -28,27 +20,22 @@ export async function getStaticProps() {
 
   return {
     props: {
-      blocksJson,
-      siteConfigObj,
+      posts,
       blockMap
     },
     revalidate: 1
   }
 }
 
-const Notes = ({ blocksJson, siteConfigObj, blockMap }) => {
+const newsletter = ({ posts, blockMap }) => {
   return (
-    <Container
-      title={siteConfigObj['Site Name']}
-      description={siteConfigObj['Site Description']}
-      siteConfigObj={siteConfigObj}
-    >
-      <NotesHero blockMap={blockMap} />
-      {blocksJson.map((block) => (
-        <NotePost key={block.slug} note={block} />
+    <Container title={BLOG.newsletter} description={BLOG.description}>
+      <NewsletterHero blockMap={blockMap} />
+      {posts.map((post) => (
+        <BlogPost key={post.id} post={post} />
       ))}
     </Container>
   )
 }
 
-export default Notes
+export default newsletter
