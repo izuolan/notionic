@@ -16,28 +16,8 @@ function Contact() {
     //   setShowResult(true)
     // }, 3000)
 
-    const tgUrl = '/api/sendtotg'
-    const res = await fetch(tgUrl, {
-      body: JSON.stringify({
-        name: event.target.name.value,
-        mail: event.target.mail.value,
-        message: event.target.message.value
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    })
-    // await res.json()
-    const result = await res.json()
-    const status = result.status
-    console.log('status:', status)
-    if (status === 'Success') {
-      setSubmitting(false)
-      setShowResult(true)
-    } else {
-      alert(t.CONTACT.FAILED_MESSAGE)
-    }
+    
+
   }
   return (
     <>

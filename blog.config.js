@@ -41,8 +41,6 @@ const BLOG = {
   notionSpacesId: process.env.NOTION_SPACES_ID, // Notion空间ID，需在.env文件中设置
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Notion访问令牌，用于私有数据库
   notionDomain: 'fuheng-blog.notion.site', // Notion域名
-  telegramToken: process.env.TELEGRAM_TOKEN, // Telegram机器人的令牌
-  telegramChatId: '263895784', // Telegram机器人聊天ID
   telegramChannelUrl: 'https://channel.zuolan.me/', // Telegram频道链接
   telegramChannelName: 'zuolan_me', // Telegram频道名称
   craftConfigShareUrl: 'https://www.craft.do/s/kQtcWqkv98cHhB', // Craft配置分享链接
