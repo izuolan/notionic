@@ -3,7 +3,7 @@ import * as React from 'react'
 
 const Logo = (props) => (
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-width="50.000000pt" height="50.000000pt" viewBox="0 0 50.000000 50.000000"
+width="80.000000pt" height="80.000000pt" viewBox="0 0 50.000000 50.000000"
 preserveAspectRatio="xMidYMid meet">
 
 <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)"
@@ -18,6 +18,7 @@ c216 -3 293 6 430 50 244 78 417 247 488 478 40 129 43 238 40 1215 l-3 930
 23 -425 20 -530 -4z"/>
 </g>
 </svg>
+
 
 )
 
