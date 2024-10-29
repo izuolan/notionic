@@ -17,7 +17,7 @@ const BLOG = {
   sortByDate: true, // 是否按日期排序
   pagesShow: { // 控制哪些页面显示
     newsletter: true,
-    notes: true,
+    notes: false,
     projects: true,
     contact: true,
     books: true,
