@@ -1,4 +1,10 @@
 module.exports = {
+  env: {
+    NOTION_PAGE_ID: process.env.NOTION_PAGE_ID || '',
+    NOTION_SPACES_ID: process.env.NOTION_SPACES_ID || '',
+    NOTION_ACCESS_TOKEN: process.env.NOTION_ACCESS_TOKEN || '',
+    TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN || '',
+  },
   i18n: {
     locales: ['en', 'zh'],
     defaultLocale: 'en',
