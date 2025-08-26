@@ -1,4 +1,6 @@
 /* NOTION CSS OVERRIDE */
+@config "../tailwind.config.js";
+@reference "tailwindcss";
 
 .notion {
   @apply text-gray-600 dark:text-gray-300;
@@ -137,13 +139,13 @@ svg + .notion-page-title-text {
   @apply max-w-full;
 }
 .notion-collection > .notion-collection-header {
-  @apply px-0 !important;
+  @apply !px-0;
 }
 .notion-collection > .notion-table {
-  @apply max-w-full !important;
+  @apply !max-w-full;
 }
 .notion-collection > .notion-table > .notion-table-view {
-  @apply px-0 !important;
+  @apply !px-0;
 }
 .notion-collection-view-type {
   @apply hidden;

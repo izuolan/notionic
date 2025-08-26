@@ -44,8 +44,9 @@
   },
   "devDependencies": {
     "@heroicons/react": "^1.0.5",
+    "@tailwindcss/postcss": "^4.1.12",
     "@types/react": "^17.0.39",
-    "autoprefixer": "^10.4.14",
+
     "dotenv-cli": "^10.0.0",
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",

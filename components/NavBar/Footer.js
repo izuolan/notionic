@@ -60,12 +60,12 @@ const Footer = ({ fullWidth }) => {
 
   return (
     <motion.div
-      className={`mt-6 flex-shrink-0 m-auto w-full text-gray-600 dark:text-gray-300 transition-all ${
+      className={`mt-6 shrink-0 m-auto w-full text-gray-600 dark:text-gray-300 transition-all ${
         !fullWidth ? 'max-w-3xl md:px-8' : 'px-4 md:px-24'
       }`}
     >
       <footer className='max-w-screen-2xl px-4 md:px-8 mx-auto'>
-        <div className='flex flex-col md:flex-row justify-between items-center border-b dark:border-gray-600 py-1'>
+        <div className='flex flex-col md:flex-row justify-between items-center border-b border-gray-200 dark:border-gray-600 py-1'>
           <ul className='flex flex-wrap justify-center md:justify-start md:gap-1'>
             {links.map(
               (link) =>

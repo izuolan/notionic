@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../tailwind.config.js";
+@import "tailwindcss";
 @import './prism.css';
 
 html {
@@ -93,7 +92,7 @@ nav {
 @supports not (backdrop-filter: none) {
   .sticky-nav-full {
     backdrop-filter: none;
-    @apply bg-day bg-opacity-90 dark:bg-night dark:bg-opacity-90;
+    @apply bg-day/90 dark:bg-night/90;
   }
 }
 

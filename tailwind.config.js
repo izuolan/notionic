@@ -8,23 +8,18 @@ const fontSerifCJK = !CJK()
   ? []
   : [`"Noto Serif CJK ${CJK()}"`, `"Noto Serif ${CJK()}"`]
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // mode: 'jit',
   content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js'],
-  // darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
-  darkMode: 'class', // or 'media' or 'class'
+  darkMode: 'class',
   future: {
     hoverOnlyWhenSupported: true
   },
   theme: {
     extend: {
       colors: {
-        day: {
-          DEFAULT: BLOG.lightBackground || '#ffffff'
-        },
-        night: {
-          DEFAULT: BLOG.darkBackground || '#000000'
-        }
+        day: BLOG.lightBackground || '#ffffff',
+        night: BLOG.darkBackground || '#000000'
       },
       fontFamily: {
         sans: [...fontFamily.sans, ...fontSansCJK],
@@ -38,9 +33,6 @@ module.exports = {
         ]
       }
     }
-  },
-  variants: {
-    extend: {}
   },
   plugins: []
 }
