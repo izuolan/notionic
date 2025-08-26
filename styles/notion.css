@@ -55,6 +55,14 @@ svg + .notion-page-title-text {
   @apply w-auto px-0;
 }
 
+/* 移动端以上取消notion-page的左边距 */
+@media (min-width: 768px) {
+  .notion-page,
+  .notion-renderer-override .notion-page {
+    margin-left: 0 !important;
+  }
+}
+
 .notion-quote {
   padding: 0.2em 0.9em;
   font-size: 1em;
