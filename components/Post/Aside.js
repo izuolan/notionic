@@ -23,7 +23,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
     <>
       <aside className='hidden sticky md:flex md:flex-col md:items-center md:self-start md:ml-8 md:inset-y-1/2'>
         <div className='flex flex-col items-center text-center'>
-          <div className='bg-gray-100 dark:bg-gray-700 grid rounded-lg block p-2 gap-y-5 nav'>
+          <div className='bg-gray-100 dark:bg-gray-700 grid rounded-lg p-2 gap-y-5 nav'>
             {BLOG.showWeChatPay && (
               <button
                 onClick={() => setShowPay((showPay) => !showPay)}
@@ -54,18 +54,14 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
             )}
           </div>
         </div>
-        {showScrollElement && (
-          <div className="absolute left-full toc-fade-in">
-            <TableOfContents
-              className="sticky"
-              blockMap={blockMap}
-              pageTitle={pageTitle}
-              frontMatter={frontMatter}
-            />
-          </div>
-        )}
+        <TableOfContents
+          blockMap={blockMap}
+          pageTitle={pageTitle}
+          frontMatter={frontMatter}
+          showScrollElement={showScrollElement}
+        />
       </aside>
-      {showPay && <WechatPay />}
+      {showPay && <WechatPay onClose={() => setShowPay(false)} />}
       {showScrollElement && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

@@ -96,14 +96,31 @@ nav {
   }
 }
 
+/* 文章目录组件样式 */
+.table-of-contents {
+  @apply hidden xl:block fixed top-1/6 transform -translate-y-1/2;
+  @apply w-56 max-h-96 overflow-y-auto;
+  @apply text-sm text-gray-500 dark:text-gray-400;
+  /* 响应式右侧定位 - 避免在超宽屏上贴边 */
+  right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+}
+
+/* 多级标题装饰效果 */
+.table-of-contents .hover\:bg-gray-200:hover a {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
 .md-cover {
-  @apply bg-gradient-to-r from-gray-100 to-gray-100 group-hover:from-gray-200 group-hover:via-gray-200 dark:from-gray-700 dark:to-gray-700 dark:group-hover:from-gray-600 dark:group-hover:via-gray-600 group-hover:to-transparent;
+  @apply bg-gradient-to-r from-gray-100 to-gray-100 group-hover:from-gray-200 group-hover:via-gray-200 group-hover:to-transparent;
+  @apply bg-gradient-to-r dark:from-gray-700 dark:to-gray-700 dark:group-hover:from-gray-600 dark:group-hover:via-gray-600 dark:group-hover:to-transparent;
 }
 
 .rounded-fix {
+  -webkit-clip-path: inset(0 round 12px);
   clip-path: inset(0 round 12px);
 }
 
 .sm-cover {
-  @apply bg-gradient-to-r from-gray-100 via-gray-100 group-hover:from-gray-200 group-hover:via-gray-200 dark:from-gray-700 dark:via-gray-700 dark:group-hover:from-gray-600 dark:group-hover:via-gray-600 to-transparent;
+  @apply bg-gradient-to-r from-gray-100 via-gray-100 group-hover:from-gray-200 group-hover:via-gray-200;
+  @apply bg-gradient-to-r dark:from-gray-700 dark:via-gray-700 dark:group-hover:from-gray-600 dark:group-hover:via-gray-600 to-transparent;
 }

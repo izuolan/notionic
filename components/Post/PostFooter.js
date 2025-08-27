@@ -37,7 +37,7 @@ const PostFooter = () => {
           </button>
         </div>
       </div>
-      {showPay && <WechatPay />}
+      {showPay && <WechatPay onClose={() => setShowPay(false)} />}
     </div>
   )
 }
