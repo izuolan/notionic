@@ -11,7 +11,7 @@ const WechatPay = ({ onClose }) => {
       }
     }
 
-    // 延迟添加事件监听器，避免立即触发
+    // Add event listener with a delay to avoid immediate triggering
     const timer = setTimeout(() => {
       document.addEventListener('mousedown', handleClickOutside)
     }, 100)

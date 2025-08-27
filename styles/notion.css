@@ -55,7 +55,7 @@ svg + .notion-page-title-text {
   @apply w-auto px-0;
 }
 
-/* 移动端以上取消notion-page的左边距 */
+/* Remove left margin of notion-page on devices larger than mobile */
 @media (min-width: 768px) {
   .notion-page,
   .notion-renderer-override .notion-page {

@@ -96,16 +96,16 @@ nav {
   }
 }
 
-/* 文章目录组件样式 */
+/* Table of contents component styles */
 .table-of-contents {
   @apply hidden xl:block fixed top-1/6 transform -translate-y-1/2;
   @apply w-56 max-h-96 overflow-y-auto;
   @apply text-sm text-gray-500 dark:text-gray-400;
-  /* 响应式右侧定位 - 避免在超宽屏上贴边 */
+  /* Responsive right positioning - avoid sticking to the edge on wide screens */
   right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
 }
 
-/* 多级标题装饰效果 */
+/* Multi-level title decoration effect */
 .table-of-contents .hover\:bg-gray-200:hover a {
   @apply text-blue-600 dark:text-blue-400;
 }

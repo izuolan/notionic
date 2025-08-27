@@ -17,22 +17,22 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle, sho
   if (!nodes.length || !showScrollElement) return null
 
   /**
-   * 获取标题层级 (1-6)
+   * Get the level of the title (1-6)
    * @param {Object} node - 标题节点
    */
   const getHeaderLevel = (node) => {
-    // 通过 blockMap 获取对应 block 的类型信息
+    // Get the type information of the corresponding block through blockMap
     const block = blockMap?.block?.[node.id]?.value
     if (block?.type === 'header') return 1
     if (block?.type === 'sub_header') return 2
     if (block?.type === 'sub_sub_header') return 3
-    // 兜底：尝试从 node 本身获取层级信息
+    // Fallback: try to get the level information from the node itself
     return node.level || 1
   }
 
   /**
-   * 根据层级获取缩进和样式类名
-   * @param {number} level - 标题层级
+   * Get the indentation and style class name according to the level
+   * @param {number} level - Title level
    */
   const getLevelStyles = (level) => {
     const styles = {
@@ -40,7 +40,7 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle, sho
       2: 'pl-6 text-gray-600 dark:text-gray-400',
       3: 'pl-10 text-gray-500 dark:text-gray-500 text-xs',
     }
-    return styles[level] || styles[3] // 超过3级的按3级处理
+    return styles[level] || styles[3] // If it exceeds 3 levels, it is processed as 3 levels
   }
 
   /**
@@ -86,7 +86,7 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle, sho
               onClick={() => scrollTo(node.id)}
               title={node.text}
             >
-              {/* 添加层级指示器 */}
+              {/* Add level indicator */}
               {level > 1 && (
                 <span 
                   className="absolute top-1/2 transform -translate-y-1/2 w-1 h-1 bg-current rounded-full opacity-60"
