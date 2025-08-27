@@ -6,8 +6,8 @@ import {
   UserIcon,
   UsersIcon,
   BookOpenIcon,
-  MailIcon
-} from '@heroicons/react/outline'
+  EnvelopeIcon
+} from '@heroicons/react/24/outline'
 import Social from '../Common/Social.js'
 import { motion } from 'framer-motion'
 
@@ -53,7 +53,7 @@ const Footer = ({ fullWidth }) => {
       id: 3,
       name: t.NAV.CONTACT,
       to: '/contact',
-      icon: <MailIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <EnvelopeIcon className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.contact
     }
   ]

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import TableOfContents from '@/components/Post/TableOfContents'
 import WechatPay from '@/components/Post/WechatPay'
-import { ThumbUpIcon, ChevronLeftIcon, ArrowUpIcon } from '@heroicons/react/outline'
+import { HandThumbUpIcon, ChevronLeftIcon, ArrowUpIcon } from '@heroicons/react/24/outline'
 
 const Aside = ({ pageTitle, blockMap, frontMatter }) => {
   const [showPay, setShowPay] = useState(false)
@@ -29,7 +29,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
                 onClick={() => setShowPay((showPay) => !showPay)}
                 className='text-gray-600 dark:text-day hover:text-gray-400 dark:hover:text-gray-400'
               >
-                <ThumbUpIcon className='w-5 h-5' />
+                <HandThumbUpIcon className='w-5 h-5' />
               </button>
             )}
             {pageTitle && (

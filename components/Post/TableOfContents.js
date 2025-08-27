@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { getPageTableOfContents } from 'notion-utils'
 import Link from 'next/link'
-import { ChevronLeftIcon } from '@heroicons/react/outline'
+import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import BLOG from '@/blog.config'
 
 export default function TableOfContents ({ blockMap, frontMatter, pageTitle, showScrollElement }) {

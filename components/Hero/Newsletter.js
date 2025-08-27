@@ -4,7 +4,7 @@ import Social from '../Common/Social.js'
 import { useState } from 'react'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import { NewspaperIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
+import { NewspaperIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 
 const NewsletterHero = ({ blockMap }) => {
@@ -60,7 +60,7 @@ const NewsletterHero = ({ blockMap }) => {
                 disabled
                 className='bg-gray-200 dark:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
               >
-                <ClipboardCheckIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
+                <ClipboardDocumentCheckIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
                 <span className='ml-4 flex items-start flex-col leading-none'>
                   <span className='text-xs text-gray-600 dark:text-day mb-1'>
                     {t.HERO.RSS_BUTTON_DES_COPIED}

@@ -22,7 +22,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "dayjs": "^1.11.13",
+    "dayjs": "^1.11.14",
     "dotenv": "^17.2.1",
     "feed": "^5.1.0",
     "framer-motion": "12.23.12",
@@ -34,26 +34,25 @@
     "nprogress": "^0.2.0",
     "p-map": "^7.0.3",
     "p-memoize": "^8.0.0",
-    "preact": "^10.13.1",
-    "prism-theme-vars": "^0.2.4",
+    "preact": "^10.27.1",
+    "prism-theme-vars": "^0.2.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-notion-x": "^6.16.0",
     "sharp": "^0.34.3",
-    "use-ackee": "^3.0.1"
+    "use-ackee": "^3.1.0"
   },
   "devDependencies": {
-    "@heroicons/react": "^1.0.5",
+    "@heroicons/react": "^2.2.0",
     "@tailwindcss/postcss": "^4.1.12",
-    "@types/react": "^17.0.39",
-
+    "@types/react": "^19.1.1",
     "dotenv-cli": "^10.0.0",
-    "eslint": "^8.36.0",
-    "eslint-config-next": "^13.2.4",
-    "husky": "^8.0.1",
-    "next-sitemap": "^4.0.6",
-    "postcss": "^8.4.21",
-    "prettier": "^2.7.1",
+    "eslint": "^9.34.0",
+    "eslint-config-next": "^15.5.2",
+    "husky": "^9.1.7",
+    "next-sitemap": "^4.2.3",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
   },

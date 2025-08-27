@@ -1,4 +1,4 @@
-import { TranslateIcon } from '@heroicons/react/outline'
+import { LanguageIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -12,7 +12,7 @@ const LangSwitcher = () => {
           aria-label='LangSwitcher'
           className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-100'
         >
-          <TranslateIcon className='h-5 w-5' />
+          <LanguageIcon className='h-5 w-5' />
         </button>
       </Link>
     </>
