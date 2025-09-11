@@ -79,7 +79,7 @@ const Hero = ({ blockMap }) => {
             )}
           </div>
         </div>
-        <Avatar className='w-full flex items-center justify-center text-gray-600 dark:text-gray-300' />
+        <Avatar className='flex items-center justify-center' />
       </div>
     </>
   )
