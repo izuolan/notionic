@@ -17,7 +17,7 @@ const NotePost = ({ note }) => {
         alt={`${note.title}`}
         layout='fill'
       />
-      <div className='md:hidden bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80 absolute inset-0 pointer-events-none'></div>
+      <div className='md:hidden sm-cover absolute inset-0'></div>
       <div className='md:hidden flex flex-col relative'>
         <span className='text-white text-lg lg:text-xl font-semibold'>{note.title}</span>
       </div>

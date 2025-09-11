@@ -1,7 +1,7 @@
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import Social from '../Common/Social.js'
-import Avatar from './NotionAvatar.js'
+import Avatar from './Avatar.js'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 
 const NoteHero = ({ blockMap }) => {
@@ -22,9 +22,7 @@ const NoteHero = ({ blockMap }) => {
             {t.HERO.NOTES.TEXT_FOOTER}
           </div>
         </div>
-        <div className='w-2/5'>
-          <Avatar className='text-gray-600 dark:text-gray-300' />
-        </div>
+        <Avatar className='w-full flex items-center justify-center text-gray-600 dark:text-gray-300' />
       </div>
     </>
   )

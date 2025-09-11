@@ -1,6 +1,6 @@
 import BLOG from '@/blog.config'
 import Link from 'next/link'
-import Avatar from './NotionAvatar.js'
+import Avatar from './Avatar.js'
 import Social from '../Common/Social.js'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
@@ -79,9 +79,7 @@ const Hero = ({ blockMap }) => {
             )}
           </div>
         </div>
-        <div className='w-2/5'>
-          <Avatar className='text-gray-600 dark:text-gray-300' />
-        </div>
+        <Avatar className='w-full flex items-center justify-center text-gray-600 dark:text-gray-300' />
       </div>
     </>
   )
