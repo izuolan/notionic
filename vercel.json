@@ -12,6 +12,15 @@
       ]
     },
     {
+      "source": "/avatar_color.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/cover.jpg",
       "headers": [
         {
