@@ -8,21 +8,25 @@ import Aside from '@/components/Post/Aside'
 import Comments from '@/components/Post/Comments'
 import PostFooter from '@/components/Post/PostFooter'
 
-const Layout = ({ blockMap, frontMatter, fullWidth = false, subPage = false }) => {
+const Layout = ({ blockMap, content, frontMatter, fullWidth = false, subPage = false }) => {
   const [showSubPageTitle, setShowSubPageTitle] = useState(false)
 
-  const pageTitle = getPageTitle(blockMap)
+  const pageTitle = blockMap ? getPageTitle(blockMap) : null
+
   useEffect(() => {
-    if (frontMatter.title !== pageTitle) {
+    if (pageTitle && frontMatter.title !== pageTitle) {
       setShowSubPageTitle(true)
     }
   }, [frontMatter, pageTitle, subPage])
 
+  const containerTitle = pageTitle && frontMatter.title !== pageTitle
+    ? `${frontMatter.title} | ${pageTitle}`
+    : frontMatter.title
+
   return (
     <Container
-      title={`${frontMatter.title}${frontMatter.title === pageTitle ? '' : ' | ' + pageTitle}`}
+      title={containerTitle}
       description={frontMatter.summary}
-      // date={new Date(frontMatter.publishedAt).toISOString()}
       type='article'
       fullWidth={fullWidth}
     >
@@ -30,6 +34,7 @@ const Layout = ({ blockMap, frontMatter, fullWidth = false, subPage = false }) =
         <Content
           frontMatter={frontMatter}
           blockMap={blockMap}
+          content={content}
           pageTitle={showSubPageTitle ? pageTitle : null}
         />
         <Aside

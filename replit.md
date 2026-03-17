@@ -1,6 +1,6 @@
 # Notionic Blog — Replit
 
-A Next.js 14 blog that reads content from Notion via Notion's unofficial API.
+A Next.js 14 blog that reads content from Notion and local Markdown files.
 
 ## Running
 
@@ -20,7 +20,7 @@ Optional: `NOTION_ACCESS_TOKEN` (for private pages).
 ## Architecture
 
 - **Framework**: Next.js 14.2 (Pages Router), React 19
-- **CMS**: Notion via `notion-client` / `react-notion-x`
+- **CMS**: Notion via `notion-client` / `react-notion-x` **+ local Markdown files**
 - **Styling**: Tailwind CSS **v3** + custom CSS
 - **Package manager**: pnpm
 
@@ -32,7 +32,31 @@ Optional: `NOTION_ACCESS_TOKEN` (for private pages).
 | `pages/index.js` | Home page — reads posts via `getStaticProps` |
 | `pages/_app.js` | App shell — Header, Footer, ThemeProvider, NProgress |
 | `lib/notion/` | Server-side Notion API helpers |
+| `lib/markdown/getAllMarkdownPosts.js` | Reads `content/*.md`, returns same post shape as Notion |
+| `lib/markdown/getMarkdownContent.js` | Converts Markdown body to HTML (remark + remark-gfm) |
+| `content/` | Local Markdown post files (`slug.md`) |
 | `components/Post/NotionRenderer.js` | Dynamic wrapper for react-notion-x |
+| `components/Post/MarkdownRenderer.js` | Renders Markdown HTML with `.markdown-body` styles |
+
+## Local Markdown posts
+
+Add `.md` files to the `content/` directory. Each file needs frontmatter:
+
+```markdown
+---
+title: My Post Title
+slug: my-post
+date: 2026-01-01
+tags: [tag1, tag2]
+summary: Optional summary
+status: Published
+type: Post          # Post | Page | Newsletter
+---
+
+Your content here…
+```
+
+Markdown posts appear alongside Notion posts in the home feed, search, and tag pages.
 
 ## Migration notes (Vercel → Replit)
 

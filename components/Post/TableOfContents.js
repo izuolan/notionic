@@ -5,6 +5,8 @@ import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 import BLOG from '@/blog.config'
 
 export default function TableOfContents ({ blockMap, frontMatter, pageTitle, showScrollElement }) {
+  if (!blockMap) return null
+
   let collectionId, page
   if (pageTitle) {
     collectionId = Object.keys(blockMap.block)[0]
@@ -103,7 +105,7 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle, sho
 }
 
 TableOfContents.propTypes = {
-  blockMap: PropTypes.object.isRequired,
+  blockMap: PropTypes.object,
   frontMatter: PropTypes.object.isRequired,
   pageTitle: PropTypes.string,
   showScrollElement: PropTypes.bool.isRequired

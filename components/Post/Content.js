@@ -5,11 +5,13 @@ import Link from 'next/link'
 import FormattedDate from '@/components/Common/FormattedDate'
 import TagItem from '@/components/Common/TagItem'
 import NotionRenderer from '@/components/Post/NotionRenderer'
+import MarkdownRenderer from '@/components/Post/MarkdownRenderer'
 
 import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 
 export default function Content (props) {
-  const { frontMatter, blockMap, pageTitle } = props
+  const { frontMatter, blockMap, content, pageTitle } = props
+  const isMarkdown = frontMatter.source === 'markdown'
 
   return (
     <article className='flex-none md:overflow-x-visible overflow-x-scroll w-full'>
@@ -32,7 +34,7 @@ export default function Content (props) {
           <div className='mr-2 mb-4 md:ml-0'>
             <FormattedDate date={frontMatter.date} />
           </div>
-          {frontMatter.tags && (
+          {frontMatter.tags && frontMatter.tags.length > 0 && (
             <div className='flex flex-nowrap max-w-full overflow-x-auto article-tags'>
               {frontMatter.tags.map((tag) => (
                 <TagItem key={tag} tag={tag} />
@@ -41,12 +43,16 @@ export default function Content (props) {
           )}
         </nav>
       )}
-      <div className="-mt-4 relative">
-        <NotionRenderer
-          blockMap={blockMap}
-          previewImages={BLOG.previewImagesEnabled}
-          {...props}
-        />
+      <div className='-mt-4 relative'>
+        {isMarkdown ? (
+          <MarkdownRenderer content={content || ''} />
+        ) : (
+          <NotionRenderer
+            blockMap={blockMap}
+            previewImages={BLOG.previewImagesEnabled}
+            {...props}
+          />
+        )}
       </div>
     </article>
   )
@@ -54,6 +60,7 @@ export default function Content (props) {
 
 Content.propTypes = {
   frontMatter: PropTypes.object.isRequired,
-  blockMap: PropTypes.object.isRequired,
+  blockMap: PropTypes.object,
+  content: PropTypes.string,
   pageTitle: PropTypes.string
 }

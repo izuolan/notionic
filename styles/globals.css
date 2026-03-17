@@ -145,3 +145,75 @@ nav {
   @apply border-gray-200 dark:border-gray-700;
   border-top-color: #6b7280;
 }
+
+/* ── Markdown post renderer ─────────────────────────────────────────── */
+.markdown-body {
+  @apply text-gray-800 dark:text-gray-200 leading-7;
+  font-size: 1rem;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  @apply font-bold text-black dark:text-white mt-8 mb-3;
+}
+
+.markdown-body h1 { @apply text-3xl; }
+.markdown-body h2 { @apply text-2xl; }
+.markdown-body h3 { @apply text-xl; }
+.markdown-body h4 { @apply text-lg; }
+
+.markdown-body p {
+  @apply my-4;
+}
+
+.markdown-body a {
+  @apply text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300;
+}
+
+.markdown-body ul {
+  @apply list-disc pl-6 my-4 space-y-1;
+}
+
+.markdown-body ol {
+  @apply list-decimal pl-6 my-4 space-y-1;
+}
+
+.markdown-body blockquote {
+  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-4 italic text-gray-600 dark:text-gray-400;
+}
+
+.markdown-body code {
+  @apply bg-gray-100 dark:bg-gray-800 text-pink-600 dark:text-pink-400 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.markdown-body pre {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-lg p-4 my-4 overflow-x-auto;
+}
+
+.markdown-body pre code {
+  @apply bg-transparent text-gray-800 dark:text-gray-200 p-0 text-sm;
+}
+
+.markdown-body table {
+  @apply w-full border-collapse my-4 text-sm;
+}
+
+.markdown-body th {
+  @apply bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold;
+}
+
+.markdown-body td {
+  @apply border border-gray-300 dark:border-gray-600 px-4 py-2;
+}
+
+.markdown-body img {
+  @apply max-w-full rounded-lg my-4;
+}
+
+.markdown-body hr {
+  @apply border-gray-200 dark:border-gray-700 my-8;
+}
