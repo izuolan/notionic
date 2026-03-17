@@ -6,7 +6,6 @@
 // import 'prismjs/components/prism-rust'
 // import 'prismjs/components/prism-javascript'
 // import 'prismjs/components/prism-markup'
-// import 'prismjs/components/prism-typescript'
 // import 'prismjs/themes/prism-tomorrow.min.css' // prism-okaidia.min.css
 import 'react-notion-x/src/styles.css'
 import 'katex/dist/katex.min.css'
@@ -18,7 +17,7 @@ import Scripts from '@/components/Common/Scripts'
 import { ThemeProvider } from 'next-themes'
 import TransitionEffect from '@/components/Common/TransitionEffect'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import NProgress from 'nprogress'
 import '@/styles/nprogress.css'
 import Header from '@/components/NavBar/Header'
@@ -30,6 +29,12 @@ const Gtag = dynamic(() => import('@/components/Common/Gtag'), { ssr: false })
 function MyApp({ Component, pageProps }) {
   // https://github.com/vercel/next.js/blob/canary/examples/with-loading/pages/_app.js
   const router = useRouter()
+  const [pageLoading, setPageLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPageLoading(false), 350)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const handleStart = (url) => {
@@ -63,20 +68,28 @@ function MyApp({ Component, pageProps }) {
       )}
       {BLOG.isProd && BLOG?.analytics?.provider === 'ga' && <Gtag />}
       <ThemeProvider attribute='class'>
-        <Header
-          navBarTitle={pageProps.post ? pageProps.post.title : null}
-          fullWidth={pageProps.post ? pageProps.post.fullWidth : false}
-        />
-        <TransitionEffect>
-            <div
-              className={`min-h-[calc(100vh-14rem)] md:min-h-[calc(100vh-18rem)] ${
-                BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
-              }`}
-            >
-              <Component {...pageProps} />
-            </div>
-        </TransitionEffect>
-        <Footer fullWidth={pageProps.post ? pageProps.post.fullWidth : false} />
+        {pageLoading ? (
+          <div className='page-loading-overlay'>
+            <div className='page-loading-spinner' />
+          </div>
+        ) : (
+          <>
+            <Header
+              navBarTitle={pageProps.post ? pageProps.post.title : null}
+              fullWidth={pageProps.post ? pageProps.post.fullWidth : false}
+            />
+            <TransitionEffect>
+              <div
+                className={`min-h-[calc(100vh-14rem)] md:min-h-[calc(100vh-18rem)] ${
+                  BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
+                }`}
+              >
+                <Component {...pageProps} />
+              </div>
+            </TransitionEffect>
+            <Footer fullWidth={pageProps.post ? pageProps.post.fullWidth : false} />
+          </>
+        )}
       </ThemeProvider>
     </>
   )

@@ -121,3 +121,27 @@ nav {
   @apply bg-gradient-to-r from-gray-100 via-gray-100 group-hover:from-gray-200 group-hover:via-gray-200;
   @apply bg-gradient-to-r dark:from-gray-700 dark:via-gray-700 dark:group-hover:from-gray-600 dark:group-hover:via-gray-600 to-transparent;
 }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.page-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @apply bg-white dark:bg-gray-950;
+}
+
+.page-loading-spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid;
+  animation: spin 0.8s linear infinite;
+  @apply border-gray-200 dark:border-gray-700;
+  border-top-color: #6b7280;
+}
