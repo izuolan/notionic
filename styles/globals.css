@@ -217,3 +217,37 @@ nav {
 .markdown-body hr {
   @apply border-gray-200 dark:border-gray-700 my-8;
 }
+
+/* ── Highlight.js dark-mode overrides ──────────────────────────────────── */
+.dark .hljs {
+  color: #abb2bf;
+  background: #282c34;
+}
+.dark .hljs-doctag,
+.dark .hljs-keyword,
+.dark .hljs-meta .hljs-keyword,
+.dark .hljs-template-tag,
+.dark .hljs-template-variable,
+.dark .hljs-type,
+.dark .hljs-variable.language_ { color: #c678dd; }
+.dark .hljs-title,
+.dark .hljs-title.class_,
+.dark .hljs-title.class_.inherited__,
+.dark .hljs-title.function_ { color: #61aeee; }
+.dark .hljs-attr,
+.dark .hljs-attribute,
+.dark .hljs-literal,
+.dark .hljs-meta,
+.dark .hljs-number,
+.dark .hljs-operator,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-class,
+.dark .hljs-selector-id,
+.dark .hljs-variable { color: #d19a66; }
+.dark .hljs-string,
+.dark .hljs-meta .hljs-string { color: #98c379; }
+.dark .hljs-comment { color: #5c6370; font-style: italic; }
+.dark .hljs-built_in,
+.dark .hljs-params,
+.dark .hljs-property,
+.dark .hljs-punctuation { color: #abb2bf; }
