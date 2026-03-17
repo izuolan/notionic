@@ -50,7 +50,7 @@ date: 2026-01-01
 tags: [tag1, tag2]
 summary: Optional summary
 status: Published
-type: Post          # Post | Page | Newsletter
+type: Post          # Post | Page | Newsletter | Hidden
 ---
 
 Your content here…
