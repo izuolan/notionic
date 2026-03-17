@@ -12,7 +12,7 @@ import ClipboardDocumentCheckIcon from '@heroicons/react/24/outline/ClipboardDoc
 
 const NotionRenderer = dynamic(() => import('@/components/Post/NotionRenderer'), {
   ssr: false,
-  loading: () => <div className='notion notion-app' />
+  loading: () => <div className='notion notion-app min-h-[8rem]' />
 })
 
 const Hero = ({ blockMap }) => {
@@ -30,7 +30,7 @@ const Hero = ({ blockMap }) => {
 
   return (
     <>
-      <div className='container mx-auto flex px-5 py-2 mb-10 md:flex-row flex-col items-center'>
+      <div className='container mx-auto flex px-5 py-2 mb-10 md:flex-row flex-col items-center md:items-start'>
         <div className='flex flex-col md:w-3/5 md:items-start mb-6 md:mb-0 text-left'>
           <NotionRenderer
             className='notion-renderer-override'
