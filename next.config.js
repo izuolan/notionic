@@ -51,8 +51,16 @@ module.exports = {
     }
     return config
   },
+  allowedDevOrigins: [
+    process.env.REPLIT_DEV_DOMAIN,
+  ].filter(Boolean),
   images: {
-    domains: ['api.craft.do', 'www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com']
+    remotePatterns: [
+      { protocol: 'https', hostname: 'api.craft.do' },
+      { protocol: 'https', hostname: 'www.notion.so' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 's3.us-west-2.amazonaws.com' },
+    ]
   },
   async headers() {
     return [
