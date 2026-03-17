@@ -2,15 +2,11 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import {
-  UserIcon,
-  UsersIcon,
-  BookOpenIcon,
-  EnvelopeIcon
-} from '@heroicons/react/24/outline'
+import UserIcon from '@heroicons/react/24/outline/UserIcon'
+import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
+import BookOpenIcon from '@heroicons/react/24/outline/BookOpenIcon'
+import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon'
 import Social from '../Common/Social.js'
-import { motion } from 'framer-motion'
-
 const Footer = ({ fullWidth }) => {
   const router = useRouter()
   const { locale } = useRouter()
@@ -59,7 +55,7 @@ const Footer = ({ fullWidth }) => {
   ]
 
   return (
-    <motion.div
+    <div
       className={`mt-6 shrink-0 m-auto w-full text-gray-600 dark:text-gray-300 transition-all ${
         !fullWidth ? 'max-w-3xl md:px-8' : 'px-4 md:px-24'
       }`}
@@ -103,7 +99,7 @@ const Footer = ({ fullWidth }) => {
           </p>
         </div>
       </footer>
-    </motion.div>
+    </div>
   )
 }
 

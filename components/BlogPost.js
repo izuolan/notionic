@@ -1,13 +1,11 @@
 import BLOG from '@/blog.config'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-
 import FormattedDate from '@/components/Common/FormattedDate'
 
 const BlogPost = ({ post }) => {
   return (
-    <motion.div>
+    <div>
       <Link passHref href={`${BLOG.path}/${post.slug}`} scroll={false}>
         <article
           key={post.id}
@@ -33,7 +31,7 @@ const BlogPost = ({ post }) => {
           </div>
         </article>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 

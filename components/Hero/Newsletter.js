@@ -4,7 +4,8 @@ import Social from '../Common/Social.js'
 import { useState } from 'react'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import { NewspaperIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
+import NewspaperIcon from '@heroicons/react/24/outline/NewspaperIcon'
+import ClipboardDocumentCheckIcon from '@heroicons/react/24/outline/ClipboardDocumentCheckIcon'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 
 const NewsletterHero = ({ blockMap }) => {

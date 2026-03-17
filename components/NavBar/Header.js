@@ -3,20 +3,16 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import {
-  HomeIcon,
-  NewspaperIcon,
-  RectangleStackIcon,
-  SparklesIcon,
-  MagnifyingGlassIcon,
-  Bars3Icon
-} from '@heroicons/react/24/outline'
+import HomeIcon from '@heroicons/react/24/outline/HomeIcon'
+import NewspaperIcon from '@heroicons/react/24/outline/NewspaperIcon'
+import RectangleStackIcon from '@heroicons/react/24/outline/RectangleStackIcon'
+import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon'
+import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon'
+import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon'
 import Social from '../Common/Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
 import Logo from '@/components/Common/Logo'
-import { motion } from 'framer-motion'
-
 const NavBar = () => {
   const router = useRouter()
   const { locale } = useRouter()
@@ -68,7 +64,7 @@ const NavBar = () => {
     }
   ]
   return (
-    <motion.div className='flex'>
+    <div className='flex'>
       {/* Desktop Menu */}
       <ul className='hidden md:flex md:gap-1'>
         {links.map(
@@ -129,7 +125,7 @@ const NavBar = () => {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -174,9 +170,9 @@ const Header = ({ navBarTitle, fullWidth }) => {
       >
         <div className='flex items-center'>
           <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
-            <motion.div>
+            <div>
               <Logo className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current' />
-            </motion.div>
+            </div>
           </Link>
           {navBarTitle ? (
             <p

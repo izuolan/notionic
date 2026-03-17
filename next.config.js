@@ -1,4 +1,5 @@
 module.exports = {
+  productionBrowserSourceMaps: false,
   env: {
     NOTION_PAGE_ID: process.env.NOTION_PAGE_ID || '',
     NOTION_SPACES_ID: process.env.NOTION_SPACES_ID || '',
@@ -11,6 +12,45 @@ module.exports = {
     localeDetection: false
   },
   transpilePackages: ['dayjs'],
+  experimental: {
+    optimizePackageImports: ['@heroicons/react'],
+    serverComponentsExternalPackages: [
+      'notion-client',
+      'notion-utils',
+      'notion-types',
+      'react-notion-x',
+      'got',
+      'p-map',
+      'p-memoize',
+      'is-url-superb',
+      'memoize',
+      'normalize-url',
+      'p-queue',
+    ],
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Externalize heavy ESM packages for server bundle
+      // These are loaded natively by Node.js at runtime, not bundled by webpack
+      const esmPackages = [
+        'notion-client', 'notion-utils', 'notion-types',
+        'got', 'p-map', 'p-memoize', 'p-queue',
+        'is-url-superb', 'memoize', 'normalize-url',
+        'unified', 'rehype', 'remark', 'hast-util-to-html'
+      ]
+      const origExternals = config.externals || []
+      config.externals = [
+        ...(Array.isArray(origExternals) ? origExternals : [origExternals]),
+        ({ request }, callback) => {
+          if (esmPackages.some(p => request === p || request.startsWith(p + '/'))) {
+            return callback(null, 'commonjs ' + request)
+          }
+          callback()
+        }
+      ]
+    }
+    return config
+  },
   images: {
     domains: ['api.craft.do', 'www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com']
   },

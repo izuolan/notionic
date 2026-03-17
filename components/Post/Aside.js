@@ -4,7 +4,9 @@ import Link from 'next/link'
 
 import TableOfContents from '@/components/Post/TableOfContents'
 import WechatPay from '@/components/Post/WechatPay'
-import { HandThumbUpIcon, ChevronLeftIcon, ArrowUpIcon } from '@heroicons/react/24/outline'
+import HandThumbUpIcon from '@heroicons/react/24/outline/HandThumbUpIcon'
+import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
+import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
 
 const Aside = ({ pageTitle, blockMap, frontMatter }) => {
   const [showPay, setShowPay] = useState(false)

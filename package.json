@@ -13,51 +13,72 @@
     "url": "https://zuolan.me"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000 -H 0.0.0.0",
     "build": "dotenv -- next build",
-    "start": "next start",
+    "start": "next start -p 5000 -H 0.0.0.0",
     "format": "prettier --write .",
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fisch0920/medium-zoom": "^1.0.7",
     "dayjs": "^1.11.14",
     "dotenv": "^17.2.1",
     "feed": "^5.1.0",
     "framer-motion": "12.23.12",
     "got": "^14.4.7",
-    "next": "^13.2.4",
+    "is-url-superb": "^6.1.0",
+    "katex": "^0.16.38",
+    "memoize": "^10.2.0",
+    "next": "^14.2.35",
     "next-themes": "^0.4.6",
-    "notion-client": "^6.16.0",
-    "notion-utils": "^6.16.0",
+    "normalize-url": "^9.0.0",
+    "notion-client": "^7.8.3",
+    "notion-types": "7.8.3",
+    "notion-utils": "^7.8.3",
     "nprogress": "^0.2.0",
     "p-map": "^7.0.3",
     "p-memoize": "^8.0.0",
+    "p-queue": "^9.1.0",
     "preact": "^10.27.1",
     "prism-theme-vars": "^0.2.5",
+    "prismjs": "^1.30.0",
+    "prop-types": "^15.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-notion-x": "^6.16.0",
+    "react-fast-compare": "^3.2.2",
+    "react-hotkeys-hook": "^5.2.4",
+    "react-image": "^4.1.0",
+    "react-intersection-observer": "^10.0.3",
+    "react-notion-x": "^7.8.3",
     "sharp": "0.32.6",
+    "unionize": "^3.1.0",
     "use-ackee": "^3.1.0"
   },
   "devDependencies": {
     "@heroicons/react": "^2.2.0",
-    "@tailwindcss/postcss": "^4.1.12",
     "@types/react": "^19.1.1",
+    "autoprefixer": "^10.4.27",
     "dotenv-cli": "^10.0.0",
     "eslint": "^9.34.0",
-    "eslint-config-next": "^15.5.2",
+    "eslint-config-next": "^14.2.35",
     "husky": "^9.1.7",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.9.2"
   },
   "bugs": {
     "url": "https://github.com/izuolan/notionic/issues",
     "email": "i@zuolan.me"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }

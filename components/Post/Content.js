@@ -6,7 +6,7 @@ import FormattedDate from '@/components/Common/FormattedDate'
 import TagItem from '@/components/Common/TagItem'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 
-import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 
 export default function Content (props) {
   const { frontMatter, blockMap, pageTitle } = props

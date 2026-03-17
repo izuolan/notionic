@@ -2,7 +2,7 @@ import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import ArrowTopRightOnSquareIcon from '@heroicons/react/24/outline/ArrowTopRightOnSquareIcon'
 import Link from 'next/link'
 
 export default function Loading({ notionSlug }) {
