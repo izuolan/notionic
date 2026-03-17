@@ -38,6 +38,7 @@ function MyApp({ Component, pageProps }) {
     }
     const handleStop = () => {
       NProgress.done()
+      window.scrollTo({ top: 0, behavior: 'instant' })
     }
 
     router.events.on('routeChangeStart', handleStart)
