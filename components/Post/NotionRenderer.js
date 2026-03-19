@@ -7,7 +7,7 @@ const Renderer = dynamic(
   () => import('react-notion-x').then(mod => mod.NotionRenderer),
   {
     ssr: false,
-    loading: () => <div className='notion notion-app' />
+    loading: () => <div className='notion' />
   }
 )
 
