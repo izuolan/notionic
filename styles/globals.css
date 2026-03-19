@@ -99,8 +99,8 @@ nav {
 
 /* Table of contents component styles */
 .table-of-contents {
-  top: 16.666667%;
-  @apply hidden xl:block fixed transform -translate-y-1/2;
+  top: 90px;
+  @apply hidden xl:block fixed;
   @apply w-56 max-h-96 overflow-y-auto;
   @apply text-sm text-gray-500 dark:text-gray-400;
   /* Responsive right positioning - avoid sticking to the edge on wide screens */
