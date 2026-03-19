@@ -11,8 +11,7 @@ import RssIcon from '@heroicons/react/24/outline/RssIcon'
 import ClipboardDocumentCheckIcon from '@heroicons/react/24/outline/ClipboardDocumentCheckIcon'
 
 const NotionRenderer = dynamic(() => import('@/components/Post/NotionRenderer'), {
-  ssr: false,
-  loading: () => <div className='notion h-32' />
+  ssr: false
 })
 
 const Hero = ({ blockMap }) => {
