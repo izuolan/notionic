@@ -23,7 +23,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
   }, [frontMatter, pageTitle])
   return (
     <>
-      <aside className='hidden sticky md:flex md:flex-col md:items-center md:self-start md:ml-8 md:inset-y-1/2'>
+      <aside className='hidden sticky top-[65px] md:flex md:flex-col md:items-center md:self-start md:ml-8'>
         <div className='flex flex-col items-center text-center'>
           <div className='bg-gray-100 dark:bg-gray-700 grid rounded-lg p-2 gap-y-5 nav'>
             {BLOG.showWeChatPay && (
@@ -56,12 +56,14 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
             )}
           </div>
         </div>
-        <TableOfContents
-          blockMap={blockMap}
-          pageTitle={pageTitle}
-          frontMatter={frontMatter}
-          showScrollElement={showScrollElement}
-        />
+        <div className='overflow-y-auto max-h-[calc(100vh-8rem)]'>
+          <TableOfContents
+            blockMap={blockMap}
+            pageTitle={pageTitle}
+            frontMatter={frontMatter}
+            showScrollElement={showScrollElement}
+          />
+        </div>
       </aside>
       {showPay && <WechatPay onClose={() => setShowPay(false)} />}
       {showScrollElement && (
