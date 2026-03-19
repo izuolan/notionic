@@ -5,14 +5,10 @@ import Social from '../Common/Social.js'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
 import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon'
 import RssIcon from '@heroicons/react/24/outline/RssIcon'
 import ClipboardDocumentCheckIcon from '@heroicons/react/24/outline/ClipboardDocumentCheckIcon'
-
-const NotionRenderer = dynamic(() => import('@/components/Post/NotionRenderer'), {
-  ssr: false
-})
+import NotionRenderer from '@/components/Post/NotionRenderer'
 
 const Hero = ({ blockMap }) => {
   const [showCopied, setShowCopied] = useState(false)
