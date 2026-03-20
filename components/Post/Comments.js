@@ -13,6 +13,12 @@ const SupaCommentsComponent = dynamic(
   },
   { ssr: false }
 )
+const FumaCommentsComponent = dynamic(
+  () => {
+    return import('@/components/Post/FumaComments')
+  },
+  { ssr: false }
+)
 
 const Comments = ({ frontMatter }) => {
   return (
@@ -22,6 +28,9 @@ const Comments = ({ frontMatter }) => {
       )}
       {BLOG.comment && BLOG.comment.provider === 'supacomments' && (
         <SupaCommentsComponent />
+      )}
+      {BLOG.comment && BLOG.comment.provider === 'fuma' && (
+        <FumaCommentsComponent frontMatter={frontMatter} />
       )}
     </div>
   )

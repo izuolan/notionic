@@ -26,6 +26,8 @@ module.exports = {
       'memoize',
       'normalize-url',
       'p-queue',
+      'postgres',
+      'drizzle-orm',
     ],
   },
   webpack: (config, { isServer }) => {

@@ -66,14 +66,18 @@ const BLOG = {
     }
   },
   comment: {
-    // support provider: utterances, supacomments
-    provider: '', // leave it empty if you don't need any comment plugin
+    // support provider: utterances, supacomments, fuma
+    provider: 'fuma', // leave it empty if you don't need any comment plugin
     supaCommentsConfig: {
       supabaseUrl: '', // The url of your Supabase instance
       supabaseAnonKey: '' // The anonymous key of your Supabase instance
     },
     utterancesConfig: {
       repo: ''
+    },
+    fumaConfig: {
+      // Fuma Comment uses GitHub OAuth via NextAuth.
+      // Set GITHUB_ID, GITHUB_SECRET, and NEXTAUTH_SECRET in your environment secrets.
     }
   },
   isProd: process.env.NODE_ENV === 'production' // distinguish between development and production environment
