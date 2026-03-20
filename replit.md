@@ -14,14 +14,18 @@ First compile takes ~10–25 seconds. Subsequent page loads are <1 second.
 |---|---|
 | `NOTION_PAGE_ID` | Root Notion page with blog posts |
 | `NOTION_SPACES_ID` | Notion workspace ID |
+| `GITHUB_ID` | GitHub OAuth App client ID (for comments) |
+| `GITHUB_SECRET` | GitHub OAuth App client secret (for comments) |
+| `NEXTAUTH_SECRET` | Random secret for NextAuth JWT signing |
 
 Optional: `NOTION_ACCESS_TOKEN` (for private pages).
 
 ## Architecture
 
-- **Framework**: Next.js 14.2 (Pages Router), React 19
+- **Framework**: Next.js 14.2 (Pages Router + App Router for API routes), React 19
 - **CMS**: Notion via `notion-client` / `react-notion-x` **+ local Markdown files**
 - **Styling**: Tailwind CSS **v3** + custom CSS
+- **Comment system**: Fuma Comment with GitHub OAuth (NextAuth v4) and Replit PostgreSQL
 - **Package manager**: pnpm
 
 ## Key Files
@@ -31,12 +35,45 @@ Optional: `NOTION_ACCESS_TOKEN` (for private pages).
 | `blog.config.js` | Blog settings (title, author, Notion IDs, features) |
 | `pages/index.js` | Home page — reads posts via `getStaticProps` |
 | `pages/_app.js` | App shell — Header, Footer, ThemeProvider, NProgress |
+| `pages/api/auth/[...nextauth].js` | NextAuth GitHub OAuth handler |
 | `lib/notion/` | Server-side Notion API helpers |
+| `lib/auth-options.js` | NextAuth configuration (GitHub provider + JWT + user upsert) |
+| `lib/db.js` | Drizzle ORM postgres-js database client |
+| `lib/comment-schema.js` | Drizzle schemas for comments, rates, roles, fuma_users |
+| `lib/comment-config.js` | Fuma Comment storage + auth adapters |
+| `app/api/comments/[[...comment]]/route.js` | Fuma Comment API route handler (App Router) |
+| `components/Post/FumaComments.js` | Fuma Comment React widget (dynamically loaded) |
+| `components/Post/Comments.js` | Comment provider router (utterances / supacomments / fuma) |
+| `styles/fuma-comment.css` | Extracted Fuma Comment styles (Tailwind layers stripped) |
 | `lib/markdown/getAllMarkdownPosts.js` | Reads `content/*.md`, returns same post shape as Notion |
 | `lib/markdown/getMarkdownContent.js` | Converts Markdown body to HTML (remark + remark-gfm) |
 | `content/` | Local Markdown post files (`slug.md`) |
-| `components/Post/NotionRenderer.js` | Dynamic wrapper for react-notion-x |
-| `components/Post/MarkdownRenderer.js` | Renders Markdown HTML with `.markdown-body` styles |
+
+## Comment System Setup
+
+The blog uses **Fuma Comment** for self-hosted comments with GitHub OAuth login.
+
+### GitHub OAuth App setup
+1. Go to https://github.com/settings/developers → "New OAuth App"
+2. Homepage URL: your blog URL
+3. Authorization callback URL: `https://YOUR-REPLIT-DOMAIN/api/auth/callback/github`
+4. Copy the Client ID → `GITHUB_ID` secret
+5. Generate a Client Secret → `GITHUB_SECRET` secret
+6. Generate a random secret (e.g., `openssl rand -base64 32`) → `NEXTAUTH_SECRET`
+
+### Database
+Tables are auto-created in Replit PostgreSQL (`DATABASE_URL`):
+- `comments` — post comments
+- `rates` — likes/dislikes
+- `roles` — admin roles
+- `fuma_users` — GitHub user profiles (populated on first sign-in)
+
+### Switching comment provider
+In `blog.config.js`, change `comment.provider` to:
+- `'fuma'` — Fuma Comment (default)
+- `'utterances'` — GitHub Issues based
+- `'supacomments'` — Supabase based
+- `''` — disabled
 
 ## Local Markdown posts
 
@@ -73,3 +110,7 @@ Several performance fixes were required to compile in a reasonable time:
 5. **Webpack server externals**: Heavy ESM packages (`notion-client`, `got`, `p-map`, etc.) are externalized from the server bundle so webpack doesn't need to bundle them.
 
 6. **Native fetch**: `lib/notion/previewImages.js` uses Node.js native `fetch` instead of `got` (ESM-only) to avoid bundling issues.
+
+7. **Rewrite refactor**: The `next.config.js` rewrites were restructured to use `afterFiles`/`fallback` to prevent the craft.do proxy from intercepting Next.js API routes (`/api/auth/*`, `/api/comments/*`).
+
+8. **Fuma Comment CSS**: The package CSS uses Tailwind `@layer` directives that need special handling. A pre-processed copy (`styles/fuma-comment.css`) with layers stripped is used instead.
