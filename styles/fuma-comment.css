@@ -1,8 +1,9 @@
-/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
-@layer properties;
-@layer theme, base, components, utilities;
-@layer theme {
-  :root, :host {
+/* Pre-processed from @fuma-comment/react/style.css.
+ * Tailwind v4 @layer declarations are stripped for Tailwind v3 compatibility.
+ * Re-generate by running: node scripts/generate-fuma-css.js
+ */
+
+:root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -60,10 +61,8 @@
     --animate-fc-drawerShow: fc-drawerShow 400ms cubic-bezier(0.16, 1, 0.3, 1);
     --animate-fc-drawerHide: fc-drawerHide 400ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-}
-/* @layer stripped */
 
-  *, ::after, ::before, ::backdrop, ::file-selector-button {
+*, ::after, ::before, ::backdrop, ::file-selector-button {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -210,9 +209,7 @@
     display: none !important;
   }
 
-/* @layer stripped */
-
-  .sr-only {
+.sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1007,14 +1004,6 @@
     }
   }
 
-/*!
-  Theme: Tokyo-night-Dark
-  origin: https://github.com/enkia/tokyo-night-vscode-theme
-  Description: Original highlight.js style
-  Author: (c) Henri Vandersleyen <hvandersleyen@gmail.com>
-  License: see project LICENSE
-  Touched: 2022
-*/
 .hljs-meta, .hljs-comment {
   color: #565f89;
 }
@@ -1362,8 +1351,7 @@
     opacity: 0.5;
   }
 }
-@layer properties {
-  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-translate-x: 0;
       --tw-translate-y: 0;
@@ -1409,4 +1397,4 @@
       --tw-backdrop-sepia: initial;
     }
   }
-}
+
