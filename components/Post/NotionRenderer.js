@@ -56,6 +56,7 @@ export default function NotionRenderer (props) {
       return '/' + locale + '/s/' + id.replace(/-/g, '')
     }
   }
+  if (!props.blockMap) return null
   return (
     <Renderer
       components={components}
