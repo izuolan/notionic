@@ -120,10 +120,11 @@ svg + .notion-page-title-text {
 }
 
 .notion-code {
-  @apply border border-gray-200 dark:border-none;
+  @apply border border-gray-200 dark:border-none dark:bg-gray-700;
   font-size: var(--prism-font-size);
   line-height: var(--prism-line-height);
 }
+
 .notion-code-copy-button {
   @apply text-gray-600 dark:text-gray-400 bg-day dark:bg-night;
   padding: 0.4em;

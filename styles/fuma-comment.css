@@ -902,20 +902,20 @@
   font-weight: bold;
 }
 .dark {
-  --color-fc-background: hsl(0 0% 3.9%);
-  --color-fc-foreground: hsl(0 0% 98%);
-  --color-fc-muted: hsl(0 0% 14.9%);
-  --color-fc-muted-foreground: hsl(0 0% 60.9%);
-  --color-fc-popover: hsl(0 0% 9%);
-  --color-fc-popover-foreground: hsl(0 0% 88%);
-  --color-fc-card: hsl(0 0% 8%);
-  --color-fc-card-foreground: hsl(0 0% 98%);
-  --color-fc-border: hsla(0, 0%, 50%, 0.3);
-  --color-fc-primary: hsl(0 0% 98%);
-  --color-fc-primary-foreground: hsl(0 0% 9%);
-  --color-fc-accent: hsl(0 0% 14.9%);
-  --color-fc-accent-foreground: hsl(0 0% 98%);
-  --color-fc-ring: hsl(0 0% 14.9%);
+  --color-fc-background: hsl(215 25% 17%);
+  --color-fc-foreground: hsl(215 20% 92%);
+  --color-fc-muted: hsl(215 22% 22%);
+  --color-fc-muted-foreground: hsl(215 15% 60%);
+  --color-fc-popover: hsl(215 25% 20%);
+  --color-fc-popover-foreground: hsl(215 20% 88%);
+  --color-fc-card: hsl(215 25% 20%);
+  --color-fc-card-foreground: hsl(215 20% 92%);
+  --color-fc-border: hsla(215, 20%, 50%, 0.25);
+  --color-fc-primary: hsl(215 20% 90%);
+  --color-fc-primary-foreground: hsl(215 25% 17%);
+  --color-fc-accent: hsl(215 22% 25%);
+  --color-fc-accent-foreground: hsl(215 20% 92%);
+  --color-fc-ring: hsl(215 22% 35%);
   --color-fc-danger: hsl(3 95% 64%);
 }
 .tiptap p.is-editor-empty:first-child::before {
