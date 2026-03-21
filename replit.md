@@ -95,6 +95,15 @@ Your content here…
 
 Markdown posts appear alongside Notion posts in the home feed, search, and tag pages.
 
+## Runtime Bug Fixes (applied during Replit migration)
+
+- **`globals.css` CSS `@import` ordering**: Moved `@import` statements before `@tailwind` directives to fix PostCSS error.
+- **`NotionRenderer.js` null guard**: Added null check for `blockMap` before accessing `.block` to prevent crash when Notion data is not yet loaded.
+- **`@tiptap/extensions` package**: Installed explicitly since tiptap v3 re-exports from it but doesn't auto-install it as a dependency of `@fuma-comment/react`.
+- **PostgreSQL `NOTICE` log suppression**: Set `onnotice: () => {}` on the postgres client in `lib/db.js` to silence noisy DB init notices.
+- **React key warning suppression**: Added `instrumentation.js` (server-side) and `_app.js` module-level patch (client-side) to filter the known React 19 + Next.js 14 `Head` key warning (`'Each child in a list should have a unique "key" prop'`). The `instrumentationHook: true` experimental flag must be set in `next.config.js` for this to work server-side.
+- **`_document.js` and `SEO.js` key props**: Added `key` props to all children of `<Head>` to eliminate most sources of the key warning.
+
 ## Migration notes (Vercel → Replit)
 
 Several performance fixes were required to compile in a reasonable time:

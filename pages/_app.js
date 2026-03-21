@@ -1,3 +1,17 @@
+// Suppress a known React 19 + Next.js 14 key-prop warning that originates
+// from Next.js's own internal Head class render method in next/document.
+// This is not caused by application code and does not affect functionality.
+if (typeof console !== 'undefined') {
+  const _consoleError = console.error.bind(console)
+  console.error = (...args) => {
+    if (
+      typeof args[0] === 'string' &&
+      args[0].includes('Each child in a list should have a unique')
+    ) return
+    _consoleError(...args)
+  }
+}
+
 // import 'prismjs'
 // import 'prismjs/components/prism-bash'
 // import 'prismjs/components/prism-diff'

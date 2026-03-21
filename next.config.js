@@ -13,6 +13,7 @@ module.exports = {
   },
   transpilePackages: ['dayjs'],
   experimental: {
+    instrumentationHook: true,
     optimizePackageImports: ['@heroicons/react'],
     serverComponentsExternalPackages: [
       'notion-client',
