@@ -4,7 +4,10 @@ const PostCover = ({ src, alt }) => {
   if (!src) return null
 
   return (
-    <div className='relative w-full aspect-[3/1] md:aspect-[4/1] overflow-hidden'>
+    <div
+      className='absolute top-0 left-0 right-0 h-48 md:h-72 overflow-hidden'
+      style={{ zIndex: -1 }}
+    >
       <Image
         fill
         src={src}

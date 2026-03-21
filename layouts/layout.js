@@ -7,7 +7,6 @@ import Content from '@/components/Post/Content'
 import Aside from '@/components/Post/Aside'
 import Comments from '@/components/Post/Comments'
 import PostFooter from '@/components/Post/PostFooter'
-import PostCover from '@/components/Post/PostCover'
 
 const Layout = ({ blockMap, content, frontMatter, fullWidth = false, subPage = false }) => {
   const [showSubPageTitle, setShowSubPageTitle] = useState(false)
@@ -25,9 +24,7 @@ const Layout = ({ blockMap, content, frontMatter, fullWidth = false, subPage = f
     : frontMatter.title
 
   return (
-    <>
-      <PostCover src={frontMatter.page_cover} alt={frontMatter.title} />
-      <Container
+    <Container
         title={containerTitle}
         description={frontMatter.summary}
         type='article'
@@ -48,8 +45,7 @@ const Layout = ({ blockMap, content, frontMatter, fullWidth = false, subPage = f
         </motion.div>
         <PostFooter />
         <Comments frontMatter={frontMatter} />
-      </Container>
-    </>
+    </Container>
   )
 }
 

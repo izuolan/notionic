@@ -24,6 +24,7 @@ import NProgress from 'nprogress'
 import '@/styles/nprogress.css'
 import Header from '@/components/NavBar/Header'
 import Footer from '@/components/NavBar/Footer'
+import PostCover from '@/components/Post/PostCover'
 
 const Ackee = dynamic(() => import('@/components/Common/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Common/Gtag'), { ssr: false })
@@ -75,7 +76,11 @@ function MyApp({ Component, pageProps }) {
             <div className='page-loading-spinner' />
           </div>
         ) : (
-          <>
+          <div className='relative'>
+            <PostCover
+              src={pageProps.post?.page_cover}
+              alt={pageProps.post?.title}
+            />
             <Header
               navBarTitle={pageProps.post ? pageProps.post.title : null}
               fullWidth={pageProps.post ? pageProps.post.fullWidth : false}
@@ -90,7 +95,7 @@ function MyApp({ Component, pageProps }) {
               </div>
             </TransitionEffect>
             <Footer fullWidth={pageProps.post ? pageProps.post.fullWidth : false} />
-          </>
+          </div>
         )}
       </ThemeProvider>
     </>
