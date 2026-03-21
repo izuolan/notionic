@@ -1,6 +1,20 @@
 import Image from 'next/image'
+import BLOG from '@/blog.config'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const PostCover = ({ src, alt }) => {
+  const { resolvedTheme } = useTheme()
+  const [bgColor, setBgColor] = useState(BLOG.lightBackground || '#F6F8FA')
+
+  useEffect(() => {
+    setBgColor(
+      resolvedTheme === 'dark'
+        ? (BLOG.darkBackground || '#212936')
+        : (BLOG.lightBackground || '#F6F8FA')
+    )
+  }, [resolvedTheme])
+
   if (!src) return null
 
   return (
@@ -16,7 +30,12 @@ const PostCover = ({ src, alt }) => {
         sizes='100vw'
         priority
       />
-      <div className='absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white dark:to-gray-950' />
+      <div
+        className='absolute inset-0'
+        style={{
+          background: `linear-gradient(to bottom, transparent 40%, ${bgColor} 100%)`
+        }}
+      />
     </div>
   )
 }
