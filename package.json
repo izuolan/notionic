@@ -25,6 +25,7 @@
     "@fisch0920/medium-zoom": "^1.0.7",
     "@fuma-comment/react": "^1.4.1",
     "@fuma-comment/server": "^1.4.1",
+    "@tiptap/extensions": "^3.20.4",
     "dayjs": "^1.11.14",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.45.1",
