@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS fuma_users (
+  id VARCHAR(256) PRIMARY KEY,
+  name VARCHAR(256),
+  image TEXT
+);
+
+CREATE TABLE IF NOT EXISTS roles (
+  "userId" VARCHAR(256) PRIMARY KEY,
+  name VARCHAR(256) NOT NULL,
+  "canDelete" BOOLEAN NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+  id SERIAL PRIMARY KEY,
+  page VARCHAR(256) NOT NULL,
+  thread INTEGER,
+  author VARCHAR(256) NOT NULL,
+  content JSON NOT NULL,
+  timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS rates (
+  "userId" VARCHAR(256) NOT NULL,
+  "commentId" INTEGER NOT NULL,
+  "like" BOOLEAN NOT NULL,
+  PRIMARY KEY ("userId", "commentId")
+);
+
+CREATE INDEX IF NOT EXISTS comment_idx ON rates ("commentId");
