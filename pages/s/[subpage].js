@@ -39,14 +39,16 @@ export async function getStaticPaths() {
     .map((pageId) => '/s' + mapPageUrl(pageId))
     .filter((path) => path && path !== '/s/')
 
-  // Remove post id
+  // Remove post id (only Notion posts have valid UUIDs)
   const posts = await getAllPosts({ onlyNewsletter: false })
-  const postIds = Object.values(posts)
+  const notionPosts = posts.filter((p) => p.source !== 'markdown')
+  const postIds = Object.values(notionPosts)
     .map((postId) => '/s' + mapPageUrl(postId.id))
   const noPostsIds = subpageIds.concat(postIds).filter(v => !subpageIds.includes(v) || !postIds.includes(v))
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const heroIds = Object.values(heros)
+  const notionHeros = heros.filter((p) => p.source !== 'markdown')
+  const heroIds = Object.values(notionHeros)
     .map((heroId) => '/s' + mapPageUrl(heroId.id))
   const paths = noPostsIds.concat(heroIds).filter(v => !noPostsIds.includes(v) || !heroIds.includes(v))
 
@@ -61,7 +63,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { subpage } }) {
-  const posts = await getAllPosts({ onlyNewsletter: false })
+  const allPosts = await getAllPosts({ onlyNewsletter: false })
+  const posts = allPosts.filter((p) => p.source !== 'markdown')
 
   let blockMap, post
   try {
