@@ -112,12 +112,6 @@ nav {
   @apply text-blue-600 dark:text-blue-400;
 }
 
-.md-cover {
-}
-
-.sm-cover {
-}
-
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
