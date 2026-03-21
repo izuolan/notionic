@@ -113,13 +113,9 @@ nav {
 }
 
 .md-cover {
-  @apply bg-transparent transition-all duration-300;
-  @apply group-hover:bg-gradient-to-t group-hover:from-black/55 group-hover:via-black/20 group-hover:to-transparent;
 }
 
 .sm-cover {
-  @apply bg-transparent transition-all duration-300;
-  @apply group-hover:bg-gradient-to-t group-hover:from-black/55 group-hover:via-black/20 group-hover:to-transparent;
 }
 
 @keyframes spin {

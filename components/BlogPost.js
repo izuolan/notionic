@@ -17,8 +17,6 @@ const BlogPost = ({ post }) => {
             src={post?.page_cover}
             className='w-full h-full object-cover object-center absolute inset-0 opacity-0 group-hover:opacity-60 group-hover:scale-110 transition-all duration-300 ease-in-out'
           />
-          <div className='hidden md:block md-cover absolute inset-0'></div>
-          <div className='md:hidden sm-cover absolute inset-0'></div>
           <div className='relative mt-auto'>
             <header className='flex flex-col justify-between md:flex-row md:items-baseline'>
               <h2 className='text-lg md:text-xl font-medium mb-2 text-black dark:text-gray-100 transition-colors duration-300 group-hover:text-white'>{post.title}</h2>
