@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import BLOG from '@/blog.config'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
@@ -19,21 +18,19 @@ const PostCover = ({ src, alt }) => {
 
   return (
     <div
-      className='absolute top-0 left-0 right-0 h-48 md:h-72 overflow-hidden'
+      className='absolute top-0 left-0 right-0 h-56 md:h-80'
       style={{ zIndex: -1 }}
     >
-      <Image
-        fill
-        src={src}
-        alt={alt || ''}
-        className='object-cover object-center'
-        sizes='100vw'
-        priority
+      <div
+        className='w-full h-full bg-cover bg-center bg-no-repeat'
+        style={{ backgroundImage: `url(${src})` }}
+        role='img'
+        aria-label={alt || ''}
       />
       <div
         className='absolute inset-0'
         style={{
-          background: `linear-gradient(to bottom, transparent 40%, ${bgColor} 100%)`
+          background: `linear-gradient(to bottom, transparent 30%, ${bgColor} 100%)`
         }}
       />
     </div>
