@@ -45,26 +45,6 @@ html::-webkit-scrollbar-thumb {
   backdrop-filter: blur(5px);
 }
 
-.sticky-nav-full .nav {
-  @apply text-gray-600 dark:text-gray-300;
-}
-
-/* Drop-shadow on all header content so text/icons stay legible over cover images */
-#sticky-nav .nav,
-#sticky-nav .nav-func-btn,
-#sticky-nav > div > a svg,
-#sticky-nav > div > a div {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
-}
-
-/* Remove shadow once the frosted-glass backdrop is active */
-.sticky-nav-full .nav,
-.sticky-nav-full .nav-func-btn,
-.sticky-nav-full > div > a svg,
-.sticky-nav-full > div > a div {
-  filter: none;
-}
-
 nav {
   flex-wrap: wrap;
   line-height: 1.5em;

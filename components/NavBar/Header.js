@@ -73,8 +73,8 @@ const NavBar = () => {
               <Link passHref href={link.to} key={link.id} scroll={false}>
                 <li
                   className={`${
-                    activeMenu === link.to ? 'bg-gray-200 dark:bg-gray-700' : ''
-                  } hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block py-1 px-2 nav`}
+                    activeMenu === link.to ? 'bg-gray-200/30 dark:bg-gray-700/30' : ''  
+                  } hover:bg-gray-200/30 dark:hover:bg-gray-700/30 cursor-pointer rounded-lg block py-1 px-2 nav`}
                 >
                   <div className='font-light'>
                     {link.icon}

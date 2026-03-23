@@ -98,7 +98,8 @@ svg + .notion-page-title-text {
 }
 .notion-table-of-contents {
   /* @apply 2xl:max-w-xs 2xl:fixed 2xl:z-10 2xl:top-40 2xl:inset-x-3/4; */
-  @apply bg-day dark:bg-night;
+  /* @apply bg-day dark:bg-night; */
+  @apply rounded-lg;
 }
 .notion-table-of-contents-item {
   @apply rounded-lg px-2 dark:text-gray-200;
