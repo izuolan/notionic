@@ -16,13 +16,24 @@ function toDayjsLocale (locale) {
   return LOCALE_MAP[locale] || locale
 }
 
+const LOCALE_LOADERS = {
+  'zh-cn': () => import('dayjs/locale/zh-cn'),
+  'en': () => import('dayjs/locale/en'),
+}
+
+function loadDayjsLocale (dayjsLocale) {
+  const loader = LOCALE_LOADERS[dayjsLocale]
+  if (loader) return loader()
+  return Promise.resolve()
+}
+
 export default function FormattedDate ({ date }) {
   const { locale } = useRouter()
   const [formattedDate, setFormattedDate] = useState(null)
 
   useEffect(() => {
     const dayjsLocale = toDayjsLocale(locale)
-    import(`dayjs/locale/${dayjsLocale}`)
+    loadDayjsLocale(dayjsLocale)
       .then(() => {
         dayjs.locale(dayjsLocale)
         setFormattedDate(dayjs(date).format('ll'))
