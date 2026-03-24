@@ -1,3 +1,8 @@
+const BLOG = require('./blog.config')
+
+// Derive the short locale key from BLOG.lang (e.g. 'zh-CN' -> 'zh', 'en-US' -> 'en')
+const defaultLocale = BLOG.lang ? BLOG.lang.split('-')[0] : 'en'
+
 module.exports = {
   productionBrowserSourceMaps: false,
   env: {
@@ -8,7 +13,7 @@ module.exports = {
   },
   i18n: {
     locales: ['en', 'zh'],
-    defaultLocale: 'en',
+    defaultLocale,
     localeDetection: false
   },
   serverExternalPackages: [
