@@ -19,7 +19,7 @@
     "format": "prettier --write .",
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "prepare": "husky install"
+    "prepare": "echo 'skipping husky in replit'"
   },
   "dependencies": {
     "@fisch0920/medium-zoom": "^1.0.7",
