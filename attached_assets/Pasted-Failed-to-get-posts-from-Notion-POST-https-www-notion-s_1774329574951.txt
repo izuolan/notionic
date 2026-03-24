@@ -1,0 +1,27 @@
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get page blocks for a030e2011e168242b4838190346418bf: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Error [FetchError]: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+    at async j (.next/server/chunks/993.js:1:2856)
+    at async p (.next/server/pages/s/[subpage].js:1:1913)
+Failed to get page blocks for e480e2011e1683d8a36601e1607ca168: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Error [FetchError]: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+    at async j (.next/server/chunks/993.js:1:2856)
+    at async p (.next/server/pages/s/[subpage].js:1:1913)
+   Generating static pages (42/57) 
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+Failed to get posts from Notion: [POST] "https://www.notion.so/api/v3/loadPageChunk": 429 Too Many Requests
+TypeError: Cannot read properties of undefined (reading 'id')
+    at m (.next/server/pages/newsletter.js:1:4661)
+Error occurred prerendering page "/en/newsletter". Read more: https://nextjs.org/docs/messages/prerender-error
+[Error: Error serializing `.blockMap` returned from `getStaticProps` in "/newsletter".
+Reason: `undefined` cannot be serialized as JSON. Please use `null` or omit this value.]
+Export encountered an error on /newsletter: /en/newsletter, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.
+Error: Command "pnpm run build" exited with 1
