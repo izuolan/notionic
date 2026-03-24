@@ -64,7 +64,7 @@ const NavBar = () => {
     }
   ]
   return (
-    <div className='flex nav-bar-pill backdrop-blur-sm p-1 bg-gray-100/40 dark:bg-gray-800/40 rounded-lg'>
+    <div className='flex nav-bar-pill backdrop-blur-sm md:p-1 bg-gray-100/40 dark:bg-gray-800/40 rounded-lg'>
       {/* Desktop Menu */}
       <ul className='hidden md:flex md:gap-1'>
         {links.map(
@@ -74,7 +74,7 @@ const NavBar = () => {
                 <li
                   className={`${
                     activeMenu === link.to ? 'bg-gray-500/10 dark:bg-gray-300/10' : ''  
-                  } nav-hover cursor-pointer rounded-lg block py-1 px-2 nav`}
+                  } nav-hover cursor-pointer rounded-lg block nav py-1 px-2`}
                 >
                   <div className='font-light'>
                     {link.icon}
@@ -93,16 +93,16 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Phone Menu */}
-      <div className='md:hidden mr-2 block '>
+      <div className='md:hidden block mr-2'>
         <button
           type='button' aria-label='Menu'
           onClick={() => setShowMenu((showMenu) => !showMenu)}
-          className='hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block p-2 -mr-3 md:pb-3'
+          className='nav-hover cursor-pointer rounded-lg block p-1 m-1 -mr-1 md:pb-3'
         >
           <Bars3Icon className='inline-block mb-1 h-5 w-5' />
         </button>
         {showMenu && (
-          <div className='absolute right-0 w-40 mr-4 mt-2 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>
+          <div className='absolute right-0 w-40 mr-1 mt-2 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>
             <div className='py-1'>
               {links.map(
                 (link) =>
@@ -171,12 +171,12 @@ const Header = ({ navBarTitle, fullWidth }) => {
         <div className='flex items-center'>
           <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
             <div>
-              <Logo className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current' />
+              <Logo className='h-6 hover:text-blue-500 fill-current' />
             </div>
           </Link>
           {navBarTitle ? (
             <p
-              className={`ml-2 font-medium ${
+              className={`ml-5 font-medium ${
                 !showTitle ? 'hidden' : 'hidden xl:block'
               }`}
             >
@@ -184,7 +184,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
             </p>
           ) : (
             <p
-              className={`ml-2 font-medium ${
+              className={`ml-5 font-medium ${
                 !showTitle ? 'hidden' : 'hidden xl:block'
               }`}
             >

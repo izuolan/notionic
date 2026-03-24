@@ -14,7 +14,7 @@ const Logo = (props) => (
     {...props}
   >
     {/* Animated blob — coords scaled ×1.15 from center (50,50) so blob extends beyond logo edge */}
-    <path opacity='0.35' fill='currentColor'>
+    <path opacity='0.4' fill='lightblue'>
       <animate
         attributeName='d'
         dur='10s'
