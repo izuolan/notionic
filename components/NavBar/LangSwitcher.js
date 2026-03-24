@@ -10,8 +10,7 @@ const LangSwitcher = () => {
       <Link passHref href={asPath} locale={locale === 'en' ? 'zh' : 'en'} scroll={false}>
         <button
           aria-label='LangSwitcher'
-          className='p-2 hover:bg-gray-200/30 dark:hover:bg-gray-700/30 cursor-pointer rounded-lg dark:text-gray-100'
-className = 'p-2 hover:bg-gray-200/20 dark:hover:bg-gray-700/20 cursor-pointer rounded-lg dark:text-gray-100'  
+          className='p-2 nav-hover cursor-pointer rounded-lg dark:text-gray-100'
         >
           <LanguageIcon className='h-5 w-5' />
         </button>

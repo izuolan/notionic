@@ -45,6 +45,10 @@ html::-webkit-scrollbar-thumb {
   backdrop-filter: blur(5px);
 }
 
+.sticky-nav-full .nav-bar-pill {
+  @apply bg-transparent dark:bg-transparent rounded-none;
+}
+
 nav {
   flex-wrap: wrap;
   line-height: 1.5em;
@@ -52,6 +56,10 @@ nav {
 
 .nav-func-btn {
   margin-top: 0.15rem;
+}
+
+.nav-hover {
+  @apply hover:bg-gray-500/20 dark:hover:bg-gray-300/20;
 }
 
 .article-tags::-webkit-scrollbar {

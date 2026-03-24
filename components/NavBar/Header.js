@@ -64,7 +64,7 @@ const NavBar = () => {
     }
   ]
   return (
-    <div className='flex'>
+    <div className='flex nav-bar-pill backdrop-blur-sm p-1 bg-gray-100/40 dark:bg-gray-800/40 rounded-lg'>
       {/* Desktop Menu */}
       <ul className='hidden md:flex md:gap-1'>
         {links.map(
@@ -73,8 +73,8 @@ const NavBar = () => {
               <Link passHref href={link.to} key={link.id} scroll={false}>
                 <li
                   className={`${
-                    activeMenu === link.to ? 'bg-gray-200/30 dark:bg-gray-700/30' : ''  
-                  } hover:bg-gray-200/30 dark:hover:bg-gray-700/30 cursor-pointer rounded-lg block py-1 px-2 nav`}
+                    activeMenu === link.to ? 'bg-gray-500/10 dark:bg-gray-300/10' : ''  
+                  } nav-hover cursor-pointer rounded-lg block py-1 px-2 nav`}
                 >
                   <div className='font-light'>
                     {link.icon}
