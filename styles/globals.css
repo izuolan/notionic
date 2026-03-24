@@ -6,8 +6,13 @@
 html {
   --scrollbarBG: #ffffff00;
   --thumbBG: #b8b8b8;
+  --color-inverse: #E5E7EB;
   overflow-y: scroll;
   overflow-x: auto;
+}
+
+html.dark {
+  --color-inverse: #212936;
 }
 html::-webkit-scrollbar {
   width: 5px;
@@ -24,7 +29,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 ::selection {
-  background: rgba(45, 170, 219, 0.3);
+  background: rgb(45, 170, 219, 0.3);
 }
 
 .sticky-nav {
