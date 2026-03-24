@@ -48,7 +48,7 @@
     "p-memoize": "^8.0.0",
     "p-queue": "^9.1.0",
     "postgres": "^3.4.8",
-    "preact": "^10.27.1",
+    "preact": "^10.29.0",
     "prism-theme-vars": "^0.2.5",
     "prismjs": "^1.30.0",
     "prop-types": "^15.8.1",
