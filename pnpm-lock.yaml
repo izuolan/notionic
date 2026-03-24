@@ -171,9 +171,6 @@ importers:
       eslint-config-next:
         specifier: ^15.0.0
         version: 15.5.14(eslint@8.57.1)(typescript@5.9.3)
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
       next-sitemap:
         specifier: ^4.2.3
         version: 4.2.3(next@15.5.14(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
@@ -2196,11 +2193,6 @@ packages:
   http2-wrapper@2.2.1:
     resolution: {integrity: sha512-V5nVw1PAOgfI3Lmeaj2Exmeg7fenjhRUgz1lPSezy1CuhPYbgQtbQj4jZfEAEMlaL+vupsvhjqCyjzob0yxsmQ==}
     engines: {node: '>=10.19.0'}
-
-  husky@9.1.7:
-    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
-    engines: {node: '>=18'}
-    hasBin: true
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -5839,8 +5831,6 @@ snapshots:
     dependencies:
       quick-lru: 5.1.1
       resolve-alpn: 1.2.1
-
-  husky@9.1.7: {}
 
   ieee754@1.2.1: {}
 

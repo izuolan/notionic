@@ -18,8 +18,7 @@
     "start": "next start -p 5000 -H 0.0.0.0",
     "format": "prettier --write .",
     "lint": "next lint",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "prepare": "echo 'skipping husky in replit'"
+    "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "@fisch0920/medium-zoom": "^1.0.7",
@@ -78,7 +77,6 @@
     "dotenv-cli": "^10.0.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.0.0",
-    "husky": "^9.1.7",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.1",
