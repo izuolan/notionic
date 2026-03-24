@@ -97,12 +97,12 @@ const NavBar = () => {
         <button
           type='button' aria-label='Menu'
           onClick={() => setShowMenu((showMenu) => !showMenu)}
-          className='nav-hover cursor-pointer rounded-lg block p-1 m-1 -mr-1 md:pb-3'
+          className='nav-hover cursor-pointer rounded-lg block p-1 m-1 -mr-1'
         >
           <Bars3Icon className='inline-block mb-1 h-5 w-5' />
         </button>
         {showMenu && (
-          <div className='absolute right-0 w-40 mr-1 mt-2 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>
+          <div className='absolute right-0 w-40 mr-1 mt-1 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>
             <div className='py-1'>
               {links.map(
                 (link) =>
