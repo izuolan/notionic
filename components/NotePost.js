@@ -1,9 +1,10 @@
 import BLOG from '@/blog.config.js'
 import Link from 'next/link'
 import ImageFallback from './Common/ImageFallback.js'
+import getCraftSlug from '@/lib/getCraftSlug'
 
 const NotePost = ({ note }) => {
-  const craftSlug = note.url.slice(23)
+  const craftSlug = getCraftSlug(note.url)
   return (
     <Link
       passHref
@@ -26,3 +27,4 @@ const NotePost = ({ note }) => {
 }
 
 export default NotePost
+
