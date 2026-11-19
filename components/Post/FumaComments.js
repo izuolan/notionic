@@ -1,9 +1,11 @@
+'use client'
+
 import { signIn } from 'next-auth/react'
 import { Comments } from '@fuma-comment/react'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
 
 const FumaComments = ({ frontMatter }) => {
-  const { locale } = useRouter()
+  const locale = useLocale()
   const page = `${locale}-${frontMatter.slug || frontMatter.id || 'default'}`
 
   return (
@@ -12,7 +14,7 @@ const FumaComments = ({ frontMatter }) => {
         page={page}
         auth={{
           type: 'api',
-          signIn: () => signIn('github'),
+          signIn: () => signIn('github')
         }}
       />
     </div>

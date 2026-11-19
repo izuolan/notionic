@@ -1,8 +1,11 @@
+'use client'
+
 import { useEffect, useCallback, useState, useRef } from 'react'
-import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
+import LocaleLink from '@/components/LocaleLink'
 import HomeIcon from '@heroicons/react/24/outline/HomeIcon'
 import NewspaperIcon from '@heroicons/react/24/outline/NewspaperIcon'
 import RectangleStackIcon from '@heroicons/react/24/outline/RectangleStackIcon'
@@ -13,17 +16,19 @@ import Social from '../Common/Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
 import Logo from '@/components/Common/Logo'
+import { stripLocalePrefix } from '@/lib/locale'
+
 const NavBar = () => {
-  const router = useRouter()
-  const { locale } = useRouter()
+  const pathname = usePathname() || '/'
+  const locale = useLocale()
   const t = lang[locale]
   const [showMenu, setShowMenu] = useState(false)
+  const { pathname: barePath } = stripLocalePrefix(pathname)
 
-  let activeMenu = ''
-  if (router.query.slug) {
-    activeMenu = '/' + router.query.slug
-  } else {
-    activeMenu = router.pathname
+  let activeMenu = barePath
+  // Treat /about etc as slug menus
+  if (barePath !== '/' && !barePath.startsWith('/page/')) {
+    // keep barePath as activeMenu
   }
 
   const links = [
@@ -65,15 +70,14 @@ const NavBar = () => {
   ]
   return (
     <div className='flex nav-bar-pill backdrop-blur-sm md:p-1 bg-gray-100/40 dark:bg-gray-800/40 rounded-xl'>
-      {/* Desktop Menu */}
       <ul className='hidden md:flex md:gap-1'>
         {links.map(
           (link) =>
             link.show && (
-              <Link passHref href={link.to} key={link.id} scroll={false}>
+              <LocaleLink passHref href={link.to} key={link.id} scroll={false}>
                 <li
                   className={`${
-                    activeMenu === link.to ? 'bg-gray-500/10 dark:bg-gray-300/10' : ''  
+                    activeMenu === link.to ? 'bg-gray-500/10 dark:bg-gray-300/10' : ''
                   } nav-hover cursor-pointer rounded-lg block nav py-1 px-2`}
                 >
                   <div className='font-light'>
@@ -81,8 +85,7 @@ const NavBar = () => {
                     <span className='inline-block m-1'>{link.name}</span>
                   </div>
                 </li>
-              </Link>
-
+              </LocaleLink>
             )
         )}
       </ul>
@@ -92,7 +95,6 @@ const NavBar = () => {
         <LangSwitcher />
       </div>
 
-      {/* Mobile Phone Menu */}
       <div className='md:hidden block mr-2'>
         <button
           type='button' aria-label='Menu'
@@ -107,7 +109,7 @@ const NavBar = () => {
               {links.map(
                 (link) =>
                   link.show && (
-                    <Link passHref key={link.id} href={link.to} scroll={false}>
+                    <LocaleLink passHref key={link.id} href={link.to} scroll={false}>
                       <button
                         onClick={() => setShowMenu((showMenu) => !showMenu)}
                         className='text-left hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'
@@ -115,7 +117,7 @@ const NavBar = () => {
                         {link.icon}
                         <span className='m-1'>{link.name}</span>
                       </button>
-                    </Link>
+                    </LocaleLink>
                   )
               )}
             </div>
@@ -181,11 +183,11 @@ const Header = ({ navBarTitle, fullWidth }) => {
         ref={navRef}
       >
         <div className='flex items-center'>
-          <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
+          <LocaleLink passHref href='/' scroll={false} aria-label={BLOG.title}>
             <div>
               <Logo className='h-6 hover:text-blue-500 fill-current' />
             </div>
-          </Link>
+          </LocaleLink>
           {navBarTitle ? (
             <p
               className={`ml-5 font-medium ${

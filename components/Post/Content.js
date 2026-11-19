@@ -4,14 +4,11 @@ import Link from 'next/link'
 
 import FormattedDate from '@/components/Common/FormattedDate'
 import TagItem from '@/components/Common/TagItem'
-import NotionRenderer from '@/components/Post/NotionRenderer'
-import MarkdownRenderer from '@/components/Post/MarkdownRenderer'
 
 import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 
-export default function Content (props) {
-  const { frontMatter, blockMap, content, pageTitle } = props
-  const isMarkdown = frontMatter.source === 'markdown'
+export default function Content(props) {
+  const { frontMatter, children, pageTitle } = props
 
   return (
     <article className='flex-none md:overflow-x-visible overflow-x-scroll w-full'>
@@ -43,24 +40,13 @@ export default function Content (props) {
           )}
         </nav>
       )}
-      <div className='-mt-4 relative'>
-        {isMarkdown ? (
-          <MarkdownRenderer content={content || ''} />
-        ) : (
-          <NotionRenderer
-            blockMap={blockMap}
-            previewImages={BLOG.previewImagesEnabled}
-            {...props}
-          />
-        )}
-      </div>
+      <div className='-mt-4 relative'>{children}</div>
     </article>
   )
 }
 
 Content.propTypes = {
   frontMatter: PropTypes.object.isRequired,
-  blockMap: PropTypes.object,
-  content: PropTypes.string,
+  children: PropTypes.node,
   pageTitle: PropTypes.string
 }

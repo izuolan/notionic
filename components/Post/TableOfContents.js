@@ -1,72 +1,38 @@
+'use client'
+
 import PropTypes from 'prop-types'
-import { getPageTableOfContents } from 'notion-utils'
 import Link from 'next/link'
 import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 import BLOG from '@/blog.config'
 
-export default function TableOfContents ({ blockMap, frontMatter, pageId, pageTitle, showScrollElement }) {
-  if (!blockMap) return null
+export default function TableOfContents({
+  toc = [],
+  frontMatter,
+  pageTitle,
+  showScrollElement
+}) {
+  if (!toc?.length || !showScrollElement) return null
 
-  const normalizeId = (id = '') => id.replaceAll('-', '')
-  const unwrapBlockValue = (block) => block?.value?.value ?? null
-  const getBlockValueById = (id) => {
-    if (!id) return null
-    return unwrapBlockValue(
-      blockMap?.block?.[id] ??
-      blockMap?.block?.[normalizeId(id)]
-    )
-  }
-  const blockValues = Object.values(blockMap.block ?? {})
-    .map(unwrapBlockValue)
-    .filter(Boolean)
-
-  const page =
-    getBlockValueById(pageId) ??
-    blockValues.find(block => block?.type === 'page') ??
-    blockValues[0]
-
-  if (!page) return null
-
-  const nodes = getPageTableOfContents(page, blockMap)
-  if (!nodes.length || !showScrollElement) return null
-
-  /**
-   * Get the level of the title (1-6)
-   * @param {Object} node - 标题节点
-   */
-  const getHeaderLevel = (node) => {
-    // Get the type information of the corresponding block through blockMap
-    const block = getBlockValueById(node.id)
-    if (block?.type === 'header') return 1
-    if (block?.type === 'sub_header') return 2
-    if (block?.type === 'sub_sub_header') return 3
-    // Fallback: try to get the level information from the node itself
-    return node.level || 1
-  }
-
-  /**
-   * Get the indentation and style class name according to the level
-   * @param {number} level - Title level
-   */
-  const getLevelStyles = (level) => {
+  const getLevelStyles = (depth) => {
     const styles = {
       1: 'pl-2 text-gray-700 dark:text-gray-300 font-medium',
       2: 'pl-6 text-gray-600 dark:text-gray-400',
-      3: 'pl-10 text-gray-500 dark:text-gray-500 text-xs',
+      3: 'pl-10 text-gray-500 dark:text-gray-500 text-xs'
     }
-    return styles[level] || styles[3] // If it exceeds 3 levels, it is processed as 3 levels
+    return styles[depth] || styles[3]
   }
 
-  /**
-   * @param {string} id - The ID of target heading block (could be in UUID format)
-   */
-  function scrollTo (id) {
-    id = id.replaceAll('-', '')
-    const target = document.querySelector(`.notion-block-${id}`)
+  function scrollTo(url) {
+    const id = (url || '').replace(/^#/, '')
+    if (!id) return
+    const target =
+      document.getElementById(id) ||
+      document.querySelector(`[id="${CSS.escape(id)}"]`)
     if (!target) return
-    // `65` is the height of expanded nav
-    // TODO: Remove the magic number
-    const top = document.documentElement.scrollTop + target.getBoundingClientRect().top - 65
+    const top =
+      document.documentElement.scrollTop +
+      target.getBoundingClientRect().top -
+      65
     document.documentElement.scrollTo({
       top,
       behavior: 'smooth'
@@ -74,9 +40,7 @@ export default function TableOfContents ({ blockMap, frontMatter, pageId, pageTi
   }
 
   return (
-    <div
-      className='table-of-contents toc-fade-in'
-    >
+    <div className='table-of-contents toc-fade-in'>
       {pageTitle && (
         <Link
           passHref
@@ -88,26 +52,31 @@ export default function TableOfContents ({ blockMap, frontMatter, pageId, pageTi
           <span className='ml-1'>{frontMatter.title}</span>
         </Link>
       )}
-      {nodes.map(node => {
-        const level = getHeaderLevel(node)
-        const levelStyles = getLevelStyles(level)
-        
+      {toc.map((node) => {
+        const depth = Math.min(Math.max(node.depth || 1, 1), 3)
+        const levelStyles = getLevelStyles(depth)
+        const key = node.url || node.title
+
         return (
-          <div key={node.id} className='hover:bg-gray-200 hover:dark:bg-gray-700 rounded-lg transition-colors relative'>
+          <div
+            key={key}
+            className='hover:bg-gray-200 hover:dark:bg-gray-700 rounded-lg transition-colors relative'
+          >
             <a
-              data-target-id={node.id}
+              data-target-id={node.url}
               className={`block py-1.5 px-2 cursor-pointer transition-colors relative ${levelStyles}`}
-              onClick={() => scrollTo(node.id)}
-              title={node.text}
+              onClick={() => scrollTo(node.url)}
+              title={typeof node.title === 'string' ? node.title : undefined}
             >
-              {/* Add level indicator */}
-              {level > 1 && (
-                <span 
-                  className="absolute top-1/2 transform -translate-y-1/2 w-1 h-1 bg-current rounded-full opacity-60"
-                  style={{ left: `${level === 2 ? '12px' : '24px'}` }}
+              {depth > 1 && (
+                <span
+                  className='absolute top-1/2 transform -translate-y-1/2 w-1 h-1 bg-current rounded-full opacity-60'
+                  style={{ left: `${depth === 2 ? '12px' : '24px'}` }}
                 />
               )}
-              <span className={level > 1 ? 'truncate block' : ''}>{node.text}</span>
+              <span className={depth > 1 ? 'truncate block' : ''}>
+                {node.title}
+              </span>
             </a>
           </div>
         )
@@ -117,9 +86,8 @@ export default function TableOfContents ({ blockMap, frontMatter, pageId, pageTi
 }
 
 TableOfContents.propTypes = {
-  blockMap: PropTypes.object,
+  toc: PropTypes.array,
   frontMatter: PropTypes.object.isRequired,
-  pageId: PropTypes.string,
   pageTitle: PropTypes.string,
   showScrollElement: PropTypes.bool.isRequired
 }

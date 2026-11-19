@@ -1,10 +1,17 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { usePathname, useSearchParams } from 'next/navigation'
 import useAckee from 'use-ackee'
 
 const Ackee = ({ ackeeServerUrl, ackeeDomainId }) => {
-  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const asPath = searchParams?.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname
+
   useAckee(
-    router.asPath,
+    asPath,
     { server: ackeeServerUrl, domainId: ackeeDomainId },
     { detailed: false, ignoreLocalhost: true }
   )

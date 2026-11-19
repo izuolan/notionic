@@ -1,11 +1,13 @@
+'use client'
+
 import { useState } from 'react'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
 
 function Contact() {
   const [showResult, setShowResult] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const { locale } = useRouter()
+  const locale = useLocale()
   const t = lang[locale]
 
   const sentMessage = async (event) => {
