@@ -1,3 +1,4 @@
+'use client'
 import BLOG from '@/blog.config'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'

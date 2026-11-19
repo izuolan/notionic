@@ -1,12 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
 import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon'
 import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 
 const Pagination = ({ page, showNext }) => {
-  const { locale } = useRouter()
+  const locale = useLocale()
   const t = lang[locale]
   const currentPage = +page
   let additionalClassName = 'justify-between'
@@ -17,7 +19,8 @@ const Pagination = ({ page, showNext }) => {
       className={`flex font-medium text-black dark:text-gray-100 ${additionalClassName}`}
     >
       {currentPage !== 1 && (
-        <Link scroll={false}
+        <Link
+          scroll={false}
           href={
             currentPage - 1 === 1
               ? `${BLOG.path || '/'}`

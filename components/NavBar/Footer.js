@@ -1,23 +1,22 @@
-import Link from 'next/link'
+'use client'
+
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
+import { useLocale } from '@/components/LocaleProvider'
+import LocaleLink from '@/components/LocaleLink'
 import UserIcon from '@heroicons/react/24/outline/UserIcon'
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import BookOpenIcon from '@heroicons/react/24/outline/BookOpenIcon'
 import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon'
 import Social from '../Common/Social.js'
-const Footer = ({ fullWidth }) => {
-  const router = useRouter()
-  const { locale } = useRouter()
-  const t = lang[locale]
+import { stripLocalePrefix } from '@/lib/locale'
 
-  let activeMenu = ''
-  if (router.query.slug) {
-    activeMenu = '/' + router.query.slug
-  } else {
-    activeMenu = router.pathname
-  }
+const Footer = ({ fullWidth }) => {
+  const pathname = usePathname() || '/'
+  const locale = useLocale()
+  const t = lang[locale]
+  const { pathname: barePath } = stripLocalePrefix(pathname)
 
   const d = new Date()
   const y = d.getFullYear()
@@ -66,10 +65,10 @@ const Footer = ({ fullWidth }) => {
             {links.map(
               (link) =>
                 link.show && (
-                  <Link passHref key={link.id} href={link.to} scroll={false}>
-                    <li key={link.id}
+                  <LocaleLink passHref key={link.id} href={link.to} scroll={false}>
+                    <li
                       className={`${
-                        activeMenu === link.to
+                        barePath === link.to
                           ? 'bg-gray-200 dark:bg-gray-700'
                           : ''
                       } hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block py-1 px-2 nav`}
@@ -79,7 +78,7 @@ const Footer = ({ fullWidth }) => {
                         <span className='inline-block m-1'>{link.name}</span>
                       </div>
                     </li>
-                  </Link>
+                  </LocaleLink>
                 )
             )}
           </ul>
@@ -87,16 +86,19 @@ const Footer = ({ fullWidth }) => {
             <Social />
           </div>
         </div>
-
         <div className='text-gray-400 text-xs font-light py-4'>
-          © {from === y || !from ? y : `${from} - ${y}`} | {BLOG.author}
-          <p className='md:float-right'>
-            {t.FOOTER.COPYRIGHT_START}
-            <a className='underline' href={`${t.FOOTER.COPYRIGHT_LINK}`}>
-              {t.FOOTER.COPYRIGHT_NAME}
-            </a>
-            {t.FOOTER.COPYRIGHT_END}
-          </p>
+          © {BLOG.author} {from === y || !from ? y : `${from} - ${y}`}
+          {' · '}
+          {t.FOOTER.COPYRIGHT_START}
+          <a
+            className='underline'
+            href={t.FOOTER.COPYRIGHT_LINK}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {t.FOOTER.COPYRIGHT_NAME}
+          </a>
+          {t.FOOTER.COPYRIGHT_END}
         </div>
       </footer>
     </div>

@@ -1,132 +1,39 @@
-# Notionic Blog — Replit
+# Notionic Blog
 
-A Next.js 14 blog that reads content from Notion and local Markdown files.
+A Next.js blog that renders local Markdown/MDX via Fumadocs, with the classic Notionic layout.
 
 ## Running
 
-The `Start application` workflow runs `pnpm dev` → `next dev -p 5000 -H 0.0.0.0`.
+```bash
+pnpm install
+pnpm dev
+```
 
-First compile takes ~10–25 seconds. Subsequent page loads are <1 second.
-
-## Environment Secrets Required
+## Environment Secrets
 
 | Secret | Purpose |
 |---|---|
-| `NOTION_PAGE_ID` | Root Notion page with blog posts |
-| `NOTION_SPACES_ID` | Notion workspace ID |
 | `GITHUB_ID` | GitHub OAuth App client ID (for comments) |
 | `GITHUB_SECRET` | GitHub OAuth App client secret (for comments) |
 | `NEXTAUTH_SECRET` | Random secret for NextAuth JWT signing |
-
-Optional: `NOTION_ACCESS_TOKEN` (for private pages).
+| `DATABASE_URL` | Postgres for Fuma Comment |
+| `TELEGRAM_TOKEN` | Optional contact form bot |
 
 ## Architecture
 
-- **Framework**: Next.js 14.2 (Pages Router + App Router for API routes), React 19
-- **CMS**: Notion via `notion-client` / `react-notion-x` **+ local Markdown files**
-- **Styling**: Tailwind CSS **v3** + custom CSS
-- **Comment system**: Fuma Comment with GitHub OAuth (NextAuth v4) and Replit PostgreSQL
-- **Package manager**: pnpm
+- **Framework**: Next.js 16 (App Router), React 19.2
+- **Content**: Fumadocs MDX (`content/posts`)
+- **Styling**: Tailwind CSS v3 + custom CSS (`.markdown-body`)
+- **Comments**: Fuma Comment with GitHub OAuth (NextAuth v4)
+- **Notes archive**: Craft.do share API (unchanged)
 
 ## Key Files
 
 | File | Purpose |
 |---|---|
-| `blog.config.js` | Blog settings (title, author, Notion IDs, features) |
-| `pages/index.js` | Home page — reads posts via `getStaticProps` |
-| `pages/_app.js` | App shell — Header, Footer, ThemeProvider, NProgress |
-| `pages/api/auth/[...nextauth].js` | NextAuth GitHub OAuth handler |
-| `lib/notion/` | Server-side Notion API helpers |
-| `lib/auth-options.js` | NextAuth configuration (GitHub provider + JWT + user upsert) |
-| `lib/db.js` | Drizzle ORM postgres-js database client |
-| `lib/comment-schema.js` | Drizzle schemas for comments, rates, roles, fuma_users |
-| `lib/comment-config.js` | Fuma Comment storage + auth adapters |
-| `app/api/comments/[[...comment]]/route.js` | Fuma Comment API route handler (App Router) |
-| `components/Post/FumaComments.js` | Fuma Comment React widget (dynamically loaded) |
-| `components/Post/Comments.js` | Comment provider router (utterances / supacomments / fuma) |
-| `styles/fuma-comment.css` | Extracted Fuma Comment styles (Tailwind layers stripped) |
-| `lib/markdown/getAllMarkdownPosts.js` | Reads `content/*.md`, returns same post shape as Notion |
-| `lib/markdown/getMarkdownContent.js` | Converts Markdown body to HTML (remark + remark-gfm) |
-| `content/` | Local Markdown post files (`slug.md`) |
-
-## Comment System Setup
-
-The blog uses **Fuma Comment** for self-hosted comments with GitHub OAuth login.
-
-### GitHub OAuth App setup
-1. Go to https://github.com/settings/developers → "New OAuth App"
-2. Homepage URL: your blog URL
-3. Authorization callback URL: `https://YOUR-REPLIT-DOMAIN/api/auth/callback/github`
-4. Copy the Client ID → `GITHUB_ID` secret
-5. Generate a Client Secret → `GITHUB_SECRET` secret
-6. Generate a random secret (e.g., `openssl rand -base64 32`) → `NEXTAUTH_SECRET`
-
-### Database
-Tables are auto-created in Replit PostgreSQL (`DATABASE_URL`):
-- `comments` — post comments
-- `rates` — likes/dislikes
-- `roles` — admin roles
-- `fuma_users` — GitHub user profiles (populated on first sign-in)
-
-### Switching comment provider
-In `blog.config.js`, change `comment.provider` to:
-- `'fuma'` — Fuma Comment (default)
-- `'utterances'` — GitHub Issues based
-- `'supacomments'` — Supabase based
-- `''` — disabled
-
-## Local Markdown posts
-
-Add `.md` files to the `content/` directory. Each file needs frontmatter:
-
-```markdown
----
-title: My Post Title
-slug: my-post
-date: 2026-01-01
-tags: [tag1, tag2]
-summary: Optional summary
-status: Published
-type: Post          # Post | Page | Newsletter | Hidden
----
-
-Your content here…
-```
-
-Markdown posts appear alongside Notion posts in the home feed, search, and tag pages.
-
-## Subpage Route Fix (`/s/<slug>`)
-
-`pages/s/[subpage].js` was returning blank/404 content due to two bugs:
-
-1. **Breadcrumb index**: `notion-utils` `getPageBreadcrumbs` returns breadcrumbs in root→leaf order.  The old code used `breadcrumbs[0]` (root) as the active page title.  Fixed to use `breadcrumbs.at(-1)`.
-
-2. **`pageAllowed` space-ID mismatch**: The Notion API now returns `block.spaceId` (camelCase) instead of the old `block.value.space_id`.  The `NOTION_SPACES_ID` secret was configured with an old value that no longer matches.  Fixed by fetching the blog root page on the first subpage request, extracting its real `spaceId`, caching it module-level, and comparing the subpage's `block.spaceId` against that cached value.  This is robust regardless of what value `NOTION_SPACES_ID` is set to.
-
-## Runtime Bug Fixes (applied during Replit migration)
-
-- **`globals.css` CSS `@import` ordering**: Moved `@import` statements before `@tailwind` directives to fix PostCSS error.
-- **`NotionRenderer.js` null guard**: Added null check for `blockMap` before accessing `.block` to prevent crash when Notion data is not yet loaded.
-- **`@tiptap/extensions` package**: Installed explicitly since tiptap v3 re-exports from it but doesn't auto-install it as a dependency of `@fuma-comment/react`.
-- **PostgreSQL `NOTICE` log suppression**: Set `onnotice: () => {}` on the postgres client in `lib/db.js` to silence noisy DB init notices.
-- **`_document.js` and `SEO.js` key props**: Added `key` props to all children of `<Head>` to eliminate most sources of the key warning.
-
-## Migration notes (Vercel → Replit)
-
-Several performance fixes were required to compile in a reasonable time:
-
-1. **Tailwind CSS v4 → v3**: The project was using `@tailwindcss/postcss` (v4) which caused webpack to hang during CSS PostCSS processing. Downgraded to `tailwindcss@3` + `autoprefixer`. Updated `postcss.config.js` and replaced `@import "tailwindcss"` with `@tailwind` directives in `globals.css`.
-
-2. **Heroicons barrel imports → direct imports**: All `@heroicons/react/24/outline` barrel imports were converted to per-icon direct imports (e.g., `import HomeIcon from '@heroicons/react/24/outline/HomeIcon'`) to avoid webpack processing 323 re-exports.
-
-3. **react-notion-x → dynamic import**: `NotionRenderer.js` wraps react-notion-x using `next/dynamic` to prevent the entire ESM package tree from being compiled client-side.
-
-4. **framer-motion removed**: Replaced `motion.div` with regular `div` in Header, Footer, BlogPost, and TransitionEffect components.
-
-5. **Webpack server externals**: Heavy ESM packages (`notion-client`, `got`, `p-map`, etc.) are externalized from the server bundle so webpack doesn't need to bundle them.
-
-6. **Native fetch**: `lib/notion/previewImages.js` uses Node.js native `fetch` instead of `got` (ESM-only) to avoid bundling issues.
-
-7. **Rewrite refactor**: The `next.config.js` rewrites were restructured to use `afterFiles`/`fallback` to prevent the craft.do proxy from intercepting Next.js API routes (`/api/auth/*`, `/api/comments/*`).
-
-8. **Fuma Comment CSS**: The package CSS uses Tailwind `@layer` directives that need special handling. A pre-processed copy (`styles/fuma-comment.css`) with layers stripped is used instead.
+| `blog.config.js` | Blog settings |
+| `source.config.ts` | Fumadocs MDX collection schema |
+| `lib/source.ts` / `lib/posts.js` | Content loader + post helpers |
+| `app/` | App Router pages |
+| `middleware.js` | Locale rewrite (`/zh/...`) |
+| `content/posts/` | Markdown / MDX posts |

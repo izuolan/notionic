@@ -1,3 +1,5 @@
+'use client'
+
 import BLOG from '@/blog.config'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -8,7 +10,7 @@ import HandThumbUpIcon from '@heroicons/react/24/outline/HandThumbUpIcon'
 import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon'
 import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
 
-const Aside = ({ pageId, pageTitle, blockMap, frontMatter }) => {
+const Aside = ({ toc = [], frontMatter, pageTitle }) => {
   const [showPay, setShowPay] = useState(false)
   const [showScrollElement, setShowScrollElement] = useState(false)
 
@@ -35,6 +37,7 @@ const Aside = ({ pageId, pageTitle, blockMap, frontMatter }) => {
       if (raf) window.cancelAnimationFrame(raf)
     }
   }, [frontMatter, pageTitle])
+
   return (
     <>
       <aside className='hidden sticky md:flex md:flex-col md:items-center md:self-start md:ml-8 md:inset-y-1/2'>
@@ -71,9 +74,8 @@ const Aside = ({ pageId, pageTitle, blockMap, frontMatter }) => {
           </div>
         </div>
         <TableOfContents
-          blockMap={blockMap}
+          toc={toc}
           pageTitle={pageTitle}
-          pageId={pageId}
           frontMatter={frontMatter}
           showScrollElement={showScrollElement}
         />

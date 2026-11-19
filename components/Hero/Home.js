@@ -1,18 +1,19 @@
+'use client'
+
 import BLOG from '@/blog.config'
 import Link from 'next/link'
 import Avatar from './Avatar.js'
 import Social from '../Common/Social.js'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
 import { useState } from 'react'
 import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon'
 import RssIcon from '@heroicons/react/24/outline/RssIcon'
 import ClipboardDocumentCheckIcon from '@heroicons/react/24/outline/ClipboardDocumentCheckIcon'
-import NotionRenderer from '@/components/Post/NotionRenderer'
 
-const Hero = ({ blockMap }) => {
+const Hero = ({ children }) => {
   const [showCopied, setShowCopied] = useState(false)
-  const { locale } = useRouter()
+  const locale = useLocale()
   const t = lang[locale]
 
   const clickCopy = async () => {
@@ -27,12 +28,7 @@ const Hero = ({ blockMap }) => {
     <>
       <div className='container mx-auto flex px-5 py-2 mb-10 md:flex-row flex-col items-center md:items-start'>
         <div className='flex flex-col md:w-3/5 md:items-start mb-6 md:mb-0 text-left min-h-[8rem]'>
-          <NotionRenderer
-            className='notion-renderer-override'
-            blockMap={blockMap}
-            frontMatter={{}}
-            subPageTitle={null}
-          />
+          {children}
           <Social />
           <div className='flex flex-col sm:flex-row sm:justify-center gap-4 mt-6'>
             <Link passHref href='/contact' scroll={false}>

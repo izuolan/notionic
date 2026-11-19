@@ -10,7 +10,12 @@ const fontSerifCJK = !CJK()
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js'],
+  content: [
+    './app/**/*.{js,jsx,ts,tsx}',
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+    './layouts/**/*.{js,jsx}'
+  ],
   darkMode: 'class',
   future: {
     hoverOnlyWhenSupported: true

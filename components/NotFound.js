@@ -1,11 +1,12 @@
+'use client'
+
 import { lang } from '@/lib/lang'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-
+import { useLocale } from '@/components/LocaleProvider'
 import Logo from '@/components/Common/Logo'
 
 const Page404 = ({ statusCode }) => {
-  const { locale } = useRouter()
+  const locale = useLocale()
   const t = lang[locale]
   return (
     <div className='py-6 sm:py-8 lg:py-12'>

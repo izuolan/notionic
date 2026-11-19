@@ -1,7 +1,10 @@
+'use client'
+
 import BLOG from '@/blog.config'
 import { useState } from 'react'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
+import { useRouter } from 'next/navigation'
 
 import WechatPay from '@/components/Post/WechatPay'
 import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon'
@@ -9,7 +12,7 @@ import HandThumbUpIcon from '@heroicons/react/24/outline/HandThumbUpIcon'
 
 const PostFooter = () => {
   const [showPay, setShowPay] = useState(false)
-  const { locale } = useRouter()
+  const locale = useLocale()
   const router = useRouter()
   const t = lang[locale]
 

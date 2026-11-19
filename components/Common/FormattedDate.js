@@ -1,5 +1,7 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
 import BLOG from '@/blog.config'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
@@ -11,24 +13,24 @@ const LOCALE_MAP = {
   en: 'en'
 }
 
-function toDayjsLocale (locale) {
+function toDayjsLocale(locale) {
   if (!locale) return LOCALE_MAP[BLOG.lang.slice(0, 2)] || BLOG.lang.slice(0, 2)
   return LOCALE_MAP[locale] || locale
 }
 
 const LOCALE_LOADERS = {
   'zh-cn': () => import('dayjs/locale/zh-cn'),
-  'en': () => import('dayjs/locale/en'),
+  en: () => import('dayjs/locale/en')
 }
 
-function loadDayjsLocale (dayjsLocale) {
+function loadDayjsLocale(dayjsLocale) {
   const loader = LOCALE_LOADERS[dayjsLocale]
   if (loader) return loader()
   return Promise.resolve()
 }
 
-export default function FormattedDate ({ date }) {
-  const { locale } = useRouter()
+export default function FormattedDate({ date }) {
+  const locale = useLocale()
   const [formattedDate, setFormattedDate] = useState(null)
 
   useEffect(() => {

@@ -1,14 +1,16 @@
+'use client'
+
 import { useState } from 'react'
 import BlogPost from '@/components/BlogPost'
 import Container from '@/components/Container'
 import Tags from '@/components/Common/Tags'
 import PropTypes from 'prop-types'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
+import { useLocale } from '@/components/LocaleProvider'
 
 const SearchLayout = ({ tags, posts, currentTag }) => {
   const [searchValue, setSearchValue] = useState('')
-  const { locale } = useRouter()
+  const locale = useLocale()
   const t = lang[locale]
 
   let filteredBlogPosts = []
